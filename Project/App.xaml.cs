@@ -27,7 +27,7 @@ namespace Project
 
             base.OnStartup(e);
 
-            // TODO : Themen die jetzt nicht beachtet wurden
+            // TODO : Themen die noch anstehen
             // Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)
             // Mehrsprachenfähigkeit
             // ReadOnly bei keinem Schreibrecht

@@ -31,7 +31,7 @@
             Grid.Row="2"
             Width="80"
             HorizontalAlignment="Right"
-            Command="{Binding OpenCustomer}"
+            Command="{Binding OpenCustomerCommand}"
             Content="Open" />
     </Grid>
 </catel:UserControl>

@@ -85,6 +85,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Selectors\MainTemplateSelector.cs" />
     <Page Include="Customer.xaml">
       <SubType>Designer</SubType>

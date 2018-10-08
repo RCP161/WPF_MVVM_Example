@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Catel.Data;
 using Catel.IoC;
 using Catel.MVVM;
-using Company.Core.Models;
+using Company.Core.App.Models;
 
 namespace Company.Core.ViewModels
 {

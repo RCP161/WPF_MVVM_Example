@@ -5,11 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
+using Company.Core.App.BusinessLogic;
 
-namespace Company.Core.Models
+namespace Company.Core.App.Models
 {
     public class Customer : ModelBase
     {
+        private readonly CustomerBl bl = new CustomerBl();
+
+        public int Id
+        {
+            get { return GetValue<int>(IdProperty); }
+            set { SetValue(IdProperty, value); }
+        }
+
+        public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int), null);
+
         public string Name
         {
             get { return GetValue<string>(NameProperty); }
@@ -30,11 +41,17 @@ namespace Company.Core.Models
 
         public ObservableCollection<Product> Products
         {
-            get { return GetValue<ObservableCollection<Product>>(ProductProperty); }
+            get
+            {
+                ObservableCollection<Product> products = GetValue<ObservableCollection<Product>>(ProductProperty);
+                if(products == null)
+                    SetValue(ProductProperty, new ObservableCollection<Product>(bl.GetByCustomerId(Id)));
+                return products;
+            }
             set { SetValue(ProductProperty, value); }
         }
 
-        public static readonly PropertyData ProductProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>), () => new ObservableCollection<Product>());
+        public static readonly PropertyData ProductProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>), null);
 
     }
 }

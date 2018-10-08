@@ -23,7 +23,7 @@
             SelectedItem="{Binding SelectedCustomer}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DisplayText}" />
+                    <local:CustomerRo DataContext="{Binding}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

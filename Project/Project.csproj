@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Catel.Core, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Catel.Core.5.7.0\lib\net46\Catel.Core.dll</HintPath>
     </Reference>
@@ -75,6 +78,9 @@
       <HintPath>..\packages\System.Runtime.Serialization.Xml.4.3.0\lib\net46\System.Runtime.Serialization.Xml.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -143,9 +149,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Company.Core.Models\Company.Core.Models.csproj">
-      <Project>{2620f0c9-032a-4aa5-8911-0f51f934a25c}</Project>
-      <Name>Company.Core.Models</Name>
+    <ProjectReference Include="..\Company.Core.App\Company.Core.App.csproj">
+      <Project>{506ea7f0-687b-4f8c-968b-e58525d7c9ec}</Project>
+      <Name>Company.Core.App</Name>
     </ProjectReference>
     <ProjectReference Include="..\Company.Core.ViewModels\Company.Core.ViewModels.csproj">
       <Project>{3a43c586-bb33-466f-94ca-3088ca8eafd9}</Project>

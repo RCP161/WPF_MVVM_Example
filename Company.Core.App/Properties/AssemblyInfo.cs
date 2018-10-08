@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("Company.Core.Models")]
+[assembly: AssemblyTitle("Company.Core.App")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCulture("")]
@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("2620f0c9-032a-4aa5-8911-0f51f934a25c")]
+[assembly: Guid("506ea7f0-687b-4f8c-968b-e58525d7c9ec")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //

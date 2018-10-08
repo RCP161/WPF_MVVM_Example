@@ -6,18 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
 using Catel.MVVM;
-using Company.Core.Models;
+using Company.Core.App.Models;
 
 namespace Company.Core.ViewModels
 {
     public class HomeVm : ViewModelBase
     {
-        public HomeVm()
+        public HomeVm(Home home)
         {
+            Model = home;
             OpenCustomerCommand = new TaskCommand(OpenCustomer, CanOpenCustomer);
         }
 
-        #region Properis
+        #region Propertis
 
         [Model]
         public Home Model
@@ -28,11 +29,12 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Home), null);
 
 
+        // TODO : Hier gehts weiter. Fehlt OnPropertyChanged am Model? Es wird nicht aktualisiert
         [ViewModelToModel(nameof(Model))]
         public ObservableCollection<Customer> Customers
         {
             get { return GetValue<ObservableCollection<Customer>>(CustomersProperty); }
-            private set { SetValue(CustomersProperty, value); }
+            set { SetValue(CustomersProperty, value); }
         }
         public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>), null);
 

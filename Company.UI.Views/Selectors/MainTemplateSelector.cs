@@ -17,7 +17,7 @@ namespace Company.UI.Views.Selectors
         {
             if(item != null)
             {
-                if(item is Core.Models.Home)
+                if(item is Company.Core.App.Models.Home)
                     return HomeDataTemplate;
             }
 

@@ -81,6 +81,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="CustomerRoVm.cs" />
     <Compile Include="CustomerVm.cs" />
     <Compile Include="HomeVm.cs" />
     <Compile Include="MainVm.cs" />
@@ -90,9 +91,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Company.Core.Models\Company.Core.Models.csproj">
-      <Project>{2620F0C9-032A-4AA5-8911-0F51F934A25C}</Project>
-      <Name>Company.Core.Models</Name>
+    <ProjectReference Include="..\Company.Core.App\Company.Core.App.csproj">
+      <Project>{506EA7F0-687B-4F8C-968B-E58525D7C9EC}</Project>
+      <Name>Company.Core.App</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

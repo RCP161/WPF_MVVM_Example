@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
 
-namespace Company.Core.Models
+namespace Company.Core.App.Models
 {
     public class Main : ModelBase
     {

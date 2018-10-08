@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2620F0C9-032A-4AA5-8911-0F51F934A25C}</ProjectGuid>
+    <ProjectGuid>{506EA7F0-687B-4F8C-968B-E58525D7C9EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Company.Core.Models</RootNamespace>
-    <AssemblyName>Company.Core.Models</AssemblyName>
+    <RootNamespace>Company.Core.App</RootNamespace>
+    <AssemblyName>Company.Core.App</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Catel.Core, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Catel.Core.5.7.0\lib\net46\Catel.Core.dll</HintPath>
     </Reference>
@@ -66,6 +69,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -81,14 +87,26 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Customer.cs" />
-    <Compile Include="Home.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="BusinessLogic\CustomerBl.cs" />
+    <Compile Include="BusinessLogic\HomeBl.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Home.cs" />
+    <Compile Include="Models\Main.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Company.Data.Enities\Company.Data.Enities.csproj">
+      <Project>{9DFF79F7-72BA-4DC8-8F41-9BDECEFED2A1}</Project>
+      <Name>Company.Data.Enities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Company.DataQueries.If\Company.DataQueries.If.csproj">
+      <Project>{5391F9F4-AAD5-49AF-8852-CC33F5964F49}</Project>
+      <Name>Company.DataQueries.If</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

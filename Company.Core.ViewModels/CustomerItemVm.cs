@@ -33,16 +33,6 @@ namespace Company.Core.ViewModels
 
 
         [ViewModelToModel(nameof(Model))]
-        public int Id
-        {
-            get { return GetValue<int>(IdProperty); }
-            set { SetValue(IdProperty, value); }
-        }
-
-        public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int), null);
-
-
-        [ViewModelToModel(nameof(Model))]
         public string Name
         {
             get { return GetValue<string>(NameProperty); }

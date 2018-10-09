@@ -13,7 +13,9 @@ namespace Company.Core.ViewModels
     public class MainVm : ViewModelBase
     {
         public MainVm()
-        { }
+        {
+            Model = new Main();
+        }
 
         [Model]
         public Main Model
@@ -22,25 +24,27 @@ namespace Company.Core.ViewModels
             set { SetValue(ModelProperty, value); }
         }
 
-        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Main), () => new Main());
+        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Main));
 
         [ViewModelToModel(nameof(Model))]
         public ModelBase ActivContent
         {
             get
             {
-                if(Model.ActivContent is Home)
-                    return Model.ActivContent as Home;
-                if(Model.ActivContent is Customer)
-                    return Model.ActivContent as Customer;
-                if(Model.ActivContent is Product)
-                    return Model.ActivContent as Product;
+                ModelBase modelBase = GetValue<ModelBase>(ActivContentProperty);
+                if(modelBase is Home)
+                    return modelBase as Home;
+                if(modelBase is Customer)
+                    return modelBase as Customer;
+                if(modelBase is Product)
+                    return modelBase as Product;
 
                 return null;
             }
             set { SetValue(ActivContentProperty, value as ModelBase); }
         }
 
-        public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase), null);
+        public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
+        
     }
 }

@@ -16,6 +16,7 @@ namespace Company.Core.ViewModels
         {
             Model = home;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
+            AddCustomerCommand = new Command(AddCustomer, () => true);
         }
 
         #region Propertis
@@ -47,6 +48,7 @@ namespace Company.Core.ViewModels
 
 
         public Command OpenCustomerCommand { get; private set; }
+        public Command AddCustomerCommand { get; private set; }
 
         #endregion
 
@@ -59,7 +61,12 @@ namespace Company.Core.ViewModels
 
         private void OpenCustomer()
         {
-            throw new NotImplementedException();
+            Model.OpenCustomer(SelectedCustomer.Id);
+        }
+
+        private void AddCustomer()
+        {
+            Model.AddCustomer();
         }
 
         #endregion

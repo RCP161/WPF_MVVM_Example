@@ -12,6 +12,7 @@ namespace Company.UI.Views.Selectors
     public class MainTemplateSelector : DataTemplateSelector
     {
         public DataTemplate HomeDataTemplate { get; set; }
+        public DataTemplate CustomerDataTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -19,6 +20,8 @@ namespace Company.UI.Views.Selectors
             {
                 if(item is Company.Core.App.Models.Home)
                     return HomeDataTemplate;
+                if(item is Company.Core.App.Models.Customer)
+                    return CustomerDataTemplate;
             }
 
             return base.SelectTemplate(item, container);

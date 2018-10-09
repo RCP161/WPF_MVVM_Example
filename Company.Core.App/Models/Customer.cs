@@ -11,7 +11,7 @@ namespace Company.Core.App.Models
 {
     public class Customer : ModelBase
     {
-        private readonly CustomerBo bo = new CustomerBo();
+        private readonly ProductBo productBo = new ProductBo();
 
         public int Id
         {
@@ -46,7 +46,7 @@ namespace Company.Core.App.Models
                 ObservableCollection<Product> products = GetValue<ObservableCollection<Product>>(ProductProperty);
                 if(products == null)
                 {
-                    SetValue(ProductProperty, new ObservableCollection<Product>(bo.GetByCustomerId(Id)));
+                    SetValue(ProductProperty, new ObservableCollection<Product>(productBo.GetByCustomerId(Id)));
                     products = GetValue<ObservableCollection<Product>>(ProductProperty);
                 }
                 return products;

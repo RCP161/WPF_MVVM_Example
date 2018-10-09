@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto " />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="{Binding Customers.Count}" />
         <ListBox Grid.Row="1"
@@ -25,10 +25,19 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="2"
-                Width="80"
-                HorizontalAlignment="Right"
-                Command="{Binding OpenCustomerCommand}"
-                Content="Open" />
+        <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button Width="80"
+                    Margin="4"
+                    HorizontalAlignment="Right"
+                    Command="{Binding AddCustomerCommand}"
+                    Content="Add" />
+            <Button Width="80"
+                    Margin="4"
+                    HorizontalAlignment="Right"
+                    Command="{Binding OpenCustomerCommand}"
+                    Content="Open" />
+        </StackPanel>
     </Grid>
 </catel:UserControl>

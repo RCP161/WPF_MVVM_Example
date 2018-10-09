@@ -12,9 +12,9 @@ namespace Company.DataQueries.If
         /// <summary>
         /// Liefert das Objekt des Typs anhand der Id in dem Repository
         /// </summary>
-        /// <param name="Id">Id des Objekts</param>
+        /// <param name="id">Id des Objekts</param>
         /// <returns>Objekt mit der angegebenen Id, sonst null</returns>
-        T GetById(int Id);
+        T GetById(int id);
 
         /// <summary>
         /// Liefert alle Objekte des Typs in dem Repository

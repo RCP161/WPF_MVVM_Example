@@ -11,7 +11,7 @@ namespace Company.Core.App.Models
     {
         public Main()
         {
-            ActivContent = new Home();
+            ActivContent = new Home(this);
         }
 
         public ModelBase ActivContent
@@ -20,6 +20,6 @@ namespace Company.Core.App.Models
             set { SetValue(ActivContentProperty, value); }
         }
 
-        public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase), null);
+        public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
     }
 }

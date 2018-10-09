@@ -11,8 +11,13 @@ namespace Company.Core.App.Models
 {
     public class Home : ModelBase
     {
-        private readonly HomeBl bl = new HomeBl();
-        
+        private static readonly HomeBl bl = new HomeBl();
+
+        public Home()
+        {
+            //Customers = new ObservableCollection<Customer>(bl.GetAllCustomers());
+        }
+
         public ObservableCollection<Customer> Customers
         {
             get
@@ -24,7 +29,7 @@ namespace Company.Core.App.Models
             }
             set { SetValue(CustomersProperty, value); }
         }
-        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>), null);
+        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
 
     }
 }

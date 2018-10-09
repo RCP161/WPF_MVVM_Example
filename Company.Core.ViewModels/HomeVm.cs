@@ -15,7 +15,8 @@ namespace Company.Core.ViewModels
         public HomeVm(Home home)
         {
             Model = home;
-            OpenCustomerCommand = new TaskCommand(OpenCustomer, CanOpenCustomer);
+            OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
+            RefreshCommand = new Command(RefreshCollection, () => true);
         }
 
         #region Propertis
@@ -47,7 +48,8 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData SelectedCustomerProperty = RegisterProperty(nameof(SelectedCustomer), typeof(Customer), null);
 
 
-        public TaskCommand OpenCustomerCommand { get; private set; }
+        public Command OpenCustomerCommand { get; private set; }
+        public Command RefreshCommand { get; private set; }
 
         #endregion
 
@@ -58,9 +60,15 @@ namespace Company.Core.ViewModels
             return SelectedCustomer != null;
         }
 
-        private async Task OpenCustomer()
+        private void OpenCustomer()
         {
             throw new NotImplementedException();
+        }
+
+        private void RefreshCollection()
+        {
+            Model.Customers = null;
+            List<Customer> col = Model.Customers.ToList();
         }
 
         #endregion

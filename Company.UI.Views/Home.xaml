@@ -23,10 +23,17 @@
             SelectedItem="{Binding SelectedCustomer}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <local:CustomerRo DataContext="{Binding}"/>
+                    <local:CustomerItem DataContext="{Binding}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button
+            Grid.Row="2"
+            Width="80"
+            Margin="0,0,100,0"
+            HorizontalAlignment="Right"
+            Command="{Binding RefreshCommand}"
+            Content="Refresh" />
         <Button
             Grid.Row="2"
             Width="80"

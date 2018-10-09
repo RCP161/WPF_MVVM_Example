@@ -12,9 +12,9 @@ namespace Project
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-//#if DEBUG
-//            LogManager.AddDebugListener();
-//#endif
+#if DEBUG
+            LogManager.AddDebugListener();
+#endif
 
             AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg =>
             {
@@ -34,7 +34,7 @@ namespace Project
             viewModelLocator.Register(typeof(Company.UI.Views.Main), typeof(Company.Core.ViewModels.MainVm));
             viewModelLocator.Register(typeof(Company.UI.Views.Home), typeof(Company.Core.ViewModels.HomeVm));
             viewModelLocator.Register(typeof(Company.UI.Views.Customer), typeof(Company.Core.ViewModels.CustomerVm));
-            viewModelLocator.Register(typeof(Company.UI.Views.CustomerRo), typeof(Company.Core.ViewModels.CustomerRoVm));
+            viewModelLocator.Register(typeof(Company.UI.Views.CustomerItem), typeof(Company.Core.ViewModels.CustomerItemVm));
 
             base.OnStartup(e);
 
@@ -47,6 +47,7 @@ namespace Project
             // Locator (service, ViewModel, ...) über Namesnkonvention regeln
 
             // Fähigkeiten von Catel noch prüfen, was geht noch so
+            // Fähigkeiten von Catel.Fody prüfen
             // Fähigkeiten von AutoMapper prüfen
 
             // CodeGeneration (Custom Attribute für Properties im Model und ViewModel

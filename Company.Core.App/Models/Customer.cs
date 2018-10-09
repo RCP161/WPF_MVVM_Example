@@ -11,7 +11,7 @@ namespace Company.Core.App.Models
 {
     public class Customer : ModelBase
     {
-        private readonly CustomerBl bl = new CustomerBl();
+        private readonly CustomerBo bo = new CustomerBo();
 
         public int Id
         {
@@ -45,13 +45,16 @@ namespace Company.Core.App.Models
             {
                 ObservableCollection<Product> products = GetValue<ObservableCollection<Product>>(ProductProperty);
                 if(products == null)
-                    SetValue(ProductProperty, new ObservableCollection<Product>(bl.GetByCustomerId(Id)));
+                {
+                    SetValue(ProductProperty, new ObservableCollection<Product>(bo.GetByCustomerId(Id)));
+                    products = GetValue<ObservableCollection<Product>>(ProductProperty);
+                }
                 return products;
             }
             set { SetValue(ProductProperty, value); }
         }
 
-        public static readonly PropertyData ProductProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>), null);
+        public static readonly PropertyData ProductProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>));
 
     }
 }

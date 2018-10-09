@@ -10,11 +10,11 @@ using Company.DataQueries.If;
 
 namespace Company.Core.App.BusinessLogic
 {
-    internal class CustomerBl
+    internal class CustomerBo
     {
         private IMapper mapper;
 
-        internal CustomerBl()
+        internal CustomerBo()
         {
             mapper = ServiceLocator.Default.ResolveType<IMapper>();
         }

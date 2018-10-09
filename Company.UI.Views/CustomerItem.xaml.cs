@@ -18,9 +18,9 @@ namespace Company.UI.Views
     /// <summary>
     /// Interaktionslogik für Customer.xaml
     /// </summary>
-    public partial class CustomerRo
+    public partial class CustomerItem
     {
-        public CustomerRo()
+        public CustomerItem()
         {
             InitializeComponent();
         }

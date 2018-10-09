@@ -13,11 +13,12 @@ namespace Company.Core.ViewModels
     // TODO : Erben für selbes verhalten innerhalb eines ViewModelStamms (Customer, PRoduct, ...)?
     // TODO : BaseVm für Id, DisplayName, ...?
 
-    public class CustomerRoVm : ViewModelBase
+    public class CustomerItemVm : ViewModelBase
     {
-        public CustomerRoVm(Customer customer)
+        public CustomerItemVm(Customer customer)
         {
             Model = customer;
+            SetDisplayText();
         }
 
         #region Propertis
@@ -48,7 +49,7 @@ namespace Company.Core.ViewModels
             set
             {
                 SetValue(NameProperty, value);
-                SetDisplayName();
+                SetDisplayText();
             }
         }
 
@@ -65,20 +66,20 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string), null);
 
 
-        public string DisplayName
+        public string DisplayText
         {
-            get { return GetValue<string>(DisplayNameProperty); }
-            set { SetValue(DisplayNameProperty, value); }
+            get { return GetValue<string>(DisplayTextProperty); }
+            set { SetValue(DisplayTextProperty, value); }
         }
-        public static readonly PropertyData DisplayNameProperty = RegisterProperty(nameof(DisplayName), typeof(string), null);
+        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string), null);
 
         #endregion
 
         #region Methods
 
-        private void SetDisplayName()
+        private void SetDisplayText()
         {
-            DisplayName = String.Format("{0} / {1}", CustomerNumber, Name);
+            DisplayText = String.Format("{0} / {1}", CustomerNumber, Name);
         }
 
         #endregion

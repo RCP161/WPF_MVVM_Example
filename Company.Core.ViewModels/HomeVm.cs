@@ -15,7 +15,7 @@ namespace Company.Core.ViewModels
         public HomeVm(Home home)
         {
             Model = home;
-            OpenCustomerCommand = new TaskCommand(OpenCustomer, CanOpenCustomer);
+            OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
         }
 
         #region Propertis
@@ -28,8 +28,7 @@ namespace Company.Core.ViewModels
         }
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Home), null);
 
-
-        // TODO : Hier gehts weiter. Fehlt OnPropertyChanged am Model? Es wird nicht aktualisiert
+        
         [ViewModelToModel(nameof(Model))]
         public ObservableCollection<Customer> Customers
         {
@@ -47,7 +46,7 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData SelectedCustomerProperty = RegisterProperty(nameof(SelectedCustomer), typeof(Customer), null);
 
 
-        public TaskCommand OpenCustomerCommand { get; private set; }
+        public Command OpenCustomerCommand { get; private set; }
 
         #endregion
 
@@ -58,7 +57,7 @@ namespace Company.Core.ViewModels
             return SelectedCustomer != null;
         }
 
-        private async Task OpenCustomer()
+        private void OpenCustomer()
         {
             throw new NotImplementedException();
         }

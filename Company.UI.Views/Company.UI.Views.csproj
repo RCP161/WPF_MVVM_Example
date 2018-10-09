@@ -88,11 +88,11 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="CustomerRo.xaml.cs">
-      <DependentUpon>CustomerRo.xaml</DependentUpon>
+    <Compile Include="CustomerItem.xaml.cs">
+      <DependentUpon>CustomerItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Selectors\MainTemplateSelector.cs" />
-    <Page Include="CustomerRo.xaml">
+    <Page Include="CustomerItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

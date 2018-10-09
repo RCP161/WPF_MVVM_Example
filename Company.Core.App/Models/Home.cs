@@ -11,20 +11,23 @@ namespace Company.Core.App.Models
 {
     public class Home : ModelBase
     {
-        private readonly HomeBl bl = new HomeBl();
-        
+        private static readonly HomeBo bo = new HomeBo();
+
         public ObservableCollection<Customer> Customers
         {
             get
             {
                 ObservableCollection<Customer> customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
                 if(customers == null)
-                    SetValue(CustomersProperty, new ObservableCollection<Customer>(bl.GetAllCustomers()));
+                {
+                    SetValue(CustomersProperty, new ObservableCollection<Customer>(bo.GetAllCustomers()));
+                    customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
+                }
                 return customers;
             }
             set { SetValue(CustomersProperty, value); }
         }
-        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>), null);
+        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
 
     }
 }

@@ -16,7 +16,6 @@ namespace Company.Core.ViewModels
         {
             Model = home;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
-            RefreshCommand = new Command(RefreshCollection, () => true);
         }
 
         #region Propertis
@@ -29,8 +28,7 @@ namespace Company.Core.ViewModels
         }
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Home), null);
 
-
-        // TODO : Hier gehts weiter. Fehlt OnPropertyChanged am Model? Es wird nicht aktualisiert
+        
         [ViewModelToModel(nameof(Model))]
         public ObservableCollection<Customer> Customers
         {
@@ -49,7 +47,6 @@ namespace Company.Core.ViewModels
 
 
         public Command OpenCustomerCommand { get; private set; }
-        public Command RefreshCommand { get; private set; }
 
         #endregion
 
@@ -63,12 +60,6 @@ namespace Company.Core.ViewModels
         private void OpenCustomer()
         {
             throw new NotImplementedException();
-        }
-
-        private void RefreshCollection()
-        {
-            Model.Customers = null;
-            List<Customer> col = Model.Customers.ToList();
         }
 
         #endregion

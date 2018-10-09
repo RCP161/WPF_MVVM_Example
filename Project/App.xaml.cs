@@ -12,9 +12,9 @@ namespace Project
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-#if DEBUG
-            LogManager.AddDebugListener();
-#endif
+//#if DEBUG
+//            LogManager.AddDebugListener();
+//#endif
 
             AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg =>
             {

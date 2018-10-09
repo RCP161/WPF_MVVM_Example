@@ -11,12 +11,7 @@ namespace Company.Core.App.Models
 {
     public class Home : ModelBase
     {
-        private static readonly HomeBl bl = new HomeBl();
-
-        public Home()
-        {
-            //Customers = new ObservableCollection<Customer>(bl.GetAllCustomers());
-        }
+        private static readonly HomeBo bo = new HomeBo();
 
         public ObservableCollection<Customer> Customers
         {
@@ -24,7 +19,10 @@ namespace Company.Core.App.Models
             {
                 ObservableCollection<Customer> customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
                 if(customers == null)
-                    SetValue(CustomersProperty, new ObservableCollection<Customer>(bl.GetAllCustomers()));
+                {
+                    SetValue(CustomersProperty, new ObservableCollection<Customer>(bo.GetAllCustomers()));
+                    customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
+                }
                 return customers;
             }
             set { SetValue(CustomersProperty, value); }

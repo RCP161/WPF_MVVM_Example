@@ -1,7 +1,7 @@
 ﻿using Catel.Data;
 using Catel.IoC;
 using Catel.MVVM;
-using Company.Core.App.BusinessLogic;
+using Company.Core.App.Services.Loading;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +13,7 @@ namespace Company.Core.App.Models
 {
     public class Home : ModelBase
     {
-        private static readonly CustomerBo customerBo = new CustomerBo();
+        private static readonly CustomerLoadingService customerLoadingService = new CustomerLoadingService();
         private readonly Main main;
 
         public Home(Main main)
@@ -28,7 +28,7 @@ namespace Company.Core.App.Models
                 ObservableCollection<Customer> customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
                 if(customers == null)
                 {
-                    SetValue(CustomersProperty, new ObservableCollection<Customer>(customerBo.GetAllCustomers()));
+                    SetValue(CustomersProperty, new ObservableCollection<Customer>(customerLoadingService.GetAllCustomers()));
                     customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
                 }
                 return customers;
@@ -40,7 +40,7 @@ namespace Company.Core.App.Models
 
         public void OpenCustomer(int id)
         {
-            main.ActivContent = customerBo.GetById(id);
+            main.ActivContent = customerLoadingService.GetById(id);
         }
 
         public void AddCustomer()

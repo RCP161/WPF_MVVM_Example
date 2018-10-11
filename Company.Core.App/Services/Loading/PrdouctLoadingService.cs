@@ -8,13 +8,13 @@ using Catel.IoC;
 using Company.Core.App.Models;
 using Company.DataQueries.If;
 
-namespace Company.Core.App.BusinessLogic
+namespace Company.Core.App.Services.Loading
 {
-    internal class ProductBo
+    internal class ProductLoadingService
     {
         private IMapper mapper;
 
-        internal ProductBo()
+        internal ProductLoadingService()
         {
             mapper = ServiceLocator.Default.ResolveType<IMapper>();
         }
@@ -26,17 +26,5 @@ namespace Company.Core.App.BusinessLogic
                 return mapper.Map<IEnumerable<Data.Enities.Product>, List<Product>>(unitOfWork.ProductRepository.GetByCustomerId(customerId));
             }
         }
-        
-        //public IEnumerable<Product> GetByCustomerId(int customerId)
-        //{
-        //    IEnumerable<Data.Enities.Product> products = new List<Data.Enities.Product>();
-
-        //    using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
-        //    {
-        //        products = unitOfWork.ProductRepository.GetByCustomerId(customerId);
-        //    }
-
-        //    return mapper.Map<IEnumerable<Data.Enities.Product>, List<Product>>(products);
-        //}
     }
 }

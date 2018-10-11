@@ -2,6 +2,7 @@
 using Catel.IoC;
 using Catel.Logging;
 using Catel.MVVM;
+using Project.Extensions;
 
 namespace Project
 {
@@ -12,14 +13,14 @@ namespace Project
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-//#if DEBUG
-//            LogManager.AddDebugListener();
-//#endif
+            //#if DEBUG
+            //            LogManager.AddDebugListener();
+            //#endif
 
             AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Company.Data.Enities.Customer, Company.Core.App.Models.Customer>();
-                cfg.CreateMap<Company.Data.Enities.Product, Company.Core.App.Models.Product>();
+                cfg.CreateMap<Company.Data.Enities.Customer, Company.Core.App.Models.Customer>().IgnoreAllSourceVirtual();
+                cfg.CreateMap<Company.Data.Enities.Product, Company.Core.App.Models.Product>().IgnoreAllSourceVirtual();
             });
 
             AutoMapper.Mapper mapper = new AutoMapper.Mapper(config);
@@ -39,16 +40,24 @@ namespace Project
             base.OnStartup(e);
 
             // TODO : Themen die noch anstehen
-            // Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)
-            // Das hinzufügen neuer Elemente
-            // Mehrsprachenfähigkeit
-            // ReadOnly bei keinem Schreibrecht
+            // - Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)
+            // - Das hinzufügen neuer Elemente
+            // - Beim Speichern weiß ich nicht, ob er virtuals ignoriert werden. Diese sollten ja dennoch gespeichert werden.
+            //   In Listen sollten sich Objekte selbst speichern. -> Andere MappingConfig fürs speichern benötigt?
+            //   Wahrscheinlich nicht, da man das Mapping wahrscheinlich auch in beide Seiten angeben muss und dort dann die Destination Extension verwenden kann
+            // - Ef concurrency ? Oder Locktabelle? -> concurrency könnte fehlerhafte programmierung aufdecken. (siehe nächste Zeile)
+
+            // - Eine Art Instanz refresher? 2 Instanzen des selben Datensatzes refreshen,
+            //   oder den bereits geladenen Datensatz qualifizieren und einen verweis auf ihn verwenden (Prio3)
+            // - Mehrsprachenfähigkeit (Prio3)
+            // - ReadOnly bei keinem Schreibrecht (Prio3)
 
             // Locator (service, ViewModel, ...) über Namesnkonvention regeln
 
             // Fähigkeiten von Catel noch prüfen, was geht noch so
             // Fähigkeiten von Catel.Fody prüfen
             // Fähigkeiten von AutoMapper prüfen
+            // EF Plus prüfen
 
             // CodeGeneration (Custom Attribute für Properties im Model und ViewModel
 
@@ -56,7 +65,12 @@ namespace Project
             // UI.Views benötigt den Verweis auf Core.App wegen TemplateSelectors und weil Catel an das Model bindet
             // PRoject hat derzeit das AutoMapper Nuget. Das muss nicht sein, ist aber bis jetzt hier Zentral verwaltet
 
+            // ACHTUNG: Derzeit mit LazyLoading, damit wird der RAM zulaufen, weil alles nach geladen werden würde, aber nichts wieder entfernt.
+            // Doch verschiedene Instanzen? Siehe oben InstanzRefresher
+
+            // Abgelehnt:
             // AutoMapper in Repositories verweschieben?
+            // => würde einen verweis von einer unteren Schicht auf eine höhere bedeuten. Wäre machbar, sieht aber unschön aus
         }
     }
 }

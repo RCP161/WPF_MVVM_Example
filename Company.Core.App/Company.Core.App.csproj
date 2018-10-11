@@ -87,8 +87,8 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="BusinessLogic\PrdouctBo.cs" />
-    <Compile Include="BusinessLogic\CustomerBo.cs" />
+    <Compile Include="Services\Loading\PrdouctLoadingService.cs" />
+    <Compile Include="Services\Loading\CustomerLoadingService.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Main.cs" />

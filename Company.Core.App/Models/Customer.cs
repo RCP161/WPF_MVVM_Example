@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
-using Company.Core.App.BusinessLogic;
+using Company.Core.App.Services.Loading;
 
 namespace Company.Core.App.Models
 {
     public class Customer : ModelBase
     {
-        private readonly ProductBo productBo = new ProductBo();
+        private readonly ProductLoadingService productLoadingService = new ProductLoadingService();
+
+        #region Properties
 
         public int Id
         {
@@ -24,20 +26,34 @@ namespace Company.Core.App.Models
         public string Name
         {
             get { return GetValue<string>(NameProperty); }
-            set { SetValue(NameProperty, value); }
+            set
+            {
+                SetValue(NameProperty, value);
+                SetDisplayText();
+            }
         }
-
         public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string), null);
 
 
         public string CustomerNumber
         {
             get { return GetValue<string>(CustomerNumberProperty); }
-            set { SetValue(CustomerNumberProperty, value); }
+            set
+            {
+                SetValue(CustomerNumberProperty, value);
+                SetDisplayText();
+            }
         }
-
         public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string), null);
-        
+
+
+        public string DisplayText
+        {
+            get { return GetValue<string>(DisplayTextProperty); }
+            private set { SetValue(DisplayTextProperty, value); }
+        }
+        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string), null);
+
 
         public ObservableCollection<Product> Products
         {
@@ -46,15 +62,24 @@ namespace Company.Core.App.Models
                 ObservableCollection<Product> products = GetValue<ObservableCollection<Product>>(ProductProperty);
                 if(products == null)
                 {
-                    SetValue(ProductProperty, new ObservableCollection<Product>(productBo.GetByCustomerId(Id)));
+                    SetValue(ProductProperty, new ObservableCollection<Product>(productLoadingService.GetByCustomerId(Id)));
                     products = GetValue<ObservableCollection<Product>>(ProductProperty);
                 }
                 return products;
             }
             set { SetValue(ProductProperty, value); }
         }
-
         public static readonly PropertyData ProductProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>));
 
+        #endregion
+
+        #region Methods
+
+        private void SetDisplayText()
+        {
+            DisplayText = String.Format("{0} / {1}", CustomerNumber, Name);
+        }
+
+        #endregion
     }
 }

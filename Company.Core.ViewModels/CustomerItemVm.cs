@@ -9,16 +9,11 @@ using Company.Core.App.Models;
 
 namespace Company.Core.ViewModels
 {
-    // TODO : Sollte nur ReadOnly sein.
-    // TODO : Erben für selbes verhalten innerhalb eines ViewModelStamms (Customer, PRoduct, ...)?
-    // TODO : BaseVm für Id, DisplayName, ...?
-
     public class CustomerItemVm : ViewModelBase
     {
         public CustomerItemVm(Customer customer)
         {
             Model = customer;
-            SetDisplayText();
         }
 
         #region Propertis
@@ -36,11 +31,7 @@ namespace Company.Core.ViewModels
         public string Name
         {
             get { return GetValue<string>(NameProperty); }
-            set
-            {
-                SetValue(NameProperty, value);
-                SetDisplayText();
-            }
+            set { SetValue(NameProperty, value); }
         }
 
         public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string), null);
@@ -55,22 +46,14 @@ namespace Company.Core.ViewModels
 
         public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string), null);
 
-
+        // TODO : Sollte wahrscheinlich Readonly sein
+        [ViewModelToModel(nameof(Model))]
         public string DisplayText
         {
             get { return GetValue<string>(DisplayTextProperty); }
             set { SetValue(DisplayTextProperty, value); }
         }
         public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string), null);
-
-        #endregion
-
-        #region Methods
-
-        private void SetDisplayText()
-        {
-            DisplayText = String.Format("{0} / {1}", CustomerNumber, Name);
-        }
 
         #endregion
     }

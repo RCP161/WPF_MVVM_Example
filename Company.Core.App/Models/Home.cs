@@ -46,16 +46,14 @@ namespace Company.Core.App.Models
             Main.Instance.ActivContent = productLoadingService.GetById(id);
         }
 
-        // TODO : Add implementieren
-
         public void AddCustomer()
         {
-            throw new NotImplementedException();
+            Main.Instance.ActivContent = new Customer();
         }
 
         public void AddProduct()
         {
-            throw new NotImplementedException();
+            Main.Instance.ActivContent = new Product();
         }
     }
 }

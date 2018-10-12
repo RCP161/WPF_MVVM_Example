@@ -41,7 +41,7 @@ namespace Project
 
             base.OnStartup(e);
 
-            // TODO : Themen die noch anstehen
+            // TODO :    === Themen die noch anstehen ===
             // - Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)
             // - Das hinzufügen neuer Elemente
             // - Validation 

@@ -82,6 +82,7 @@ namespace Company.Core.ViewModels
 
         private void OpenCustomer()
         {
+            // TODO : Hier nicht die ID, sondern nur SelectedItem
             Model.OpenCustomer(SelectedCustomer.Id);
         }
         private bool CanAddCustomer()
@@ -101,6 +102,7 @@ namespace Company.Core.ViewModels
 
         private void OpenProduct()
         {
+            // TODO : Hier nicht die ID, sondern nur SelectedItem
             Model.OpenProduct(SelectedProduct.Id);
         }
         private bool CanAddProduct()

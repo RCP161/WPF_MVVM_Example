@@ -17,8 +17,6 @@ namespace Company.Core.App.Models
         private static readonly ProductLoadingService productLoadingService = new ProductLoadingService();
 
 
-        // TODO : LazyLoading wird wohl derzeit nicht mehr benötigt
-
         public ObservableCollection<Customer> Customers
         {
             get

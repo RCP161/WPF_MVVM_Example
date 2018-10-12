@@ -42,6 +42,9 @@ namespace Project
 
             base.OnStartup(e);
 
+
+            // TODO - 1. WICHTIG : Mit dieser Variante würde der RAM zu laufen.
+
             // TODO : Themen die noch anstehen
             // - Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)
             // - Das hinzufügen neuer Elemente

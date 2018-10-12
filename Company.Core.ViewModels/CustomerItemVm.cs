@@ -16,44 +16,24 @@ namespace Company.Core.ViewModels
             Model = customer;
         }
 
-        #region Propertis
+        #region Properties
 
         [Model]
         public Customer Model
         {
             get { return GetValue<Customer>(ModelProperty); }
-            set { SetValue(ModelProperty, value); }
+            private set { SetValue(ModelProperty, value); }
         }
-        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Customer), null);
+        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Customer));
 
-
-        [ViewModelToModel(nameof(Model))]
-        public string Name
-        {
-            get { return GetValue<string>(NameProperty); }
-            set { SetValue(NameProperty, value); }
-        }
-
-        public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string), null);
-
-
-        [ViewModelToModel(nameof(Model))]
-        public string CustomerNumber
-        {
-            get { return GetValue<string>(CustomerNumberProperty); }
-            set { SetValue(CustomerNumberProperty, value); }
-        }
-
-        public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string), null);
-
-        // TODO : Sollte wahrscheinlich Readonly sein
+        
         [ViewModelToModel(nameof(Model))]
         public string DisplayText
         {
             get { return GetValue<string>(DisplayTextProperty); }
-            set { SetValue(DisplayTextProperty, value); }
+            private set { SetValue(DisplayTextProperty, value); }
         }
-        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string), null);
+        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
 
         #endregion
     }

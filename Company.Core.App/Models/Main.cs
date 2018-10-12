@@ -9,10 +9,23 @@ namespace Company.Core.App.Models
 {
     public class Main : ModelBase
     {
-        public Main()
+        private static Main _instance;
+
+        private Main()
         {
-            ActivContent = new Home(this);
+            ActivContent = new Home();
         }
+
+        public static Main Instance
+        {
+            get
+            {
+                if(_instance == null)
+                    _instance = new Main();
+                return _instance;
+            }
+        }
+
 
         public ModelBase ActivContent
         {

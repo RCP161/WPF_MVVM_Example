@@ -15,17 +15,20 @@ namespace Company.Core.ViewModels
         public CustomerVm(Customer customer)
         {
             Model = customer;
+            OpenProductCommand = new Command(OpenProduct, CanOpenProduct);
+            CancelEditCommand = new Command(CancelEdit, CanCancelEdit);
+            SaveEditCommand = new Command(SaveEdit, CanSaveEdit);
         }
 
-        #region Propertis
+        #region Properties
 
         [Model]
         public Customer Model
         {
             get { return GetValue<Customer>(ModelProperty); }
-            set { SetValue(ModelProperty, value); }
+            private set { SetValue(ModelProperty, value); }
         }
-        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Customer), null);
+        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Customer));
 
 
         [ViewModelToModel(nameof(Model))]
@@ -35,7 +38,7 @@ namespace Company.Core.ViewModels
             set { SetValue(NameProperty, value); }
         }
 
-        public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string), null);
+        public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
 
 
         [ViewModelToModel(nameof(Model))]
@@ -45,7 +48,7 @@ namespace Company.Core.ViewModels
             set { SetValue(CustomerNumberProperty, value); }
         }
 
-        public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string), null);
+        public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string));
 
 
         [ViewModelToModel(nameof(Model))]
@@ -54,7 +57,7 @@ namespace Company.Core.ViewModels
             get { return GetValue<ObservableCollection<Product>>(ProductsProperty); }
             set { SetValue(ProductsProperty, value); }
         }
-        public static readonly PropertyData ProductsProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>), null);
+        public static readonly PropertyData ProductsProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>));
 
 
         public Product SelectedProduct
@@ -62,8 +65,47 @@ namespace Company.Core.ViewModels
             get { return GetValue<Product>(SelectedProductProperty); }
             set { SetValue(SelectedProductProperty, value); }
         }
-        public static readonly PropertyData SelectedProductProperty = RegisterProperty(nameof(SelectedProduct), typeof(Product), null);
-        
+        public static readonly PropertyData SelectedProductProperty = RegisterProperty(nameof(SelectedProduct), typeof(Product));
+
+
+        public Command OpenProductCommand { get; private set; }
+        public Command CancelEditCommand { get; private set; }
+        public Command SaveEditCommand { get; private set; }
+
+        #endregion
+
+        #region Methods
+        private bool CanOpenProduct()
+        {
+            return SelectedProduct != null;
+        }
+
+        private void OpenProduct()
+        {
+            Model.OpenProduct(SelectedProduct.Id);
+        }
+
+        private bool CanSaveEdit()
+        {
+            return IsDirty;
+        }
+
+        private void SaveEdit()
+        {
+            Model.Save();
+        }
+
+        private bool CanCancelEdit()
+        {
+            return IsDirty;
+        }
+
+        private void CancelEdit()
+        {
+            // TODO : Schauen wie Catel das macht
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

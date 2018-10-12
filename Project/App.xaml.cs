@@ -36,16 +36,22 @@ namespace Project
             viewModelLocator.Register(typeof(Company.UI.Views.Home), typeof(Company.Core.ViewModels.HomeVm));
             viewModelLocator.Register(typeof(Company.UI.Views.Customer), typeof(Company.Core.ViewModels.CustomerVm));
             viewModelLocator.Register(typeof(Company.UI.Views.CustomerItem), typeof(Company.Core.ViewModels.CustomerItemVm));
+            viewModelLocator.Register(typeof(Company.UI.Views.CustomerSearchTextBox), typeof(Company.Core.ViewModels.CustomerSearchTextBoxVm));
+            viewModelLocator.Register(typeof(Company.UI.Views.Product), typeof(Company.Core.ViewModels.ProductVm));
+            viewModelLocator.Register(typeof(Company.UI.Views.ProductItem), typeof(Company.Core.ViewModels.ProductItemVm));
 
             base.OnStartup(e);
 
             // TODO : Themen die noch anstehen
             // - Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)
             // - Das hinzufügen neuer Elemente
+            // - Validation 
             // - Beim Speichern weiß ich nicht, ob er virtuals ignoriert werden. Diese sollten ja dennoch gespeichert werden.
             //   In Listen sollten sich Objekte selbst speichern. -> Andere MappingConfig fürs speichern benötigt?
             //   Wahrscheinlich nicht, da man das Mapping wahrscheinlich auch in beide Seiten angeben muss und dort dann die Destination Extension verwenden kann
+            // - Wird aber wohl eh 2 Mapings benötigt. Eines mit ignore Virtuals und eines ohne
             // - Ef concurrency ? Oder Locktabelle? -> concurrency könnte fehlerhafte programmierung aufdecken. (siehe nächste Zeile)
+            // - private Setter in den ReadOnlyVms entfernen und Readonly setzen?
 
             // - Eine Art Instanz refresher? 2 Instanzen des selben Datensatzes refreshen,
             //   oder den bereits geladenen Datensatz qualifizieren und einen verweis auf ihn verwenden (Prio3)

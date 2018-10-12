@@ -16,12 +16,14 @@ using System.Windows.Shapes;
 namespace Company.UI.Views
 {
     /// <summary>
-    /// Interaktionslogik für Customer.xaml
+    /// Interaktionslogik für CustomerSearchTextBox.xaml
     /// </summary>
-    public partial class Customer
+    public partial class CustomerSearchTextBox
     {
-        // TODO : [Prio2] Save und Revert auslagern in eigenes Control?
-        public Customer()
+        // TODO : [Prio2] CustomControl?
+        // TODO : [Prio2] Images für Controls
+
+        public CustomerSearchTextBox()
         {
             InitializeComponent();
         }

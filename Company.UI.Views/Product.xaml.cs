@@ -16,12 +16,11 @@ using System.Windows.Shapes;
 namespace Company.UI.Views
 {
     /// <summary>
-    /// Interaktionslogik für Customer.xaml
+    /// Interaktionslogik für Product.xaml
     /// </summary>
-    public partial class Customer
+    public partial class Product
     {
-        // TODO : [Prio2] Save und Revert auslagern in eigenes Control?
-        public Customer()
+        public Product()
         {
             InitializeComponent();
         }

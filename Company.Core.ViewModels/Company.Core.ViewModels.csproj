@@ -81,10 +81,13 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="CustomerSearchTextBoxVm.cs" />
     <Compile Include="CustomerItemVm.cs" />
     <Compile Include="CustomerVm.cs" />
     <Compile Include="HomeVm.cs" />
     <Compile Include="MainVm.cs" />
+    <Compile Include="ProductItemVm.cs" />
+    <Compile Include="ProductVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

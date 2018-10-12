@@ -16,18 +16,20 @@ namespace Company.Core.ViewModels
         {
             Model = home;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
-            AddCustomerCommand = new Command(AddCustomer, () => true);
+            AddCustomerCommand = new Command(AddCustomer, CanAddCustomer);
+            OpenProductCommand = new Command(OpenProduct, CanOpenProduct);
+            AddProductCommand = new Command(AddProduct, CanAddProduct);
         }
 
-        #region Propertis
+        #region Properties
 
         [Model]
         public Home Model
         {
             get { return GetValue<Home>(ModelProperty); }
-            set { SetValue(ModelProperty, value); }
+            private set { SetValue(ModelProperty, value); }
         }
-        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Home), null);
+        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Home));
 
         
         [ViewModelToModel(nameof(Model))]
@@ -36,7 +38,7 @@ namespace Company.Core.ViewModels
             get { return GetValue<ObservableCollection<Customer>>(CustomersProperty); }
             set { SetValue(CustomersProperty, value); }
         }
-        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>), null);
+        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
 
 
         public Customer SelectedCustomer
@@ -44,11 +46,30 @@ namespace Company.Core.ViewModels
             get { return GetValue<Customer>(SelectedCustomerProperty); }
             set { SetValue(SelectedCustomerProperty, value); }
         }
-        public static readonly PropertyData SelectedCustomerProperty = RegisterProperty(nameof(SelectedCustomer), typeof(Customer), null);
+        public static readonly PropertyData SelectedCustomerProperty = RegisterProperty(nameof(SelectedCustomer), typeof(Customer));
+
+
+        [ViewModelToModel(nameof(Model))]
+        public ObservableCollection<Product> Products
+        {
+            get { return GetValue<ObservableCollection<Product>>(ProductsProperty); }
+            set { SetValue(ProductsProperty, value); }
+        }
+        public static readonly PropertyData ProductsProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>));
+
+
+        public Product SelectedProduct
+        {
+            get { return GetValue<Product>(SelectedProductProperty); }
+            set { SetValue(SelectedProductProperty, value); }
+        }
+        public static readonly PropertyData SelectedProductProperty = RegisterProperty(nameof(SelectedProduct), typeof(Product));
 
 
         public Command OpenCustomerCommand { get; private set; }
         public Command AddCustomerCommand { get; private set; }
+        public Command OpenProductCommand { get; private set; }
+        public Command AddProductCommand { get; private set; }
 
         #endregion
 
@@ -61,12 +82,35 @@ namespace Company.Core.ViewModels
 
         private void OpenCustomer()
         {
-            Model.OpenCustomer(SelectedCustomer);
+            Model.OpenCustomer(SelectedCustomer.Id);
+        }
+        private bool CanAddCustomer()
+        {
+            return true;
         }
 
         private void AddCustomer()
         {
             Model.AddCustomer();
+        }
+
+        private bool CanOpenProduct()
+        {
+            return SelectedProduct != null;
+        }
+
+        private void OpenProduct()
+        {
+            Model.OpenProduct(SelectedProduct.Id);
+        }
+        private bool CanAddProduct()
+        {
+            return true;
+        }
+
+        private void AddProduct()
+        {
+            Model.AddProduct();
         }
 
         #endregion

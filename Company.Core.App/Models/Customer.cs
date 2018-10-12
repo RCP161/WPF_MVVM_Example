@@ -12,6 +12,7 @@ namespace Company.Core.App.Models
     public class Customer : ModelBase
     {
         private readonly ProductLoadingService productLoadingService = new ProductLoadingService();
+        private readonly CustomerLoadingService cusomterLoadingService = new CustomerLoadingService();
 
         #region Properties
 
@@ -21,7 +22,7 @@ namespace Company.Core.App.Models
             set { SetValue(IdProperty, value); }
         }
 
-        public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int), null);
+        public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int));
 
         public string Name
         {
@@ -32,7 +33,7 @@ namespace Company.Core.App.Models
                 SetDisplayText();
             }
         }
-        public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string), null);
+        public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
 
 
         public string CustomerNumber
@@ -44,7 +45,7 @@ namespace Company.Core.App.Models
                 SetDisplayText();
             }
         }
-        public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string), null);
+        public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string));
 
 
         public string DisplayText
@@ -52,8 +53,7 @@ namespace Company.Core.App.Models
             get { return GetValue<string>(DisplayTextProperty); }
             private set { SetValue(DisplayTextProperty, value); }
         }
-        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string), null);
-
+        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
 
         public ObservableCollection<Product> Products
         {
@@ -78,6 +78,23 @@ namespace Company.Core.App.Models
         private void SetDisplayText()
         {
             DisplayText = String.Format("{0} / {1}", CustomerNumber, Name);
+        }
+
+        public void OpenProduct(int id)
+        {
+            // Hier sollte auch ein Customer Model mit geliefert werden, damit er angezeigt werden kann
+            Main.Instance.ActivContent = productLoadingService.GetById(id);
+        }
+        public void OpenCustomer(int id)
+        {
+            // TODO : Bei dem Aufruf sollte Products direkt mitgeliefert werden.
+            Main.Instance.ActivContent = cusomterLoadingService.GetById(id);
+        }
+
+        public void Save()
+        {
+            // TODO : Serialisation in die DB
+            throw new NotImplementedException();
         }
 
         #endregion

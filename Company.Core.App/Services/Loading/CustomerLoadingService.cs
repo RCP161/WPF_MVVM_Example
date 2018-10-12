@@ -27,13 +27,11 @@ namespace Company.Core.App.Services.Loading
             }
         }
 
-        internal IEnumerable<Customer> GetAllCustomers()
+        internal IEnumerable<Customer> GetAll()
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                IEnumerable<Customer> c = mapper.Map<IEnumerable<Data.Enities.Customer>, List<Customer>>(unitOfWork.CustomerRepository.GetAll());
-                c.First().Products = new System.Collections.ObjectModel.ObservableCollection<Product>() { new Product() { Name = "IronMan" } };
-                return c;
+                return mapper.Map<IEnumerable<Data.Enities.Customer>, List<Customer>>(unitOfWork.CustomerRepository.GetAll());
             }
         }
     }

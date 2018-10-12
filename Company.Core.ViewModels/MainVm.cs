@@ -14,14 +14,14 @@ namespace Company.Core.ViewModels
     {
         public MainVm()
         {
-            Model = new Main();
+            Model = Main.Instance;
         }
 
         [Model]
         public Main Model
         {
             get { return GetValue<Main>(ModelProperty); }
-            set { SetValue(ModelProperty, value); }
+            private set { SetValue(ModelProperty, value); }
         }
 
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Main));

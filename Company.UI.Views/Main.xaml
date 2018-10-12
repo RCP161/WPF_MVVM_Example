@@ -14,15 +14,22 @@
         <DataTemplate x:Key="CustomerView">
             <local:Customer />
         </DataTemplate>
-
-        <!--  Das selbe für Product & CUstomer  -->
+        <DataTemplate x:Key="ProductView">
+            <local:Product />
+        </DataTemplate>
 
         <selectors:MainTemplateSelector x:Key="MainTemplateSelector"
                                         CustomerDataTemplate="{StaticResource CustomerView}"
-                                        HomeDataTemplate="{StaticResource HomeView}" />
+                                        HomeDataTemplate="{StaticResource HomeView}"
+                                        ProductDataTemplate="{StaticResource ProductView}" />
     </catel:UserControl.Resources>
-    <Grid>
-        <ContentPresenter Margin="3"
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MaxWidth="500" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <TreeView Grid.Column="0" Margin="0,0,10,0" />
+        <ContentPresenter Grid.Column="1"
                           Content="{Binding ActivContent}"
                           ContentTemplateSelector="{StaticResource MainTemplateSelector}" />
     </Grid>

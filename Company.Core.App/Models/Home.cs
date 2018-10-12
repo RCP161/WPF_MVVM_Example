@@ -14,12 +14,10 @@ namespace Company.Core.App.Models
     public class Home : ModelBase
     {
         private static readonly CustomerLoadingService customerLoadingService = new CustomerLoadingService();
-        private readonly Main main;
+        private static readonly ProductLoadingService productLoadingService = new ProductLoadingService();
 
-        public Home(Main main)
-        {
-            this.main = main;
-        }
+
+        // TODO : LazyLoading wird wohl derzeit nicht mehr benötigt
 
         public ObservableCollection<Customer> Customers
         {
@@ -28,7 +26,7 @@ namespace Company.Core.App.Models
                 ObservableCollection<Customer> customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
                 if(customers == null)
                 {
-                    SetValue(CustomersProperty, new ObservableCollection<Customer>(customerLoadingService.GetAllCustomers()));
+                    SetValue(CustomersProperty, new ObservableCollection<Customer>(customerLoadingService.GetAll()));
                     customers = GetValue<ObservableCollection<Customer>>(CustomersProperty);
                 }
                 return customers;
@@ -37,13 +35,42 @@ namespace Company.Core.App.Models
         }
         public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
 
-
-        public void OpenCustomer(Customer customer)
+        public ObservableCollection<Product> Products
         {
-            main.ActivContent = customer;
+            get
+            {
+                ObservableCollection<Product> products = GetValue<ObservableCollection<Product>>(ProductsProperty);
+                if(products == null)
+                {
+                    SetValue(ProductsProperty, new ObservableCollection<Product>(productLoadingService.GetAll()));
+                    products = GetValue<ObservableCollection<Product>>(ProductsProperty);
+                }
+                return products;
+            }
+            set { SetValue(ProductsProperty, value); }
+        }
+        public static readonly PropertyData ProductsProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>));
+
+        public void OpenCustomer(int id)
+        {
+            // TODO : Bei dem Aufruf sollte Products direkt mitgeliefert werden.
+            Main.Instance.ActivContent = customerLoadingService.GetById(id);
         }
 
+        public void OpenProduct(int id)
+        {
+            // TODO : Bei dem Aufruf sollte Owner direkt mitgeliefert werden.
+            Main.Instance.ActivContent = productLoadingService.GetById(id);
+        }
+
+        // TODO : Add implementieren
+
         public void AddCustomer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProduct()
         {
             throw new NotImplementedException();
         }

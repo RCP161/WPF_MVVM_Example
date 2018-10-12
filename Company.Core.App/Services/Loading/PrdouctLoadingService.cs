@@ -19,6 +19,22 @@ namespace Company.Core.App.Services.Loading
             mapper = ServiceLocator.Default.ResolveType<IMapper>();
         }
 
+        internal Product GetById(int id)
+        {
+            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
+            {
+                return mapper.Map<Data.Enities.Product, Product>(unitOfWork.ProductRepository.GetById(id));
+            }
+        }
+
+        internal IEnumerable<Product> GetAll()
+        {
+            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
+            {
+                return mapper.Map<IEnumerable<Data.Enities.Product>, List<Product>>(unitOfWork.ProductRepository.GetAll());
+            }
+        }
+
         internal IEnumerable<Product> GetByCustomerId(int customerId)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())

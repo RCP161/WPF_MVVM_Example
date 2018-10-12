@@ -10,11 +10,16 @@
                    mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto " />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto " />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Customers.Count}" />
+
+        <TextBlock Grid.Row="0" Text="Customers" />
         <ListBox Grid.Row="1"
                  Margin="0,5"
                  ItemsSource="{Binding Customers, UpdateSourceTrigger=PropertyChanged}"
@@ -39,5 +44,32 @@
                     Command="{Binding OpenCustomerCommand}"
                     Content="Open" />
         </StackPanel>
+
+        <TextBlock Grid.Row="4" Text="Products" />
+        <ListBox Grid.Row="5"
+                 Margin="0,5"
+                 ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}"
+                 SelectedItem="{Binding SelectedProduct}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <local:ProductItem DataContext="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="6"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button Width="80"
+                    Margin="4"
+                    HorizontalAlignment="Right"
+                    Command="{Binding AddProductCommand}"
+                    Content="Add" />
+            <Button Width="80"
+                    Margin="4"
+                    HorizontalAlignment="Right"
+                    Command="{Binding OpenProductCommand}"
+                    Content="Open" />
+        </StackPanel>
+
     </Grid>
 </catel:UserControl>

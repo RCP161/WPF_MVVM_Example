@@ -19,7 +19,7 @@ namespace Company.Core.App.Services.Loading
             mapper = ServiceLocator.Default.ResolveType<IMapper>();
         }
 
-        public IEnumerable<Product> GetByCustomerId(int customerId)
+        internal IEnumerable<Product> GetByCustomerId(int customerId)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {

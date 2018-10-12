@@ -61,7 +61,7 @@ namespace Company.Core.ViewModels
 
         private void OpenCustomer()
         {
-            Model.OpenCustomer(SelectedCustomer.Id);
+            Model.OpenCustomer(SelectedCustomer);
         }
 
         private void AddCustomer()

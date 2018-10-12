@@ -38,9 +38,9 @@ namespace Company.Core.App.Models
         public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
 
 
-        public void OpenCustomer(int id)
+        public void OpenCustomer(Customer customer)
         {
-            main.ActivContent = customerLoadingService.GetById(id);
+            main.ActivContent = customer;
         }
 
         public void AddCustomer()

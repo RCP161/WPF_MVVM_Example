@@ -17,7 +17,7 @@ namespace Company.Core.ViewModels
         {
             Model = customer;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
-            EditCustomerCommand = new Command(EditCusomer, CanEditCusomer);
+            ChangeCustomerCommand = new Command(CahngeCusomer, CanCahngeCusomer);
         }
 
         #region Properties
@@ -40,11 +40,12 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
 
         public Command OpenCustomerCommand { get; private set; }
-        public Command EditCustomerCommand { get; private set; }
+        public Command ChangeCustomerCommand { get; private set; }
 
         #endregion
 
         #region Methods
+
         private bool CanOpenCustomer()
         {
             // Gibt ja noch keine Rechte
@@ -56,13 +57,13 @@ namespace Company.Core.ViewModels
             Model.OpenCustomer(Model.Id);
         }
 
-        private bool CanEditCusomer()
+        private bool CanCahngeCusomer()
         {
             // Gibt ja noch keine Rechte
             return true;
         }
 
-        private void EditCusomer()
+        private void CahngeCusomer()
         {
             throw new NotImplementedException("Hier würde der SearchDialog kommen.");
         }

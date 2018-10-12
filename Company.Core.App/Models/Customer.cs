@@ -57,16 +57,7 @@ namespace Company.Core.App.Models
 
         public ObservableCollection<Product> Products
         {
-            get
-            {
-                ObservableCollection<Product> products = GetValue<ObservableCollection<Product>>(ProductProperty);
-                if(products == null)
-                {
-                    SetValue(ProductProperty, new ObservableCollection<Product>(productLoadingService.GetByCustomerId(Id)));
-                    products = GetValue<ObservableCollection<Product>>(ProductProperty);
-                }
-                return products;
-            }
+            get { return GetValue<ObservableCollection<Product>>(ProductProperty); }
             set { SetValue(ProductProperty, value); }
         }
         public static readonly PropertyData ProductProperty = RegisterProperty(nameof(Products), typeof(ObservableCollection<Product>));
@@ -82,12 +73,10 @@ namespace Company.Core.App.Models
 
         public void OpenProduct(int id)
         {
-            // Hier sollte auch ein Customer Model mit geliefert werden, damit er angezeigt werden kann
             Main.Instance.ActivContent = productLoadingService.GetById(id);
         }
         public void OpenCustomer(int id)
         {
-            // TODO : Bei dem Aufruf sollte Products direkt mitgeliefert werden.
             Main.Instance.ActivContent = cusomterLoadingService.GetById(id);
         }
 

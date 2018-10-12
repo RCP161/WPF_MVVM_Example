@@ -38,7 +38,8 @@
                    Text="Owner" />
         <local:CustomerSearchTextBox Grid.Row="1"
                                      Grid.Column="2"
-                                     Margin="2" />
+                                     Margin="2"
+                                     DataContext="{Binding Owner}" />
 
         <StackPanel Grid.Row="4"
                     Grid.Column="2"

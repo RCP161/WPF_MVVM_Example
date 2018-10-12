@@ -2,7 +2,6 @@
 using Catel.IoC;
 using Catel.Logging;
 using Catel.MVVM;
-using Project.Extensions;
 
 namespace Project
 {
@@ -19,8 +18,8 @@ namespace Project
 
             AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Company.Data.Enities.Customer, Company.Core.App.Models.Customer>().IgnoreAllSourceVirtual();
-                cfg.CreateMap<Company.Data.Enities.Product, Company.Core.App.Models.Product>().IgnoreAllSourceVirtual();
+                cfg.CreateMap<Company.Data.Enities.Customer, Company.Core.App.Models.Customer>();
+                cfg.CreateMap<Company.Data.Enities.Product, Company.Core.App.Models.Product>();
             });
 
             AutoMapper.Mapper mapper = new AutoMapper.Mapper(config);

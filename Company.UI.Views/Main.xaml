@@ -28,7 +28,7 @@
             <ColumnDefinition Width="*" MaxWidth="500" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Column="0" Margin="0,0,10,0" />
+        <local:TreeView DataContext="{Binding Root}" />
         <ContentPresenter Grid.Column="1"
                           Content="{Binding ActivContent}"
                           ContentTemplateSelector="{StaticResource MainTemplateSelector}" />

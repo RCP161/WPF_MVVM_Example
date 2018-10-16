@@ -94,6 +94,12 @@
     <Compile Include="Product.xaml.cs">
       <DependentUpon>Product.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TreeViewItem.xaml.cs">
+      <DependentUpon>TreeViewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView.xaml.cs">
+      <DependentUpon>TreeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductItem.xaml.cs">
       <DependentUpon>ProductItem.xaml</DependentUpon>
     </Compile>
@@ -106,6 +112,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Product.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TreeViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TreeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

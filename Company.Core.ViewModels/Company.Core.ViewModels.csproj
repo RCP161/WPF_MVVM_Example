@@ -84,6 +84,7 @@
     <Compile Include="CustomerSearchTextBoxVm.cs" />
     <Compile Include="CustomerItemVm.cs" />
     <Compile Include="CustomerVm.cs" />
+    <Compile Include="TreeViewItemVm.cs" />
     <Compile Include="HomeVm.cs" />
     <Compile Include="MainVm.cs" />
     <Compile Include="ProductItemVm.cs" />

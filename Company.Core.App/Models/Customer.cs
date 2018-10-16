@@ -75,6 +75,7 @@ namespace Company.Core.App.Models
         {
             Main.Instance.ActivContent = productLoadingService.GetById(id);
         }
+
         public void OpenCustomer(int id)
         {
             Main.Instance.ActivContent = cusomterLoadingService.GetById(id);

@@ -15,6 +15,7 @@ namespace Company.Core.ViewModels
         public MainVm()
         {
             Model = Main.Instance;
+            Root = new Group();
         }
 
         [Model]
@@ -45,6 +46,15 @@ namespace Company.Core.ViewModels
         }
 
         public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
-        
+
+
+        [ViewModelToModel(nameof(Model))]
+        public Group Root
+        {
+            get { return GetValue<Group>(RootProperty); }
+            set { SetValue(RootProperty, value); }
+        }
+
+        public static readonly PropertyData RootProperty = RegisterProperty(nameof(Root), typeof(Group));
     }
 }

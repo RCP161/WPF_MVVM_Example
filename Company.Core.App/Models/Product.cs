@@ -11,6 +11,7 @@ namespace Company.Core.App.Models
     public class Product : ModelBase
     {
         private readonly CustomerLoadingService cusomterLoadingService = new CustomerLoadingService();
+        private readonly ProductLoadingService productLoadingService = new ProductLoadingService();
 
         public int Id
         {
@@ -38,9 +39,13 @@ namespace Company.Core.App.Models
 
         public static readonly PropertyData OwnerProperty = RegisterProperty(nameof(Owner), typeof(Customer));
 
+        public void OpenProduct(int id)
+        {
+            Main.Instance.ActivContent = productLoadingService.GetById(id);
+        }
+
         public void OpenCustomer(int id)
         {
-            // TODO : Bei dem Aufruf sollte Products direkt mitgeliefert werden.
             Main.Instance.ActivContent = cusomterLoadingService.GetById(id);
         }
 

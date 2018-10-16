@@ -34,5 +34,14 @@ namespace Company.Core.App.Models
         }
 
         public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
+
+
+        public Group Root
+        {
+            get { return GetValue<Group>(RootProperty); }
+            set { SetValue(RootProperty, value); }
+        }
+
+        public static readonly PropertyData RootProperty = RegisterProperty(nameof(Root), typeof(Group));
     }
 }

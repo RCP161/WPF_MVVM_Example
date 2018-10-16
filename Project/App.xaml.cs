@@ -38,8 +38,12 @@ namespace Project
             viewModelLocator.Register(typeof(Company.UI.Views.CustomerSearchTextBox), typeof(Company.Core.ViewModels.CustomerSearchTextBoxVm));
             viewModelLocator.Register(typeof(Company.UI.Views.Product), typeof(Company.Core.ViewModels.ProductVm));
             viewModelLocator.Register(typeof(Company.UI.Views.ProductItem), typeof(Company.Core.ViewModels.ProductItemVm));
+            viewModelLocator.Register(typeof(Company.UI.Views.TreeView), typeof(Company.Core.ViewModels.TreeViewItemVm));
+            viewModelLocator.Register(typeof(Company.UI.Views.TreeViewItem), typeof(Company.Core.ViewModels.TreeViewItemVm));
 
             base.OnStartup(e);
+
+            // TODO : Habe ich jetzt das Problem, dass er mir immer gleich alles rein zieht, da Automapper alle properties Mapt?
 
             // TODO :    === Themen die noch anstehen ===
             // - Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)

@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 using Catel.IoC;
 using Company.Core.App.Models;
-using Company.DataQueries.If;
+using Company.Core.App.Querries;
 
 namespace Company.Core.App.Services.Loading
 {
     internal class ProductLoadingService
     {
-        private IMapper mapper;
 
         internal ProductLoadingService()
         {
-            mapper = ServiceLocator.Default.ResolveType<IMapper>();
         }
 
         internal Product GetById(int id)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return mapper.Map<Data.Enities.Product, Product>(unitOfWork.ProductRepository.GetById(id));
+                return unitOfWork.ProductRepository.GetById(id);
             }
         }
 
@@ -31,7 +28,7 @@ namespace Company.Core.App.Services.Loading
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return mapper.Map<IEnumerable<Data.Enities.Product>, List<Product>>(unitOfWork.ProductRepository.GetAll());
+                return unitOfWork.ProductRepository.GetAll();
             }
         }
 
@@ -39,7 +36,25 @@ namespace Company.Core.App.Services.Loading
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return mapper.Map<IEnumerable<Data.Enities.Product>, List<Product>>(unitOfWork.ProductRepository.GetByCustomerId(customerId));
+                return unitOfWork.ProductRepository.GetByCustomerId(customerId);
+            }
+        }
+
+        internal void Save(Product product)
+        {
+            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
+            {
+                if(product.Id < 1)
+                {
+                    unitOfWork.ProductRepository.Add(product);
+                }
+                else
+                {
+                    Product p = unitOfWork.ProductRepository.GetById(product.Id);
+                    p = product;
+                }
+
+                unitOfWork.Complete();
             }
         }
     }

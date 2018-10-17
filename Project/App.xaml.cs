@@ -15,20 +15,11 @@ namespace Project
             //#if DEBUG
             //            LogManager.AddDebugListener();
             //#endif
+            
 
-            AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Company.Data.Enities.Customer, Company.Core.App.Models.Customer>();
-                cfg.CreateMap<Company.Data.Enities.Product, Company.Core.App.Models.Product>();
-            });
-
-            AutoMapper.Mapper mapper = new AutoMapper.Mapper(config);
-
-
-            ServiceLocator.Default.RegisterType<Company.DataAccess.If.IDbConfigruation, Config>();
-            ServiceLocator.Default.RegisterType<Company.DataAccess.If.IDataAccess, Company.DataAccess.Ef.EfContext>(RegistrationType.Transient);
-            ServiceLocator.Default.RegisterType<Company.DataQueries.If.IUnitOfWork, Company.DataQueries.Repositories.UnitOfWork>(RegistrationType.Transient);
-            ServiceLocator.Default.RegisterInstance<AutoMapper.IMapper>(mapper);
+            ServiceLocator.Default.RegisterType<Company.Core.App.IDbConfigruation, Config>();
+            ServiceLocator.Default.RegisterType<Company.Core.App.IDataAccess, Company.Core.App.EfContext>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.Core.App.Querries.IUnitOfWork, Company.Core.App.Querries.UnitOfWork>(RegistrationType.Transient);
 
             IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
             viewModelLocator.Register(typeof(Company.UI.Views.Main), typeof(Company.Core.ViewModels.MainVm));
@@ -40,6 +31,28 @@ namespace Project
             viewModelLocator.Register(typeof(Company.UI.Views.ProductItem), typeof(Company.Core.ViewModels.ProductItemVm));
 
             base.OnStartup(e);
+
+            // TODO :   KLÄREN!!!
+            // ====================================================
+
+            // Eigenes EF
+            // ====================================================
+            // +Sauberere Trennung
+
+            // ORC.EF
+            // ====================================================
+            // + Kompakt
+            // + Wenig Aufwand
+            // + Kein Automapper notwendig
+            // +Verbesserete Anbindung EF, da kein Automapper dazwischen sitzt und entweder Mappt oder halt nicht. Somit von Fall zu fall wählbar
+
+            // -Models werden mit Attributen überflutet und unübersichtlich
+            // -Komplete Daten Schicht und Datenzugriffsschicht hängen nun im Model
+
+            // ? Single Responsibility(aber generell
+
+
+
 
             // TODO :    === Themen die noch anstehen ===
             // - Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)

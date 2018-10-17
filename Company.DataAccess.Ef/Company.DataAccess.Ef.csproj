@@ -67,10 +67,6 @@
       <Project>{0C2D66EA-CA1A-48B1-B134-BF57B86B2508}</Project>
       <Name>Company.Data.If</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Company.DataAccess.If\Company.DataAccess.If.csproj">
-      <Project>{46F755AC-E0EA-47D6-8D8C-154FCB83E140}</Project>
-      <Name>Company.DataAccess.If</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

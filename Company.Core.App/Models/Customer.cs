@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +11,15 @@ using Company.Core.App.Services.Loading;
 
 namespace Company.Core.App.Models
 {
-    public class Customer : ModelBase
+    [Table("Customer")]
+    public class Customer : ModelBase, IEntity
     {
         private readonly ProductLoadingService productLoadingService = new ProductLoadingService();
         private readonly CustomerLoadingService cusomterLoadingService = new CustomerLoadingService();
 
         #region Properties
 
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get { return GetValue<int>(IdProperty); }
@@ -24,6 +28,8 @@ namespace Company.Core.App.Models
 
         public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int));
 
+
+        [Required, MaxLength(100)]
         public string Name
         {
             get { return GetValue<string>(NameProperty); }
@@ -36,6 +42,7 @@ namespace Company.Core.App.Models
         public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
 
 
+        [MaxLength(100)]
         public string CustomerNumber
         {
             get { return GetValue<string>(CustomerNumberProperty); }
@@ -47,7 +54,7 @@ namespace Company.Core.App.Models
         }
         public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string));
 
-
+        [NotMapped]
         public string DisplayText
         {
             get { return GetValue<string>(DisplayTextProperty); }
@@ -75,6 +82,14 @@ namespace Company.Core.App.Models
         {
             Main.Instance.ActivContent = productLoadingService.GetById(id);
         }
+
+        public void CreateProduct()
+        {
+            Product product = new Product();
+            product.Owner = this;
+            Main.Instance.ActivContent = product;
+        }
+
         public void OpenCustomer(int id)
         {
             Main.Instance.ActivContent = cusomterLoadingService.GetById(id);

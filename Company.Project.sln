@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.DataAccess.If", "Company.DataAccess.If\Company.DataAccess.If.csproj", "{46F755AC-E0EA-47D6-8D8C-154FCB83E140}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.DataAccess.Ef", "Company.DataAccess.Ef\Company.DataAccess.Ef.csproj", "{83128ACE-0FCD-4C88-B16F-839D298A7B2D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.Data.Enities", "Company.Data.Enities\Company.Data.Enities.csproj", "{9DFF79F7-72BA-4DC8-8F41-9BDECEFED2A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.Data.If", "Company.Data.If\Company.Data.If.csproj", "{0C2D66EA-CA1A-48B1-B134-BF57B86B2508}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D340A11B-69A0-4653-A2D4-0E56D6F047AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{CDBCD298-F934-4D47-806D-6B6C80A9346F}"
@@ -20,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		.gitignore = .gitignore
 		SolutionInfo.cs = SolutionInfo.cs
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.DataQueries.If", "Company.DataQueries.If\Company.DataQueries.If.csproj", "{5391F9F4-AAD5-49AF-8852-CC33F5964F49}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.DataQueries.Repositories", "Company.DataQueries.Repositories\Company.DataQueries.Repositories.csproj", "{29FA1D28-5E39-4FAB-979A-284695953C18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.Core.ViewModels", "Company.Core.ViewModels\Company.Core.ViewModels.csproj", "{3A43C586-BB33-466F-94CA-3088CA8EAFD9}"
 EndProject
@@ -35,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.UI.Controls", "Comp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project", "Project\Project.csproj", "{37AC7560-EAC6-4CF5-A60D-A1C825958630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Company.DataAccess.Ef", "Tests\Tests.Company.DataAccess.Ef\Tests.Company.DataAccess.Ef.csproj", "{381034C4-A6E7-403E-8FCB-670AC8F08376}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.Core.App", "Company.Core.App\Company.Core.App.csproj", "{506EA7F0-687B-4F8C-968B-E58525D7C9EC}"
 EndProject
 Global
@@ -45,30 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46F755AC-E0EA-47D6-8D8C-154FCB83E140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46F755AC-E0EA-47D6-8D8C-154FCB83E140}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46F755AC-E0EA-47D6-8D8C-154FCB83E140}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46F755AC-E0EA-47D6-8D8C-154FCB83E140}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83128ACE-0FCD-4C88-B16F-839D298A7B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83128ACE-0FCD-4C88-B16F-839D298A7B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83128ACE-0FCD-4C88-B16F-839D298A7B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83128ACE-0FCD-4C88-B16F-839D298A7B2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DFF79F7-72BA-4DC8-8F41-9BDECEFED2A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DFF79F7-72BA-4DC8-8F41-9BDECEFED2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DFF79F7-72BA-4DC8-8F41-9BDECEFED2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DFF79F7-72BA-4DC8-8F41-9BDECEFED2A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C2D66EA-CA1A-48B1-B134-BF57B86B2508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C2D66EA-CA1A-48B1-B134-BF57B86B2508}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C2D66EA-CA1A-48B1-B134-BF57B86B2508}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C2D66EA-CA1A-48B1-B134-BF57B86B2508}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5391F9F4-AAD5-49AF-8852-CC33F5964F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5391F9F4-AAD5-49AF-8852-CC33F5964F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5391F9F4-AAD5-49AF-8852-CC33F5964F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5391F9F4-AAD5-49AF-8852-CC33F5964F49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29FA1D28-5E39-4FAB-979A-284695953C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29FA1D28-5E39-4FAB-979A-284695953C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29FA1D28-5E39-4FAB-979A-284695953C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29FA1D28-5E39-4FAB-979A-284695953C18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A43C586-BB33-466F-94CA-3088CA8EAFD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A43C586-BB33-466F-94CA-3088CA8EAFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A43C586-BB33-466F-94CA-3088CA8EAFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,10 +51,6 @@ Global
 		{37AC7560-EAC6-4CF5-A60D-A1C825958630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37AC7560-EAC6-4CF5-A60D-A1C825958630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37AC7560-EAC6-4CF5-A60D-A1C825958630}.Release|Any CPU.Build.0 = Release|Any CPU
-		{381034C4-A6E7-403E-8FCB-670AC8F08376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{381034C4-A6E7-403E-8FCB-670AC8F08376}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{381034C4-A6E7-403E-8FCB-670AC8F08376}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{381034C4-A6E7-403E-8FCB-670AC8F08376}.Release|Any CPU.Build.0 = Release|Any CPU
 		{506EA7F0-687B-4F8C-968B-E58525D7C9EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{506EA7F0-687B-4F8C-968B-E58525D7C9EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{506EA7F0-687B-4F8C-968B-E58525D7C9EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -100,9 +58,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{381034C4-A6E7-403E-8FCB-670AC8F08376} = {D340A11B-69A0-4653-A2D4-0E56D6F047AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8ADE09B9-5111-40D7-9172-BDBD8FF40BDD}

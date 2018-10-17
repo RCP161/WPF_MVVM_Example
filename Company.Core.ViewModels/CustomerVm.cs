@@ -15,6 +15,7 @@ namespace Company.Core.ViewModels
         public CustomerVm(Customer customer)
         {
             Model = customer;
+            AddProductCommand = new Command(AddProduct, CanAddProduct);
             OpenProductCommand = new Command(OpenProduct, CanOpenProduct);
             CancelEditCommand = new Command(CancelEdit, CanCancelEdit);
             SaveEditCommand = new Command(SaveEdit, CanSaveEdit);
@@ -69,6 +70,7 @@ namespace Company.Core.ViewModels
 
 
         public Command OpenProductCommand { get; private set; }
+        public Command AddProductCommand { get; private set; }
         public Command CancelEditCommand { get; private set; }
         public Command SaveEditCommand { get; private set; }
 
@@ -83,6 +85,16 @@ namespace Company.Core.ViewModels
         private void OpenProduct()
         {
             Model.OpenProduct(SelectedProduct.Id);
+        }
+
+        private bool CanAddProduct()
+        {
+            return true;
+        }
+
+        private void AddProduct()
+        {
+            Model.CreateProduct();
         }
 
         private bool CanSaveEdit()

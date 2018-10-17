@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="Catel.Core, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Catel.Core.5.7.0\lib\net46\Catel.Core.dll</HintPath>
     </Reference>
@@ -156,30 +153,6 @@
     <ProjectReference Include="..\Company.Core.ViewModels\Company.Core.ViewModels.csproj">
       <Project>{3a43c586-bb33-466f-94ca-3088ca8eafd9}</Project>
       <Name>Company.Core.ViewModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Company.Data.Enities\Company.Data.Enities.csproj">
-      <Project>{9dff79f7-72ba-4dc8-8f41-9bdecefed2a1}</Project>
-      <Name>Company.Data.Enities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Company.Data.If\Company.Data.If.csproj">
-      <Project>{0c2d66ea-ca1a-48b1-b134-bf57b86b2508}</Project>
-      <Name>Company.Data.If</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Company.DataAccess.Ef\Company.DataAccess.Ef.csproj">
-      <Project>{83128ace-0fcd-4c88-b16f-839d298a7b2d}</Project>
-      <Name>Company.DataAccess.Ef</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Company.DataAccess.If\Company.DataAccess.If.csproj">
-      <Project>{46f755ac-e0ea-47d6-8d8c-154fcb83e140}</Project>
-      <Name>Company.DataAccess.If</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Company.DataQueries.If\Company.DataQueries.If.csproj">
-      <Project>{5391f9f4-aad5-49af-8852-cc33f5964f49}</Project>
-      <Name>Company.DataQueries.If</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Company.DataQueries.Repositories\Company.DataQueries.Repositories.csproj">
-      <Project>{29fa1d28-5e39-4fab-979a-284695953c18}</Project>
-      <Name>Company.DataQueries.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\Company.UI.Views\Company.UI.Views.csproj">
       <Project>{bf065cff-e051-47ac-a799-6401af13301b}</Project>

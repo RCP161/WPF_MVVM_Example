@@ -49,11 +49,5 @@
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Company.Data.If\Company.Data.If.csproj">
-      <Project>{0C2D66EA-CA1A-48B1-B134-BF57B86B2508}</Project>
-      <Name>Company.Data.If</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

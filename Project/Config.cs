@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Company.DataAccess.If;
+using Company.Core.App;
 
 namespace Project
 {
@@ -11,7 +11,7 @@ namespace Project
     {
         public string ConnectionString
         {
-            get { return @"Server=(LocalDB)\MSSQLLocalDB;Initial Catalog=Standard3DevDb;Integrated Security=True;"; }
+            get { return @"Server=(LocalDB)\MSSQLLocalDB;Initial Catalog=Standard3Dev003Db;Integrated Security=True;"; }
         }
     }
 }

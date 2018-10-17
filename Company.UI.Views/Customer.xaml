@@ -76,6 +76,7 @@
                     Grid.Column="2"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
+            <TextBlock Margin="2" Text="{Binding DisplayText}" />
             <Button Width="80"
                     Margin="2"
                     HorizontalAlignment="Right"

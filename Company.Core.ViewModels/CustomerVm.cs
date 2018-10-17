@@ -12,7 +12,7 @@ namespace Company.Core.ViewModels
 {
     public class CustomerVm : ViewModelBase
     {
-        public CustomerVm(Customer customer)
+        public CustomerVm(Customer customer) : base(true)
         {
             Model = customer;
             AddProductCommand = new Command(AddProduct, CanAddProduct);
@@ -69,6 +69,15 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData SelectedProductProperty = RegisterProperty(nameof(SelectedProduct), typeof(Product));
 
 
+        [ViewModelToModel(nameof(Model))]
+        public string DisplayText
+        {
+            get { return GetValue<string>(DisplayTextProperty); }
+            private set { SetValue(DisplayTextProperty, value); }
+        }
+        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
+
+
         public Command OpenProductCommand { get; private set; }
         public Command AddProductCommand { get; private set; }
         public Command CancelEditCommand { get; private set; }
@@ -104,7 +113,8 @@ namespace Company.Core.ViewModels
 
         private void SaveEdit()
         {
-            Model.Save();
+            Task<bool> b1 = SaveAsync();
+            //Model.Save();
         }
 
         private bool CanCancelEdit()
@@ -114,8 +124,8 @@ namespace Company.Core.ViewModels
 
         private void CancelEdit()
         {
-            // TODO : Schauen wie Catel das macht
-            throw new NotImplementedException();
+            //Task<bool> b2 = CancelAsync();
+            Task<bool> b1 = CancelViewModelAsync();
         }
 
         #endregion

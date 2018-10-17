@@ -84,8 +84,7 @@ namespace Company.Core.ViewModels
 
         private void CancelEdit()
         {
-            // TODO : Schauen wie Catel das macht
-            throw new NotImplementedException();
+            CancelViewModelAsync();
         }
 
         #endregion

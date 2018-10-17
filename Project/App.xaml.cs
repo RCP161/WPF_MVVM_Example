@@ -32,30 +32,12 @@ namespace Project
 
             base.OnStartup(e);
 
-            // TODO :   KLÄREN!!!
-            // ====================================================
-
-            // Eigenes EF
-            // ====================================================
-            // +Sauberere Trennung
-
-            // ORC.EF
-            // ====================================================
-            // + Kompakt
-            // + Wenig Aufwand
-            // + Kein Automapper notwendig
-            // +Verbesserete Anbindung EF, da kein Automapper dazwischen sitzt und entweder Mappt oder halt nicht. Somit von Fall zu fall wählbar
-
-            // -Models werden mit Attributen überflutet und unübersichtlich
-            // -Komplete Daten Schicht und Datenzugriffsschicht hängen nun im Model
-
-            // ? Single Responsibility(aber generell
-
-
 
 
             // TODO :    === Themen die noch anstehen ===
-            // - Save und Cancel über IEdit abbilden (macht glaube ich auch Catel schon)
+            // - Interface pro Objekt
+            // - Basisiklasse für Dirty etc (https://catelproject.atlassian.net/wiki/spaces/CTL/pages/2359400/Using+ModelBase+as+base+for+entities)
+            // - Save und Cancel über IEdit abbilden
             // - Das hinzufügen neuer Elemente
             // - Validation 
             // - Beim Speichern weiß ich nicht, ob er virtuals ignoriert werden. Diese sollten ja dennoch gespeichert werden.

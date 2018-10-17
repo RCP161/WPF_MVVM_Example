@@ -75,7 +75,13 @@ namespace Company.Core.App.Models
 
         private void SetDisplayText()
         {
-            DisplayText = String.Format("{0} / {1}", CustomerNumber, Name);
+            string dpText = String.Format("{0} / {1}", CustomerNumber, Name);
+
+            // TODO : [Prio2] Verhalten in Basisklasse auslagern
+            if(IsDirty)
+                dpText += "*";
+
+            DisplayText = dpText;
         }
 
         public void OpenProduct(int id)
@@ -97,8 +103,7 @@ namespace Company.Core.App.Models
 
         public void Save()
         {
-            // TODO : Serialisation in die DB
-            throw new NotImplementedException();
+            cusomterLoadingService.Save(this);
         }
 
         #endregion

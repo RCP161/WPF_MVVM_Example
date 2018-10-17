@@ -47,8 +47,7 @@ namespace Company.Core.App.Models
 
         public void OpenCustomer(int id)
         {
-            // TODO : Bei dem Aufruf sollte Products direkt mitgeliefert werden.
-            Main.Instance.ActivContent = cusomterLoadingService.GetById(id);
+            Main.Instance.ActivContent = cusomterLoadingService.GetCompleteById(id);
         }
 
         public void Save()

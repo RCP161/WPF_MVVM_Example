@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace Company.Core.ViewModels
         public MainVm()
         {
             Model = Main.Instance;
-            Root = new Group();
         }
 
         [Model]
@@ -44,17 +44,15 @@ namespace Company.Core.ViewModels
             }
             set { SetValue(ActivContentProperty, value as ModelBase); }
         }
-
         public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
 
 
         [ViewModelToModel(nameof(Model))]
-        public Group Root
+        public ObservableCollection<Customer> Customers
         {
-            get { return GetValue<Group>(RootProperty); }
-            set { SetValue(RootProperty, value); }
+            get { return GetValue<ObservableCollection<Customer>>(CustomersProperty); }
+            set { SetValue(CustomersProperty, value); }
         }
-
-        public static readonly PropertyData RootProperty = RegisterProperty(nameof(Root), typeof(Group));
+        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
     }
 }

@@ -10,39 +10,12 @@ using Company.Core.App.Models;
 
 namespace Company.Core.ViewModels
 {
-    public class TreeViewItemVm : ViewModelBase
+    public abstract class TreeViewItemVm : ViewModelBase
     {
-        public TreeViewItemVm(ModelBase model)
+        public TreeViewItemVm()
         {
-            Model = model;
-
-            if(model is Group)
-            {
-                OpenItemCommand = new Command(null, () => false);
-                ChildCollection = new ObservableCollection<ModelBase>(((Group)model).Customers);
-            }
-            else if(model is Customer)
-            {
-                Customer customer = model as Customer;
-                OpenItemCommand = new Command(() => customer.OpenCustomer(customer.Id), () => false); // Muss so sein. Es könnten ja noch rechte etc. abgefragt werden
-                ChildCollection = new ObservableCollection<ModelBase>(customer.Products);
-            }
-            else if(model is Product)
-            {
-                Product product = model as Product;
-                OpenItemCommand = new Command(() => product.OpenProduct(product.Id), () => false);
-                ChildCollection = new ObservableCollection<ModelBase>(((Group)model).Customers);
-            }
-
+            string a = "";
         }
-
-        [Model]
-        public ModelBase Model
-        {
-            get { return GetValue<ModelBase>(ModelProperty); }
-            private set { SetValue(ModelProperty, value); }
-        }
-        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(ModelBase));
 
         #region Properties
 
@@ -64,8 +37,41 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData ChildCollectionProperty = RegisterProperty(nameof(ChildCollection), typeof(ObservableCollection<ModelBase>));
 
 
-        public Command OpenItemCommand { get; private set; }
+        public Command OpenItemCommand { get; protected set; }
 
         #endregion
+    }
+    public abstract class TreeViewItem<T> : TreeViewItemVm where T : ModelBase
+    {
+        public TreeViewItem(T model)
+        {
+            Model = model;
+        }
+
+        [Model]
+        public T Model
+        {
+            get { return GetValue<T>(ModelProperty); }
+            private set { SetValue(ModelProperty, value); }
+        }
+        public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(T));
+    }
+
+    public class CustomerTreeViewItemVm : TreeViewItem<Customer>
+    {
+        public CustomerTreeViewItemVm(Customer customer) : base(customer)
+        {
+            OpenItemCommand = new Command(() => customer.OpenCustomer(customer.Id), () => false); // Muss so sein. Es könnten ja noch rechte etc. abgefragt werden
+            ChildCollection = new ObservableCollection<ModelBase>(customer.Products);
+        }
+    }
+
+    public class ProductTreeViewItemVm : TreeViewItem<Product>
+    {
+        public ProductTreeViewItemVm(Product product) : base(product)
+        {
+            OpenItemCommand = new Command(() => product.OpenProduct(product.Id), () => false);
+            ChildCollection = new ObservableCollection<ModelBase>();
+        }
     }
 }

@@ -5,15 +5,16 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:local="clr-namespace:Company.UI.Views"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:vm="clr-namespace:Company.Core.ViewModels;assembly=Company.Core.ViewModels"
                    d:DesignHeight="450"
                    d:DesignWidth="800"
                    mc:Ignorable="d">
     <TreeView Grid.Column="0"
               Margin="0,0,10,0"
-              ItemsSource="{Binding ChildCollection}">
+              ItemsSource="{Binding Customers}">
         <TreeView.ItemTemplate>
-            <HierarchicalDataTemplate ItemsSource="{Binding ChildCollection}">
-                <local:TreeViewItem DataContext="{Binding}" />
+            <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewItemVm}" ItemsSource="{Binding ChildCollection}">
+                <TextBlock Text="{Binding DisplayText}" />
             </HierarchicalDataTemplate>
         </TreeView.ItemTemplate>
     </TreeView>

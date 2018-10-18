@@ -38,6 +38,7 @@ namespace Project
             viewModelLocator.Register(typeof(Company.UI.Views.CustomerSearchTextBox), typeof(Company.Core.ViewModels.CustomerSearchTextBoxVm));
             viewModelLocator.Register(typeof(Company.UI.Views.Product), typeof(Company.Core.ViewModels.ProductVm));
             viewModelLocator.Register(typeof(Company.UI.Views.ProductItem), typeof(Company.Core.ViewModels.ProductItemVm));
+            viewModelLocator.Register(typeof(Company.UI.Views.TreeView), typeof(Company.Core.ViewModels.MainTreeViewItemVm));
 
             base.OnStartup(e);
 

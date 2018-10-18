@@ -29,15 +29,9 @@
             <ColumnDefinition Width="*" MaxWidth="500" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Column="0"
-                  Margin="0,0,10,0"
-                  ItemsSource="{Binding Customers}">
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate DataType="{x:Type vm:TreeViewItemVm}" ItemsSource="{Binding ChildCollection}">
-                    <TextBlock Text="{Binding DisplayText}" />
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
+        <local:TreeView Grid.Column="0"
+                        Margin="0,0,10,0"
+                        DataContext="{Binding Model}" />
         <ContentPresenter Grid.Column="1"
                           Content="{Binding ActivContent}"
                           ContentTemplateSelector="{StaticResource MainTemplateSelector}" />

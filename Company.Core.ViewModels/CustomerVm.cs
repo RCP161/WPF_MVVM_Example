@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,7 +74,7 @@ namespace Company.Core.ViewModels
         public string DisplayText
         {
             get { return GetValue<string>(DisplayTextProperty); }
-            private set { SetValue(DisplayTextProperty, value); }
+            set { SetValue(DisplayTextProperty, value); }
         }
         public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
 
@@ -108,24 +109,23 @@ namespace Company.Core.ViewModels
 
         private bool CanSaveEdit()
         {
-            return IsDirty;
+            return true; // Model.State == App.Enums.StateEnum.Created || Model.State == App.Enums.StateEnum.Modified;
         }
 
         private void SaveEdit()
         {
-            Task<bool> b1 = SaveAsync();
+            SaveViewModelAsync();
             //Model.Save();
         }
 
         private bool CanCancelEdit()
         {
-            return IsDirty;
+            return true; // Model.State == App.Enums.StateEnum.Created || Model.State == App.Enums.StateEnum.Modified;
         }
 
         private void CancelEdit()
         {
-            //Task<bool> b2 = CancelAsync();
-            Task<bool> b1 = CancelViewModelAsync();
+            CancelViewModelAsync();
         }
 
         #endregion

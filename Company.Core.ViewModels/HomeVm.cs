@@ -14,7 +14,7 @@ namespace Company.Core.ViewModels
     {
         public HomeVm(Home home)
         {
-            Model = home;
+             Model = home;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
             AddCustomerCommand = new Command(AddCustomer, CanAddCustomer);
             OpenProductCommand = new Command(OpenProduct, CanOpenProduct);

@@ -7,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
-using Company.Core.App.Services.Loading;
+using Company.Core.App.Services.Data;
 
 namespace Company.Core.App.Models
 {
     [Table("Customer")]
-    public class Customer : ModelBase, IEntity
+    public class Customer : ModelBase1, IEntity
     {
-        private readonly ProductLoadingService productLoadingService = new ProductLoadingService();
-        private readonly CustomerLoadingService cusomterLoadingService = new CustomerLoadingService();
+        private readonly PrdouctDataService productDataService = new PrdouctDataService();
+        private readonly CustomerDataService cusomterDataService = new CustomerDataService();
 
         #region Properties
 
@@ -54,13 +54,6 @@ namespace Company.Core.App.Models
         }
         public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string));
 
-        [NotMapped]
-        public string DisplayText
-        {
-            get { return GetValue<string>(DisplayTextProperty); }
-            private set { SetValue(DisplayTextProperty, value); }
-        }
-        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
 
         public ObservableCollection<Product> Products
         {
@@ -72,21 +65,15 @@ namespace Company.Core.App.Models
         #endregion
 
         #region Methods
-
-        private void SetDisplayText()
+        
+        protected override string GetDisplayText()
         {
-            string dpText = String.Format("{0} / {1}", CustomerNumber, Name);
-
-            // TODO : [Prio2] Verhalten in Basisklasse auslagern
-            if(IsDirty)
-                dpText += "*";
-
-            DisplayText = dpText;
+            return String.Format("{0} / {1}", CustomerNumber, Name);
         }
 
         public void OpenProduct(int id)
         {
-            Main.Instance.ActivContent = productLoadingService.GetById(id);
+            Main.Instance.ActivContent = productDataService.GetById(id);
         }
 
         public void CreateProduct()
@@ -98,12 +85,12 @@ namespace Company.Core.App.Models
 
         public void OpenCustomer(int id)
         {
-            Main.Instance.ActivContent = cusomterLoadingService.GetById(id);
+            Main.Instance.ActivContent = cusomterDataService.GetById(id);
         }
 
         public void Save()
         {
-            cusomterLoadingService.Save(this);
+            cusomterDataService.Save(this);
         }
 
         #endregion

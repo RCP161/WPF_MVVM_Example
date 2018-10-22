@@ -7,7 +7,7 @@ using Catel.Data;
 
 namespace Company.Core.App.Models
 {
-    public class Main : ModelBase
+    public class Main : ModelBase1
     {
         private static Main _instance;
 
@@ -27,12 +27,12 @@ namespace Company.Core.App.Models
         }
 
 
-        public ModelBase ActivContent
+        public ModelBase1 ActivContent
         {
-            get { return GetValue<ModelBase>(ActivContentProperty); }
+            get { return GetValue<ModelBase1>(ActivContentProperty); }
             set { SetValue(ActivContentProperty, value); }
         }
 
-        public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
+        public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase1));
     }
 }

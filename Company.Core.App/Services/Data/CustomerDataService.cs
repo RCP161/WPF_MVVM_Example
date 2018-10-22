@@ -8,12 +8,12 @@ using Catel.IoC;
 using Company.Core.App.Models;
 using Company.Core.App.Querries;
 
-namespace Company.Core.App.Services.Loading
+namespace Company.Core.App.Services.Data
 {
-    internal class CustomerLoadingService
+    internal class CustomerDataService
     {
 
-        internal CustomerLoadingService()
+        internal CustomerDataService()
         {
         }
 
@@ -21,16 +21,19 @@ namespace Company.Core.App.Services.Loading
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return unitOfWork.CustomerRepository.GetById(customerId);
+                Customer c = unitOfWork.CustomerRepository.GetById(customerId);
+                c.AfterLoad();
+                return c;
             }
         }
         
-        internal ModelBase GetCompleteById(int customerId)
+        internal Customer GetCompleteById(int customerId)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
                 Customer customer = unitOfWork.CustomerRepository.GetById(customerId);
                 IEnumerable<Product> products = customer.Products; // nötig, damit EF die Produkte abfrägt. Könnte man in einer eigenen RepoAbfrage optimieren
+                customer.AfterLoad();
                 return customer;
             }
         }

@@ -7,12 +7,12 @@ using Catel.IoC;
 using Company.Core.App.Models;
 using Company.Core.App.Querries;
 
-namespace Company.Core.App.Services.Loading
+namespace Company.Core.App.Services.Data
 {
-    internal class ProductLoadingService
+    internal class PrdouctDataService
     {
 
-        internal ProductLoadingService()
+        internal PrdouctDataService()
         {
         }
 

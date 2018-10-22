@@ -69,7 +69,7 @@ namespace Company.Core.ViewModels
 
         private bool CanSaveEdit()
         {
-            return IsDirty;
+            return Model.State == App.Enums.StateEnum.Created || Model.State == App.Enums.StateEnum.Modified;
         }
 
         private void SaveEdit()
@@ -79,7 +79,7 @@ namespace Company.Core.ViewModels
 
         private bool CanCancelEdit()
         {
-            return IsDirty;
+            return Model.State == App.Enums.StateEnum.Created || Model.State == App.Enums.StateEnum.Modified;
         }
 
         private void CancelEdit()

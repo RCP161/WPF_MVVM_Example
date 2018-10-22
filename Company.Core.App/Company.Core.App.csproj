@@ -95,9 +95,11 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="EfContext.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="IDbConfigruation.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="Models\ModelBase1.cs" />
     <Compile Include="Querries\BaseRepository.cs" />
     <Compile Include="Querries\CustomerRepository.cs" />
     <Compile Include="Querries\IBaseRepository.cs" />
@@ -106,8 +108,8 @@
     <Compile Include="Querries\IUnitOfWork.cs" />
     <Compile Include="Querries\ProductRepository.cs" />
     <Compile Include="Querries\UnitOfWork.cs" />
-    <Compile Include="Services\Loading\PrdouctLoadingService.cs" />
-    <Compile Include="Services\Loading\CustomerLoadingService.cs" />
+    <Compile Include="Services\Data\PrdouctDataService.cs" />
+    <Compile Include="Services\Data\CustomerDataService.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Main.cs" />

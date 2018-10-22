@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
-using Company.Core.App.Services.Loading;
+using Company.Core.App.Services.Data;
 
 namespace Company.Core.App.Models
 {
     [Table("Product")]
-    public class Product : ModelBase, IEntity
+    public class Product : ModelBase1, IEntity
     {
-        private readonly CustomerLoadingService cusomterLoadingService = new CustomerLoadingService();
-        private readonly ProductLoadingService productLoadingService = new ProductLoadingService();
+        private readonly CustomerDataService cusomterDataService = new CustomerDataService();
+        private readonly PrdouctDataService productDataService = new PrdouctDataService();
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
@@ -47,12 +47,12 @@ namespace Company.Core.App.Models
 
         public void OpenCustomer(int id)
         {
-            Main.Instance.ActivContent = cusomterLoadingService.GetCompleteById(id);
+            Main.Instance.ActivContent = (Customer)cusomterDataService.GetCompleteById(id);
         }
 
         public void Save()
         {
-            productLoadingService.Save(this);
+            productDataService.Save(this);
         }
     }
 }

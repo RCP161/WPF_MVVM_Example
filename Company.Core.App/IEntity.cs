@@ -1,4 +1,6 @@
-﻿namespace Company.Core.App
+﻿
+
+namespace Company.Core.App
 {
     public interface IEntity
     {

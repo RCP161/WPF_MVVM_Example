@@ -36,17 +36,24 @@ namespace Company.Core.App.Data.DataBase
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Models.Customer> Customers { get; set; }
-        public DbSet<Models.Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public T Add<T>(T entity) where T : ModelBase2
         {
             return Set<T>().Add(entity);
         }
 
-        public void Delete<T>(T entity) where T : ModelBase2
+        public T Delete<T>(T entity) where T : ModelBase2
         {
-            Set<T>().Remove(entity);
+            return Set<T>().Remove(entity);
+        }
+
+        public T Update<T>(T entity) where T : ModelBase2
+        {
+            // TODO : Ich hab kp ob das funtioniert
+            Entry(entity).State = EntityState.Modified;
+            return Set<T>().Attach(entity);
         }
 
         public IEnumerable<T> GetAll<T>() where T : ModelBase2

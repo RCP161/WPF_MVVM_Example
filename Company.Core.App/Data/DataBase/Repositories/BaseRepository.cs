@@ -44,38 +44,26 @@ namespace Company.Core.App.Data.DataBase.Repositories
             return DataAccess.GetAll<T>().ToList();
         }
 
-        /// <summary>
-        /// Fügt das frische Objekt dem Repository hinzu
-        /// </summary>
-        /// <param name="entity">Objekt das hinzugefügt werden soll</param>
-        /// <returns>Objekt das hinzugefügt wurde mit Id</returns>
-        public T Add(T entity)
-        {
-            return DataAccess.Add(entity);
-        }
-
-        /// <summary>
-        /// Löscht das angegebene Objekt in dem Repository
-        /// </summary>
-        /// <param name="entity">Objekt das gelöscht werden soll</param>
-        public void Delete(T entity)
-        {
-            DataAccess.Delete(entity);
-        }
-
-        /// <summary>
-        /// Setzt die Änderungen des Objekts zurück
-        /// </summary>
-        /// <param name="entity">Objekt das zurück gesetzt werden soll</param>
-        public void Revert(ref T entity)
-        {
-            entity = DataAccess.GetById<T>(entity.Id);
-        }
-
         public T SaveOrUpdate(T entity)
         {
-            // Mit States? Oder Ef States setzen?
-            throw new NotImplementedException();
+            switch(entity.State)
+            {
+                case Common.Enums.StateEnum.Unchanged:
+                    break;
+                case Common.Enums.StateEnum.Created:
+                    DataAccess.Add(entity);
+                    break;
+                case Common.Enums.StateEnum.Modified:
+                    DataAccess.Update(entity);
+                    break;
+                case Common.Enums.StateEnum.Deleted:
+                    DataAccess.Delete(entity);
+                    break;
+                default:
+                    break;
+            }
+
+            return entity;
         }
     }
 }

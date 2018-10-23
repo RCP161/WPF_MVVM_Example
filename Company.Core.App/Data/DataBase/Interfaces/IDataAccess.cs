@@ -17,7 +17,8 @@ namespace Company.Core.App.Data.DataBase.Interfaces
 
 
         T Add<T>(T entity) where T : ModelBase2;
-        void Delete<T>(T entity) where T : ModelBase2;
+        T Delete<T>(T entity) where T : ModelBase2;
+        T Update<T>(T entity) where T : ModelBase2;
 
 
         void Complete();

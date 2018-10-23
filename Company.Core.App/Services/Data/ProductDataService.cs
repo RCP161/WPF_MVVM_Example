@@ -11,7 +11,7 @@ using Company.Core.App.Services.Data.Interfaces;
 
 namespace Company.Core.App.Services.Data
 {
-    public class PrdouctDataService : IProductDataService
+    public class ProductDataService : IProductDataService
     {
         public Product GetById(int id)
         {
@@ -53,15 +53,15 @@ namespace Company.Core.App.Services.Data
             }
         }
 
-        public Product SaveOrUpdate(Product model)
+        public void SaveOrUpdate(Product model)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
                 model = unitOfWork.ProductRepository.SaveOrUpdate(model);
-                unitOfWork.Complete(); // AfterLoad?
+                unitOfWork.Complete();
             }
 
-            return model;
+            model.AfterLoad();
         }
     }
 }

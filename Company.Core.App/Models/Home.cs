@@ -2,6 +2,7 @@
 using Catel.IoC;
 using Catel.MVVM;
 using Company.Core.App.Services.Data;
+using Company.Core.App.Services.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,11 +14,14 @@ namespace Company.Core.App.Models
 {
     public class Home : ModelBase1
     {
-        private static readonly CustomerDataService customerDataService = new CustomerDataService();
-        private static readonly PrdouctDataService productDataService = new PrdouctDataService();
+        private readonly ICustomerDataService customerDataService;
+        private readonly IProductDataService productDataService;
 
         public Home()
         {
+            customerDataService = ServiceLocator.Default.ResolveType<ICustomerDataService>();
+            productDataService = ServiceLocator.Default.ResolveType<IProductDataService>();
+
             Customers = new ObservableCollection<Customer>(customerDataService.GetAll());
             Products = new ObservableCollection<Product>(productDataService.GetAll());
         }
@@ -48,12 +52,12 @@ namespace Company.Core.App.Models
 
         public void AddCustomer()
         {
-            Main.Instance.ActivContent = new Customer();
+            Main.Instance.ActivContent = new Customer(true);
         }
 
         public void AddProduct()
         {
-            Main.Instance.ActivContent = new Product();
+            Main.Instance.ActivContent = new Product(true);
         }
     }
 }

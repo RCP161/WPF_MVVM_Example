@@ -112,7 +112,7 @@
     <Compile Include="Services\Data\Interfaces\IBaseDataService.cs" />
     <Compile Include="Services\Data\Interfaces\ICustomerDataService.cs" />
     <Compile Include="Services\Data\Interfaces\IProductDataService.cs" />
-    <Compile Include="Services\Data\PrdouctDataService.cs" />
+    <Compile Include="Services\Data\ProductDataService.cs" />
     <Compile Include="Services\Data\CustomerDataService.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Home.cs" />

@@ -51,9 +51,9 @@ namespace Company.Core.App.Data.DataBase
 
         public T Update<T>(T entity) where T : ModelBase2
         {
-            // TODO : Ich hab kp ob das funtioniert
+            entity = Set<T>().Attach(entity);
             Entry(entity).State = EntityState.Modified;
-            return Set<T>().Attach(entity);
+            return entity;
         }
 
         public IEnumerable<T> GetAll<T>() where T : ModelBase2

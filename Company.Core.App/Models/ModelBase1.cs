@@ -10,8 +10,6 @@ namespace Company.Core.App.Models
     public abstract class ModelBase1 : ModelBase
     {
         // Model für alle Darstellungssachen
-
-        // Ich sollte die Dirty Property eigentlich Ignorieren, oder mit setzen, aber nicht verwenden
         
         // Brauche ich hier schon wegen dem State. Kann ja ber default unchanged sein
         [NotMapped]
@@ -19,7 +17,7 @@ namespace Company.Core.App.Models
         public Enums.StateEnum State
         {
             get { return GetValue<Enums.StateEnum>(StateProperty); }
-            private set { SetValue(StateProperty, value); }
+            protected set { SetValue(StateProperty, value); }
         }
         public static readonly PropertyData StateProperty = RegisterProperty(nameof(State), typeof(Enums.StateEnum));
 
@@ -39,7 +37,7 @@ namespace Company.Core.App.Models
         {
             string dpText = GetDisplayText();
 
-            if(IsDirty)
+            if(State.HasFlag(Enums.StateEnum.Modified) || State.HasFlag(Enums.StateEnum.Created))
                 dpText += "*";
 
             return dpText;
@@ -53,20 +51,23 @@ namespace Company.Core.App.Models
             return ToString();
         }
 
-        protected void SetDisplayText()
+        private void SetDisplayText()
         {
             DisplayText = GetDisplyTextWithState();
         }
 
-        internal void AfterLoad() // Über LoadingService mit in der DB implementierung clearen
+        internal void AfterLoad()
         {
             IsDirty = false;
-            SetDisplayText();
+            State = Enums.StateEnum.Unchanged;
         }
 
         protected override void OnPropertyChanged(AdvancedPropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);
+
+            if(e.PropertyName != nameof(DisplayText))
+                SetDisplayText();
         }
 
         protected override bool ShouldPropertyChangeUpdateIsDirty(string propertyName)
@@ -75,6 +76,21 @@ namespace Company.Core.App.Models
                 return false;
 
             return base.ShouldPropertyChangeUpdateIsDirty(propertyName);
+        }
+
+        protected override void SetDirty(string propertyName)
+        {
+            // Sonst passt das nicht
+            // base.SetDirty(propertyName);
+
+            if(ShouldPropertyChangeUpdateIsDirty(propertyName))
+            {
+                IsDirty = true;
+                if(State != Enums.StateEnum.Created)
+                    State = Enums.StateEnum.Modified;
+
+                // Deleted weiß ich jetzt nicht
+            }
         }
 
         #endregion

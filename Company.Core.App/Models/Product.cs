@@ -6,15 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
+using Catel.IoC;
 using Company.Core.App.Services.Data;
+using Company.Core.App.Services.Data.Interfaces;
 
 namespace Company.Core.App.Models
 {
     [Table("Product")]
     public class Product : ModelBase2
     {
-        private readonly CustomerDataService cusomterDataService = new CustomerDataService();
-        private readonly PrdouctDataService productDataService = new PrdouctDataService();
+        private readonly ICustomerDataService customerDataService;
+        private readonly IProductDataService productDataService;
+
+        public Product() : this(false)
+        { }
+
+        public Product(bool isNew)
+        {
+            customerDataService = ServiceLocator.Default.ResolveType<ICustomerDataService>();
+            productDataService = ServiceLocator.Default.ResolveType<IProductDataService>();
+
+            if(isNew)
+                State = Common.Enums.StateEnum.Created;
+        }
 
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -47,7 +61,7 @@ namespace Company.Core.App.Models
 
         public void OpenCustomer(int id)
         {
-            Main.Instance.ActivContent = (Customer)cusomterDataService.GetCompleteById(id);
+            Main.Instance.ActivContent = (Customer)customerDataService.GetCompleteById(id);
         }
 
         public void Save()

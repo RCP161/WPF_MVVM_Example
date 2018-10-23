@@ -17,9 +17,12 @@ namespace Project
             //#endif
             
 
-            ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDbConfigruation, Config>();
+            ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDbConfigruation, Config>(RegistrationType.Singleton);
             ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDataAccess, Company.Core.App.Data.DataBase.EfContext>(RegistrationType.Transient);
             ServiceLocator.Default.RegisterType<Company.Core.App.Data.Interfaces.IUnitOfWork, Company.Core.App.Data.DataBase.UnitOfWork>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.ICustomerDataService, Company.Core.App.Services.Data.CustomerDataService>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.IProductDataService, Company.Core.App.Services.Data.ProductDataService>(RegistrationType.Singleton);
+
 
             IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
             viewModelLocator.Register(typeof(Company.UI.Views.Main), typeof(Company.Core.ViewModels.MainVm));
@@ -35,11 +38,13 @@ namespace Project
 
 
             // TODO :    === Themen die noch anstehen ===
+            // - Catel Fody
             // - Validation 
             // - Ef concurrency ? Oder Locktabelle? -> concurrency könnte fehlerhafte programmierung aufdecken. (siehe nächste Zeile)
             // - ReadOnlyVms und ReadOnly Properties an VMs prüfen
             // - EF generische Methode wieder zum laufen bringen
             // - Erben von SavableModelBase?
+            // - ViewModelBase ableiten und Save in ModelBase2 voraussetzen? Dann könnte man auch das SaveAsync direkt mit einbinden
 
 
             // - Eine Art Instanz refresher? 2 Instanzen des selben Datensatzes refreshen,

@@ -33,6 +33,6 @@ namespace Company.Core.App.Services.Data.Interfaces
         /// </summary>
         /// <param name="model">Objekt das gespeichert oder geupdated werden soll</param>
         /// <returns>Upgedates oder gespeichertes Objekt. Bei gelöschtem Objekt null</returns>
-        T SaveOrUpdate(T model);
+        void SaveOrUpdate(T model);
     }
 }

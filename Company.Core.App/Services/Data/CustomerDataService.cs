@@ -14,7 +14,6 @@ namespace Company.Core.App.Services.Data
 {
     public class CustomerDataService : ICustomerDataService
     {
-
         public Customer GetById(int customerId)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
@@ -47,15 +46,15 @@ namespace Company.Core.App.Services.Data
             }
         }
 
-        public Customer SaveOrUpdate(Customer model)
+        public void SaveOrUpdate(Customer model)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
                 model = unitOfWork.CustomerRepository.SaveOrUpdate(model);
-                unitOfWork.Complete(); // AfterLoad?
+                unitOfWork.Complete();
             }
 
-            return model;
+            model.AfterLoad();
         }
     }
 }

@@ -7,15 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
+using Catel.IoC;
 using Company.Core.App.Services.Data;
+using Company.Core.App.Services.Data.Interfaces;
 
 namespace Company.Core.App.Models
 {
     [Table("Customer")]
     public class Customer : ModelBase2
     {
-        private readonly PrdouctDataService productDataService = new PrdouctDataService();
-        private readonly CustomerDataService cusomterDataService = new CustomerDataService();
+        private readonly IProductDataService productDataService;
+        private readonly ICustomerDataService customerDataService;
+
+        public Customer() : this(false)
+        { }
+
+        public Customer(bool isNew)
+        {
+            customerDataService = ServiceLocator.Default.ResolveType<ICustomerDataService>();
+            productDataService = ServiceLocator.Default.ResolveType<IProductDataService>();
+
+            if(isNew)
+                State = Common.Enums.StateEnum.Created;
+        }
 
         #region Properties
 
@@ -31,11 +45,7 @@ namespace Company.Core.App.Models
         public string Name
         {
             get { return GetValue<string>(NameProperty); }
-            set
-            {
-                SetValue(NameProperty, value);
-                SetDisplayText();
-            }
+            set { SetValue(NameProperty, value); }
         }
         public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
 
@@ -44,11 +54,7 @@ namespace Company.Core.App.Models
         public string CustomerNumber
         {
             get { return GetValue<string>(CustomerNumberProperty); }
-            set
-            {
-                SetValue(CustomerNumberProperty, value);
-                SetDisplayText();
-            }
+            set { SetValue(CustomerNumberProperty, value); }
         }
         public static readonly PropertyData CustomerNumberProperty = RegisterProperty(nameof(CustomerNumber), typeof(string));
 
@@ -76,19 +82,19 @@ namespace Company.Core.App.Models
 
         public void CreateProduct()
         {
-            Product product = new Product();
+            Product product = new Product(true);
             product.Owner = this;
             Main.Instance.ActivContent = product;
         }
 
         public void OpenCustomer(int id)
         {
-            Main.Instance.ActivContent = cusomterDataService.GetById(id);
+            Main.Instance.ActivContent = customerDataService.GetById(id);
         }
 
         public void Save()
         {
-            cusomterDataService.SaveOrUpdate(this);
+            customerDataService.SaveOrUpdate(this);
         }
 
         #endregion

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
 using Catel.MVVM;
+using Company.Core.App.Common;
 using Company.Core.App.Models;
 
 namespace Company.Core.ViewModels
@@ -69,17 +70,19 @@ namespace Company.Core.ViewModels
 
         private bool CanSaveEdit()
         {
-            return IsDirty;
+            return Model.State.HasFlag(Enums.StateEnum.Modified) || Model.State.HasFlag(Enums.StateEnum.Created);
         }
 
         private void SaveEdit()
         {
+            // Danach hängt sich ja da VM ab ...
+            // SaveViewModelAsync();
             Model.Save();
         }
 
         private bool CanCancelEdit()
         {
-            return IsDirty;
+            return Model.State.HasFlag(Enums.StateEnum.Modified) || Model.State.HasFlag(Enums.StateEnum.Created);
         }
 
         private void CancelEdit()

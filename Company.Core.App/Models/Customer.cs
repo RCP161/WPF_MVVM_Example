@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
-using Company.Core.App.Models.Interfaces;
 using Company.Core.App.Services.Data;
 
 namespace Company.Core.App.Models
 {
     [Table("Customer")]
-    public class Customer : ModelBase1, IEntity
+    public class Customer : ModelBase2
     {
         private readonly PrdouctDataService productDataService = new PrdouctDataService();
         private readonly CustomerDataService cusomterDataService = new CustomerDataService();
@@ -89,7 +88,7 @@ namespace Company.Core.App.Models
 
         public void Save()
         {
-            cusomterDataService.Save(this);
+            cusomterDataService.SaveOrUpdate(this);
         }
 
         #endregion

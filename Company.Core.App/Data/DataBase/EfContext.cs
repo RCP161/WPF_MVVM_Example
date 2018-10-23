@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using Catel.Data;
 using Company.Core.App.Data.DataBase.Interfaces;
-using Company.Core.App.Models.Interfaces;
+using Company.Core.App.Models;
 using Orc.EntityFramework;
 
 namespace Company.Core.App.Data.DataBase
@@ -39,27 +39,27 @@ namespace Company.Core.App.Data.DataBase
         public DbSet<Models.Customer> Customers { get; set; }
         public DbSet<Models.Product> Products { get; set; }
 
-        public T Add<T>(T entity) where T : class, IEntity
+        public T Add<T>(T entity) where T : ModelBase2
         {
             return Set<T>().Add(entity);
         }
 
-        public void Delete<T>(T entity) where T : class, IEntity
+        public void Delete<T>(T entity) where T : ModelBase2
         {
             Set<T>().Remove(entity);
         }
 
-        public IEnumerable<T> GetAll<T>() where T : class, IEntity
+        public IEnumerable<T> GetAll<T>() where T : ModelBase2
         {
             return Set<T>().ToList();
         }
 
-        public T GetById<T>(int id) where T : class, IEntity
+        public T GetById<T>(int id) where T : ModelBase2
         {
             return Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
-        public IQueryable<T> Query<T>() where T : class, IEntity
+        public IQueryable<T> Query<T>() where T : ModelBase2
         {
             return Set<T>();
         }

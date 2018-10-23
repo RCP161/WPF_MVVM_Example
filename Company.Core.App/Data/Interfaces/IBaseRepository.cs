@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Company.Core.App.Models.Interfaces;
+using Company.Core.App.Models;
 
 namespace Company.Core.App.Data.Interfaces
 {
-    public interface IBaseRepository<T> where T : IEntity
+    public interface IBaseRepository<T> where T : ModelBase2
     {
         /// <summary>
         /// Liefert das Objekt des Typs anhand der Id in dem Repository

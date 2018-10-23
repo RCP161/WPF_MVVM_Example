@@ -7,28 +7,45 @@ using Catel.IoC;
 using Company.Core.App.Models;
 using Company.Core.App.Data;
 using Company.Core.App.Data.Interfaces;
+using Company.Core.App.Services.Data.Interfaces;
 
 namespace Company.Core.App.Services.Data
 {
-    internal class PrdouctDataService
+    public class PrdouctDataService : IProductDataService
     {
-        internal Product GetById(int id)
+        public Product GetById(int id)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return unitOfWork.ProductRepository.GetById(id);
+                Product product = unitOfWork.ProductRepository.GetById(id);
+                product.AfterLoad();
+                return product;
             }
         }
 
-        internal IEnumerable<Product> GetAll()
+        public Product GetCompleteById(int id)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return unitOfWork.ProductRepository.GetAll();
+                Product product = unitOfWork.ProductRepository.GetById(id);
+                product.AfterLoad();
+                return product;
             }
         }
 
-        internal IEnumerable<Product> GetByCustomerId(int customerId)
+        public IEnumerable<Product> GetAll()
+        {
+            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
+            {
+                IEnumerable<Product> products = unitOfWork.ProductRepository.GetAll();
+                foreach(Product p in products)
+                    p.AfterLoad();
+
+                return products;
+            }
+        }
+
+        public IEnumerable<Product> GetByCustomerId(int customerId)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
@@ -36,22 +53,15 @@ namespace Company.Core.App.Services.Data
             }
         }
 
-        internal void Save(Product product)
+        public Product SaveOrUpdate(Product model)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                if(product.Id < 1)
-                {
-                    unitOfWork.ProductRepository.Add(product);
-                }
-                else
-                {
-                    Product p = unitOfWork.ProductRepository.GetById(product.Id);
-                    p = product;
-                }
-
-                unitOfWork.Complete();
+                model = unitOfWork.ProductRepository.SaveOrUpdate(model);
+                unitOfWork.Complete(); // AfterLoad?
             }
+
+            return model;
         }
     }
 }

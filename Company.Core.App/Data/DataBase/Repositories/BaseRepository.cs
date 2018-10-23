@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Company.Core.App.Data.DataBase.Interfaces;
 using Company.Core.App.Data.Interfaces;
-using Company.Core.App.Models.Interfaces;
+using Company.Core.App.Models;
 
 namespace Company.Core.App.Data.DataBase.Repositories
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : ModelBase2
     {
         public BaseRepository(IDataAccess dataAccess)
         {

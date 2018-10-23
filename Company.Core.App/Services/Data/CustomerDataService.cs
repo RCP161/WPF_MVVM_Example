@@ -19,17 +19,17 @@ namespace Company.Core.App.Services.Data
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                Customer c = unitOfWork.CustomerRepository.GetById(customerId);
-                c.AfterLoad();
-                return c;
+                Customer customer = unitOfWork.CustomerRepository.GetById(customerId);
+                customer.AfterLoad();
+                return customer;
             }
         }
 
-        public Customer GetCompleteById(int customerId)
+        public Customer GetCompleteById(int id)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                Customer customer = unitOfWork.CustomerRepository.GetCompleteById(customerId);
+                Customer customer = unitOfWork.CustomerRepository.GetCompleteById(id);
                 customer.AfterLoad();
                 return customer;
             }
@@ -39,7 +39,11 @@ namespace Company.Core.App.Services.Data
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return unitOfWork.CustomerRepository.GetAll();
+                IEnumerable<Customer> customers = unitOfWork.CustomerRepository.GetAll();
+                foreach(Customer c in customers)
+                    c.AfterLoad();
+
+                return customers;
             }
         }
 

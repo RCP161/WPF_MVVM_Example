@@ -38,6 +38,8 @@ namespace Project
             // - Validation 
             // - Ef concurrency ? Oder Locktabelle? -> concurrency könnte fehlerhafte programmierung aufdecken. (siehe nächste Zeile)
             // - ReadOnlyVms und ReadOnly Properties an VMs prüfen
+            // - EF generische Methode wieder zum laufen bringen
+            // - Erben von SavableModelBase?
 
 
             // - Eine Art Instanz refresher? 2 Instanzen des selben Datensatzes refreshen,

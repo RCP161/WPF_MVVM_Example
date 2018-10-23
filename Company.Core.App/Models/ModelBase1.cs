@@ -9,23 +9,8 @@ namespace Company.Core.App.Models
 {
     public abstract class ModelBase1 : ModelBase
     {
-        protected ModelBase1()
-        {
-        }
+        // Model für alle Darstellungssachen
 
-
-        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public abstract int Id { get; set; }
-
-
-        [NotMapped]
-        [IgnoreOnStateAttribute]
-        public Enums.StateEnum State
-        {
-            get { return GetValue<Enums.StateEnum>(StateProperty); }
-            private set { SetValue(StateProperty, value); }
-        }
-        public static readonly PropertyData StateProperty = RegisterProperty(nameof(State), typeof(Enums.StateEnum));
 
         [NotMapped]
         [IgnoreOnStateAttribute]

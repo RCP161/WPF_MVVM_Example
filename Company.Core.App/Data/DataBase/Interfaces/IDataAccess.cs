@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Company.Core.App.Models.Interfaces;
+using Company.Core.App.Models;
 
 namespace Company.Core.App.Data.DataBase.Interfaces
 {
     public interface IDataAccess : IDisposable
     {
-        IEnumerable<T> GetAll<T>() where T : class, IEntity;
+        IEnumerable<T> GetAll<T>() where T : ModelBase2;
 
-        IQueryable<T> Query<T>() where T : class, IEntity;
+        IQueryable<T> Query<T>() where T : ModelBase2;
 
-        T GetById<T>(int id) where T : class, IEntity;
+        T GetById<T>(int id) where T : ModelBase2;
 
 
-        T Add<T>(T entity) where T : class, IEntity;
-
-        void Delete<T>(T entity) where T : class, IEntity;
+        T Add<T>(T entity) where T : ModelBase2;
+        void Delete<T>(T entity) where T : ModelBase2;
 
 
         void Complete();

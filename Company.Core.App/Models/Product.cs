@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
-using Company.Core.App.Models.Interfaces;
 using Company.Core.App.Services.Data;
 
 namespace Company.Core.App.Models
 {
     [Table("Product")]
-    public class Product : ModelBase1, IEntity
+    public class Product : ModelBase2
     {
         private readonly CustomerDataService cusomterDataService = new CustomerDataService();
         private readonly PrdouctDataService productDataService = new PrdouctDataService();
@@ -53,7 +52,7 @@ namespace Company.Core.App.Models
 
         public void Save()
         {
-            productDataService.Save(this);
+            productDataService.SaveOrUpdate(this);
         }
     }
 }

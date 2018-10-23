@@ -15,12 +15,12 @@ namespace Company.Core.App.Data.DataBase.Repositories
         public ProductRepository(IDataAccess dataAccess) : base(dataAccess)
         { }
 
-        IEnumerable<Product> IProductRepository.GetByCustomerId(int id)
+        public override Product GetCompleteById(int id)
         {
-            return DataAccess.Query<Product>().Include("Owner").Where(p => p.Owner != null && p.Owner.Id == id).ToList(); 
+            return DataAccess.Query<Product>().Include("Owner").Where(p => p.Id == id).FirstOrDefault(); 
         }
 
-        public List<Product> GetByCustomerId(int id)
+        public IEnumerable<Product> GetByCustomerId(int id)
         {
             return DataAccess.Query<Product>().Where(p => p.Owner != null && p.Owner.Id == id).ToList();
         }

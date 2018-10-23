@@ -98,7 +98,6 @@
     <Compile Include="Data\DataBase\EfContext.cs" />
     <Compile Include="Data\DataBase\Interfaces\IDataAccess.cs" />
     <Compile Include="Data\DataBase\Interfaces\IDbConfigruation.cs" />
-    <Compile Include="Models\Interfaces\IEntity.cs" />
     <Compile Include="Common\IgnoreOnStateAttribute.cs" />
     <Compile Include="Models\ModelBase1.cs" />
     <Compile Include="Data\DataBase\Repositories\BaseRepository.cs" />
@@ -109,6 +108,7 @@
     <Compile Include="Data\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Data\DataBase\Repositories\ProductRepository.cs" />
     <Compile Include="Data\DataBase\UnitOfWork.cs" />
+    <Compile Include="Models\ModelBase2.cs" />
     <Compile Include="Services\Data\Interfaces\IBaseDataService.cs" />
     <Compile Include="Services\Data\Interfaces\ICustomerDataService.cs" />
     <Compile Include="Services\Data\Interfaces\IProductDataService.cs" />

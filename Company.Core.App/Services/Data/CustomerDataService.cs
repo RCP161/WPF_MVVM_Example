@@ -29,6 +29,10 @@ namespace Company.Core.App.Services.Data
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
                 Customer customer = unitOfWork.CustomerRepository.GetCompleteById(id);
+
+                foreach(Product p in customer.Products)
+                    p.AfterLoad();
+
                 customer.AfterLoad();
                 return customer;
             }
@@ -55,6 +59,23 @@ namespace Company.Core.App.Services.Data
             }
 
             model.AfterLoad();
+        }
+
+        public IEnumerable<Customer> GetAllHierarchical()
+        {
+            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
+            {
+                IEnumerable<Customer> customers = unitOfWork.CustomerRepository.GetAllHierarchical();
+                foreach(Customer c in customers)
+                {
+                    foreach(Product p in c.Products)
+                        p.AfterLoad();
+
+                    c.AfterLoad();
+                }
+
+                return customers;
+            }
         }
     }
 }

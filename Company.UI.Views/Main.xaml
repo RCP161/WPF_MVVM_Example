@@ -28,7 +28,20 @@
             <ColumnDefinition Width="*" MaxWidth="500" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Column="0" Margin="0,0,10,0" />
+        <TreeView Grid.Column="0"
+                  Margin="0,0,10,0"
+                  ItemsSource="{Binding Customers}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Products}">
+                    <local:CustomerItem DataContext="{Binding}" />
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <HierarchicalDataTemplate>
+                            <local:ProductItem DataContext="{Binding}" />
+                        </HierarchicalDataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
         <ContentPresenter Grid.Column="1"
                           Content="{Binding ActivContent}"
                           ContentTemplateSelector="{StaticResource MainTemplateSelector}" />

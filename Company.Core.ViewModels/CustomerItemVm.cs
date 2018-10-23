@@ -27,7 +27,7 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Customer));
 
         
-        [ViewModelToModel(nameof(Model))]
+        [ViewModelToModel]
         public string DisplayText
         {
             get { return GetValue<string>(DisplayTextProperty); }

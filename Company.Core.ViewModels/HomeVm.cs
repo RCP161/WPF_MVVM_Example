@@ -32,7 +32,7 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Home));
 
         
-        [ViewModelToModel(nameof(Model))]
+        [ViewModelToModel]
         public ObservableCollection<Customer> Customers
         {
             get { return GetValue<ObservableCollection<Customer>>(CustomersProperty); }
@@ -49,7 +49,7 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData SelectedCustomerProperty = RegisterProperty(nameof(SelectedCustomer), typeof(Customer));
 
 
-        [ViewModelToModel(nameof(Model))]
+        [ViewModelToModel]
         public ObservableCollection<Product> Products
         {
             get { return GetValue<ObservableCollection<Product>>(ProductsProperty); }

@@ -9,6 +9,6 @@ namespace Company.Core.App.Services.Data.Interfaces
 {
     public interface ICustomerDataService : IBaseDataService<Customer>
     {
-
+        IEnumerable<Customer> GetAllHierarchical();
     }
 }

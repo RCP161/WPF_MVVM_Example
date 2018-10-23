@@ -42,12 +42,12 @@ namespace Company.Core.App.Models
 
         public void OpenCustomer(int id)
         {
-            Main.Instance.ActivContent = customerDataService.GetById(id);
+            Main.Instance.ActivContent = customerDataService.GetCompleteById(id);
         }
 
         public void OpenProduct(int id)
         {
-            Main.Instance.ActivContent = productDataService.GetById(id);
+            Main.Instance.ActivContent = productDataService.GetCompleteById(id);
         }
 
         public void AddCustomer()

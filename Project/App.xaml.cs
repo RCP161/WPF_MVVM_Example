@@ -39,12 +39,13 @@ namespace Project
 
             // TODO :    === Themen die noch anstehen ===
             // - Catel Fody
+            // - AfterLoad sollte alle KindObjekte auch Clearen
             // - Validation 
             // - Ef concurrency ? Oder Locktabelle? -> concurrency könnte fehlerhafte programmierung aufdecken. (siehe nächste Zeile)
             // - ReadOnlyVms und ReadOnly Properties an VMs prüfen
             // - EF generische Methode wieder zum laufen bringen
             // - Erben von SavableModelBase?
-            // - ViewModelBase ableiten und Save in ModelBase2 voraussetzen? Dann könnte man auch das SaveAsync direkt mit einbinden
+            // - ViewModelBase ableiten und Save in ModelBase2 voraussetzen? Dann könnte man auch das SaveAsync, DisplayText direkt mit einbinden
 
 
             // - Eine Art Instanz refresher? 2 Instanzen des selben Datensatzes refreshen,

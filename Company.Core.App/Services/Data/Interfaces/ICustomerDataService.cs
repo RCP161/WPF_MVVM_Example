@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Company.Core.App.Models;
 
-namespace Company.Core.App.Querries
+namespace Company.Core.App.Services.Data.Interfaces
 {
-    public interface ICustomerRepository : IBaseRepository<Customer>
+    public interface ICustomerDataService : IBaseDataService<Customer>
     {
-        Customer GetByProductId(int id);
+
     }
 }

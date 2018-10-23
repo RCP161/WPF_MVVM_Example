@@ -1,6 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using Catel.Data;
+using Catel.Reflection;
+using Company.Core.App.Common;
 
 namespace Company.Core.App.Models
 {
@@ -8,21 +11,15 @@ namespace Company.Core.App.Models
     {
         protected ModelBase1()
         {
-            PropertyChanged += ModelBase1_PropertyChanged; 
         }
 
-        private void ModelBase1_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            //State = Enums.StateEnum.Modified;
-        }
 
-        protected ModelBase1(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-        /// <summary>
-        /// State
-        /// </summary>
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public abstract int Id { get; set; }
+
+
         [NotMapped]
+        [IgnoreOnStateAttribute]
         public Enums.StateEnum State
         {
             get { return GetValue<Enums.StateEnum>(StateProperty); }
@@ -30,11 +27,8 @@ namespace Company.Core.App.Models
         }
         public static readonly PropertyData StateProperty = RegisterProperty(nameof(State), typeof(Enums.StateEnum));
 
-
-        /// <summary>
-        /// DisplayText
-        /// </summary>
         [NotMapped]
+        [IgnoreOnStateAttribute]
         public string DisplayText
         {
             get { return GetValue<string>(DisplayTextProperty); }
@@ -48,7 +42,7 @@ namespace Company.Core.App.Models
         {
             string dpText = GetDisplayText();
 
-            if(State == Enums.StateEnum.Created || State == Enums.StateEnum.Modified)
+            if(IsDirty)
                 dpText += "*";
 
             return dpText;
@@ -69,8 +63,21 @@ namespace Company.Core.App.Models
 
         internal void AfterLoad() // Über LoadingService mit in der DB implementierung clearen
         {
-            State = Enums.StateEnum.Unchanged;
+            IsDirty = false;
             SetDisplayText();
+        }
+
+        protected override void OnPropertyChanged(AdvancedPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+        }
+
+        protected override bool ShouldPropertyChangeUpdateIsDirty(string propertyName)
+        {
+            if(GetType().GetProperty(propertyName).GetAttribute<IgnoreOnStateAttribute>() != null)
+                return false;
+
+            return base.ShouldPropertyChangeUpdateIsDirty(propertyName);
         }
 
         #endregion

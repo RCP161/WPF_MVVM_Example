@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Company.Core.App.Data.DataBase.Interfaces;
+using Company.Core.App.Data.DataBase.Repositories;
+using Company.Core.App.Data.Interfaces;
 
-namespace Company.Core.App.Querries
+namespace Company.Core.App.Data.DataBase
 {
     public class UnitOfWork : IUnitOfWork
     {

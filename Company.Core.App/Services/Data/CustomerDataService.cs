@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 using Catel.Data;
 using Catel.IoC;
 using Company.Core.App.Models;
-using Company.Core.App.Querries;
+using Company.Core.App.Data;
+using Company.Core.App.Data.Interfaces;
+using Company.Core.App.Services.Data.Interfaces;
 
 namespace Company.Core.App.Services.Data
 {
-    internal class CustomerDataService
+    public class CustomerDataService : ICustomerDataService
     {
 
-        internal CustomerDataService()
-        {
-        }
-
-        internal Customer GetById(int customerId)
+        public Customer GetById(int customerId)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
@@ -26,19 +24,18 @@ namespace Company.Core.App.Services.Data
                 return c;
             }
         }
-        
-        internal Customer GetCompleteById(int customerId)
+
+        public Customer GetCompleteById(int customerId)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                Customer customer = unitOfWork.CustomerRepository.GetById(customerId);
-                IEnumerable<Product> products = customer.Products; // nötig, damit EF die Produkte abfrägt. Könnte man in einer eigenen RepoAbfrage optimieren
+                Customer customer = unitOfWork.CustomerRepository.GetCompleteById(customerId);
                 customer.AfterLoad();
                 return customer;
             }
         }
 
-        internal IEnumerable<Customer> GetAll()
+        public IEnumerable<Customer> GetAll()
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
@@ -46,23 +43,15 @@ namespace Company.Core.App.Services.Data
             }
         }
 
-        internal void Save(Customer customer)
+        public Customer SaveOrUpdate(Customer model)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                // TODO : [Prio2] Noch vereinheitlichen 
-                if(customer.Id < 1)
-                {
-                    unitOfWork.CustomerRepository.Add(customer);
-                }
-                else
-                {
-                    Customer c = unitOfWork.CustomerRepository.GetById(customer.Id);
-                    c = customer;
-                }
-
-                unitOfWork.Complete();
+                model = unitOfWork.CustomerRepository.SaveOrUpdate(model);
+                unitOfWork.Complete(); // AfterLoad?
             }
+
+            return model;
         }
     }
 }

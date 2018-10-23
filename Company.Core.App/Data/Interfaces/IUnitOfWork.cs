@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Company.Core.App.Querries
+namespace Company.Core.App.Data.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

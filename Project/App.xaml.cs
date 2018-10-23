@@ -17,9 +17,9 @@ namespace Project
             //#endif
             
 
-            ServiceLocator.Default.RegisterType<Company.Core.App.IDbConfigruation, Config>();
-            ServiceLocator.Default.RegisterType<Company.Core.App.IDataAccess, Company.Core.App.EfContext>(RegistrationType.Transient);
-            ServiceLocator.Default.RegisterType<Company.Core.App.Querries.IUnitOfWork, Company.Core.App.Querries.UnitOfWork>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDbConfigruation, Config>();
+            ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDataAccess, Company.Core.App.Data.DataBase.EfContext>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.Core.App.Data.Interfaces.IUnitOfWork, Company.Core.App.Data.DataBase.UnitOfWork>(RegistrationType.Transient);
 
             IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
             viewModelLocator.Register(typeof(Company.UI.Views.Main), typeof(Company.Core.ViewModels.MainVm));
@@ -35,17 +35,10 @@ namespace Project
 
 
             // TODO :    === Themen die noch anstehen ===
-            // - Interface pro Objekt
-            // - Basisiklasse für Dirty etc (https://catelproject.atlassian.net/wiki/spaces/CTL/pages/2359400/Using+ModelBase+as+base+for+entities)
-            // - Save und Cancel über IEdit abbilden
-            // - Das hinzufügen neuer Elemente
             // - Validation 
-            // - Beim Speichern weiß ich nicht, ob er virtuals ignoriert werden. Diese sollten ja dennoch gespeichert werden.
-            //   In Listen sollten sich Objekte selbst speichern. -> Andere MappingConfig fürs speichern benötigt?
-            //   Wahrscheinlich nicht, da man das Mapping wahrscheinlich auch in beide Seiten angeben muss und dort dann die Destination Extension verwenden kann
-            // - Wird aber wohl eh 2 Mapings benötigt. Eines mit ignore Virtuals und eines ohne
             // - Ef concurrency ? Oder Locktabelle? -> concurrency könnte fehlerhafte programmierung aufdecken. (siehe nächste Zeile)
-            // - private Setter in den ReadOnlyVms entfernen und Readonly setzen?
+            // - ReadOnlyVms und ReadOnly Properties an VMs prüfen
+
 
             // - Eine Art Instanz refresher? 2 Instanzen des selben Datensatzes refreshen,
             //   oder den bereits geladenen Datensatz qualifizieren und einen verweis auf ihn verwenden (Prio3)
@@ -65,12 +58,8 @@ namespace Project
             // UI.Views benötigt den Verweis auf Core.App wegen TemplateSelectors und weil Catel an das Model bindet
             // PRoject hat derzeit das AutoMapper Nuget. Das muss nicht sein, ist aber bis jetzt hier Zentral verwaltet
 
-            // ACHTUNG: Derzeit mit LazyLoading, damit wird der RAM zulaufen, weil alles nach geladen werden würde, aber nichts wieder entfernt.
-            // Doch verschiedene Instanzen? Siehe oben InstanzRefresher
-
-            // Abgelehnt:
-            // AutoMapper in Repositories verweschieben?
-            // => würde einen verweis von einer unteren Schicht auf eine höhere bedeuten. Wäre machbar, sieht aber unschön aus
+            // nameof oder Reflection bei den Include Querries an den Repros verwenden?
+            // Benötigt Qerry noch sowas wie "Expression<Func<TEntity, bool>> predicate" an den Interfaces?
         }
     }
 }

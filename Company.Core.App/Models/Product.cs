@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
+using Company.Core.App.Models.Interfaces;
 using Company.Core.App.Services.Data;
 
 namespace Company.Core.App.Models
@@ -16,13 +17,13 @@ namespace Company.Core.App.Models
         private readonly CustomerDataService cusomterDataService = new CustomerDataService();
         private readonly PrdouctDataService productDataService = new PrdouctDataService();
 
+
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id
+        public override int Id
         {
             get { return GetValue<int>(IdProperty); }
             set { SetValue(IdProperty, value); }
         }
-
         public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int));
 
 

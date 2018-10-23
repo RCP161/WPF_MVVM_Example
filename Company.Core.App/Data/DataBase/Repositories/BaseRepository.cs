@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Company.Core.App.Data.DataBase.Interfaces;
+using Company.Core.App.Data.Interfaces;
+using Company.Core.App.Models.Interfaces;
 
-namespace Company.Core.App.Querries
+namespace Company.Core.App.Data.DataBase.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
     {
         public BaseRepository(IDataAccess dataAccess)
         {
@@ -26,10 +29,17 @@ namespace Company.Core.App.Querries
         }
 
         /// <summary>
+        /// Liefert das Objekt mit allen Verknüpfungen anhand der Id in dem Repository
+        /// </summary>
+        /// <param name="id">Id des Objekts</param>
+        /// <returns>Objekt mit der angegebenen Id, sonst null</returns>
+        public abstract T GetCompleteById(int id);
+
+        /// <summary>
         /// Liefert alle Objekte des Typs in dem Repository
         /// </summary>
         /// <returns>Auflistung von Objekten des Datentyps</returns>
-        public List<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return DataAccess.GetAll<T>().ToList();
         }
@@ -60,6 +70,12 @@ namespace Company.Core.App.Querries
         public void Revert(ref T entity)
         {
             entity = DataAccess.GetById<T>(entity.Id);
+        }
+
+        public T SaveOrUpdate(T entity)
+        {
+            // Mit States? Oder Ef States setzen?
+            throw new NotImplementedException();
         }
     }
 }

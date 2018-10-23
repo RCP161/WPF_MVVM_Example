@@ -94,20 +94,24 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="EfContext.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="IDataAccess.cs" />
-    <Compile Include="IDbConfigruation.cs" />
-    <Compile Include="IEntity.cs" />
+    <Compile Include="Common\Enums.cs" />
+    <Compile Include="Data\DataBase\EfContext.cs" />
+    <Compile Include="Data\DataBase\Interfaces\IDataAccess.cs" />
+    <Compile Include="Data\DataBase\Interfaces\IDbConfigruation.cs" />
+    <Compile Include="Models\Interfaces\IEntity.cs" />
+    <Compile Include="Common\IgnoreOnStateAttribute.cs" />
     <Compile Include="Models\ModelBase1.cs" />
-    <Compile Include="Querries\BaseRepository.cs" />
-    <Compile Include="Querries\CustomerRepository.cs" />
-    <Compile Include="Querries\IBaseRepository.cs" />
-    <Compile Include="Querries\ICustomerRepository.cs" />
-    <Compile Include="Querries\IProductRepository.cs" />
-    <Compile Include="Querries\IUnitOfWork.cs" />
-    <Compile Include="Querries\ProductRepository.cs" />
-    <Compile Include="Querries\UnitOfWork.cs" />
+    <Compile Include="Data\DataBase\Repositories\BaseRepository.cs" />
+    <Compile Include="Data\DataBase\Repositories\CustomerRepository.cs" />
+    <Compile Include="Data\Interfaces\IBaseRepository.cs" />
+    <Compile Include="Data\Interfaces\ICustomerRepository.cs" />
+    <Compile Include="Data\Interfaces\IProductRepository.cs" />
+    <Compile Include="Data\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Data\DataBase\Repositories\ProductRepository.cs" />
+    <Compile Include="Data\DataBase\UnitOfWork.cs" />
+    <Compile Include="Services\Data\Interfaces\IBaseDataService.cs" />
+    <Compile Include="Services\Data\Interfaces\ICustomerDataService.cs" />
+    <Compile Include="Services\Data\Interfaces\IProductDataService.cs" />
     <Compile Include="Services\Data\PrdouctDataService.cs" />
     <Compile Include="Services\Data\CustomerDataService.cs" />
     <Compile Include="Models\Customer.cs" />

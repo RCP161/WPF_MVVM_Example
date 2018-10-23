@@ -1,13 +1,15 @@
-﻿namespace Company.Core.App
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity;
-    using System.Linq;
-    using Catel.Data;
-    using Orc.EntityFramework;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Linq;
+using Catel.Data;
+using Company.Core.App.Data.DataBase.Interfaces;
+using Company.Core.App.Models.Interfaces;
+using Orc.EntityFramework;
 
+namespace Company.Core.App.Data.DataBase
+{
     public class EfContext : DbContext, IDataAccess
     {
         /// <summary>

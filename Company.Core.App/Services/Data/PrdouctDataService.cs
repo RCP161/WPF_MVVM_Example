@@ -5,17 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Catel.IoC;
 using Company.Core.App.Models;
-using Company.Core.App.Querries;
+using Company.Core.App.Data;
+using Company.Core.App.Data.Interfaces;
 
 namespace Company.Core.App.Services.Data
 {
     internal class PrdouctDataService
     {
-
-        internal PrdouctDataService()
-        {
-        }
-
         internal Product GetById(int id)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())

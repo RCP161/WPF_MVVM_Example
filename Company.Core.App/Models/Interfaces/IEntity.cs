@@ -1,6 +1,6 @@
 ﻿
 
-namespace Company.Core.App
+namespace Company.Core.App. Models.Interfaces
 {
     public interface IEntity
     {

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Company.Core.App.Models.Interfaces;
 
-namespace Company.Core.App
+namespace Company.Core.App.Data.DataBase.Interfaces
 {
     public interface IDataAccess : IDisposable
     {

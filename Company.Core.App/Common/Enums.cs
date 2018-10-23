@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Company.Core.App
+namespace Company.Core.App.Common
 {
     public class Enums
     {
         public enum StateEnum
         {
-            Unchanged = 0,
-            Created = 1,
-            Modified = 2,
-            Deleted = 3
+            Unchanged,
+            Created,
+            Modified,
+            Deleted
         }
     }
 }

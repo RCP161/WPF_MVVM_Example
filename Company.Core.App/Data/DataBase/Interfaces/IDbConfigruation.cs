@@ -1,4 +1,4 @@
-﻿namespace Company.Core.App
+﻿namespace Company.Core.App.Data.DataBase.Interfaces
 {
     public interface IDbConfigruation
     {

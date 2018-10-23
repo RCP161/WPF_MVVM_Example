@@ -11,6 +11,18 @@ namespace Company.Core.App.Models
     {
         // Model für alle Darstellungssachen
 
+        // Ich sollte die Dirty Property eigentlich Ignorieren, oder mit setzen, aber nicht verwenden
+        
+        // Brauche ich hier schon wegen dem State. Kann ja ber default unchanged sein
+        [NotMapped]
+        [IgnoreOnStateAttribute]
+        public Enums.StateEnum State
+        {
+            get { return GetValue<Enums.StateEnum>(StateProperty); }
+            private set { SetValue(StateProperty, value); }
+        }
+        public static readonly PropertyData StateProperty = RegisterProperty(nameof(State), typeof(Enums.StateEnum));
+
 
         [NotMapped]
         [IgnoreOnStateAttribute]

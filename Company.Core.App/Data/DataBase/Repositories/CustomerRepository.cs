@@ -24,5 +24,10 @@ namespace Company.Core.App.Data.DataBase.Repositories
         {
             return DataAccess.Query<Customer>().Where(c => c.Products.Any(t => t.Id == id)).FirstOrDefault();
         }
+
+        public IEnumerable<Customer> GetAllHierarchical()
+        {
+            return DataAccess.Query<Customer>().Include("Products").ToList();
+        }
     }
 }

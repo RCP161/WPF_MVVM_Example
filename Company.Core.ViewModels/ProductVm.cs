@@ -31,7 +31,7 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Product));
 
 
-        [ViewModelToModel(nameof(Model))]
+        [ViewModelToModel]
         public string Name
         {
             get { return GetValue<string>(NameProperty); }
@@ -41,7 +41,7 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
 
 
-        [ViewModelToModel(nameof(Model))]
+        [ViewModelToModel]
         public Customer Owner
         {
             get { return GetValue<Customer>(OwnerProperty); }

@@ -27,14 +27,14 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Product));
 
 
-        [ViewModelToModel(nameof(Model))]
-        public string Name
+        [ViewModelToModel]
+        public string DisplayText
         {
-            get { return GetValue<string>(NameProperty); }
-            private set { SetValue(NameProperty, value); }
+            get { return GetValue<string>(DisplayTextProperty); }
+            private set { SetValue(DisplayTextProperty, value); }
         }
 
-        public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
+        public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
 
         #endregion
     }

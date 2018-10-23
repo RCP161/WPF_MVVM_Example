@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Company.Core.ViewModels
 
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Main));
 
-        [ViewModelToModel(nameof(Model))]
+        [ViewModelToModel]
         public ModelBase ActivContent
         {
             get
@@ -45,6 +46,15 @@ namespace Company.Core.ViewModels
         }
 
         public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
+
+
+        [ViewModelToModel]
+        public ObservableCollection<Customer> Customers
+        {
+            get { return GetValue<ObservableCollection<Customer>>(CustomersProperty); }
+            set { SetValue(CustomersProperty, value); }
+        }
+        public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
         
     }
 }

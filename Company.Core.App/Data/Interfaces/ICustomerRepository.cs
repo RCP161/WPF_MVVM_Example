@@ -10,5 +10,7 @@ namespace Company.Core.App.Data.Interfaces
     public interface ICustomerRepository : IBaseRepository<Customer>
     {
         Customer GetByProductId(int id);
+
+        IEnumerable<Customer> GetAllHierarchical();
     }
 }

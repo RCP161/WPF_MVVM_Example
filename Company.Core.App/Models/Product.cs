@@ -59,6 +59,12 @@ namespace Company.Core.App.Models
 
         public static readonly PropertyData OwnerProperty = RegisterProperty(nameof(Owner), typeof(Customer));
 
+
+        protected override string GetDisplayText()
+        {
+            return Name;
+        }
+
         public void OpenCustomer(int id)
         {
             Main.Instance.ActivContent = (Customer)customerDataService.GetCompleteById(id);

@@ -35,39 +35,38 @@ namespace Project
 
             base.OnStartup(e);
 
+            // TODO :           === Themen Besprechung ===
 
+            // Weitere Schritte
+            // - Delete
+            // - Zürck
 
-            // TODO :    === Themen die noch anstehen ===
-            // - Catel Fody
-            // - AfterLoad sollte alle KindObjekte auch Clearen
-            // - Validation 
-            // - Ef concurrency ? Oder Locktabelle? -> concurrency könnte fehlerhafte programmierung aufdecken. (siehe nächste Zeile)
-            // - ReadOnlyVms und ReadOnly Properties an VMs prüfen
-            // - EF generische Methode wieder zum laufen bringen
-            // - Erben von SavableModelBase?
-            // - ViewModelBase ableiten und Save in ModelBase2 voraussetzen? Dann könnte man auch das SaveAsync, DisplayText direkt mit einbinden
+            // Korrekturen
+            // - EF:                    Generische Methode wieder zum laufen bringen
 
-
-            // - Eine Art Instanz refresher? 2 Instanzen des selben Datensatzes refreshen,
-            //   oder den bereits geladenen Datensatz qualifizieren und einen verweis auf ihn verwenden (Prio3)
-            // - Mehrsprachenfähigkeit (Prio3)
-            // - ReadOnly bei keinem Schreibrecht (Prio3)
-
-            // Locator (service, ViewModel, ...) über Namesnkonvention regeln
-
-            // Fähigkeiten von Catel noch prüfen, was geht noch so
-            // Fähigkeiten von Catel.Fody prüfen
-            // Fähigkeiten von AutoMapper prüfen
-            // EF Plus prüfen
-
-            // CodeGeneration (Custom Attribute für Properties im Model und ViewModel
-
-            // Warum benötigen der Test und Project das EF? Das sollte doch gekapselt sein ...
-            // UI.Views benötigt den Verweis auf Core.App wegen TemplateSelectors und weil Catel an das Model bindet
-            // PRoject hat derzeit das AutoMapper Nuget. Das muss nicht sein, ist aber bis jetzt hier Zentral verwaltet
-
-            // nameof oder Reflection bei den Include Querries an den Repros verwenden?
+            // Fragen
+            // nameof oder Reflection bei den Include Querries an den Repros verwenden? Probleme beim Auteilen von klassen 
             // Benötigt Qerry noch sowas wie "Expression<Func<TEntity, bool>> predicate" an den Interfaces?
+            // Zweifach Revert / Save
+
+            // Optimierungen
+            // - Ef:                    Concurrency? (könnte fehlerhafte programmierung/refreshing aufdecken)
+            // - DataServices:          AfterLoad sollte alle KindObjekte auch Clearen
+            // - Model:                 Ableiten von SavableModelBase für Serialisation?
+            // - ViewModelBase:         Ableiten und Save in ModelBase2 voraussetzen? Dann könnte man auch das SaveAsync, DisplayText direkt mit einbinden
+            // - ReadOnlyVms:           ReadOnly Properties an VMs prüfen
+            // - Namesnkonvention:      Locator (service, ViewModel, ...) über Namesnkonvention regeln
+
+            // Mögliche Erweiterungen
+            // - Instanz refresher:     2 Instanzen des selben Datensatzes refreshen 
+            // - Validation
+            // - Serialisation
+            // - Mehrsprachenfähigkeit
+            // - Schreibrechte
+            // - EF Plus prüfen
+            // - CodeGeneration
+            // - Weitere Nugets von Orc http://opensource.wildgums.com/orc.entityframework/
+            // - Catel Fody:            Vereinfacht die schreibweise der Properties. Muss aber auch erst konfiguriert werden
         }
     }
 }

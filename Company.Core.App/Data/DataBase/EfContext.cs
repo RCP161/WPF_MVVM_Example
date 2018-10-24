@@ -33,11 +33,14 @@ namespace Company.Core.App.Data.DataBase
             modelBuilder.Entity<Models.Customer>().IgnoreCatelProperties();
             modelBuilder.Entity<Models.Product>().IgnoreCatelProperties();
 
+            // IgnoreCatelProperties = IsDirty + IsReadonly
+
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
+
 
         public T Add<T>(T entity) where T : ModelBase2
         {

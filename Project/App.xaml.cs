@@ -37,12 +37,14 @@ namespace Project
 
             base.OnStartup(e);
 
-            // TODO :           === Themen Besprechung ===
+            // TODO : List
 
             // Weitere Schritte
-            // - Delete löscht gerade auch Kinder
+
+            // - Speichern muss auch die Nested UserControls speichern
+            // - Delete löscht gerade auch Kinder. Delete Cascade ausstellen
             // - Klassen halten eine ClassInfo, die die Relection Informationen enthält. Somit könnte man alle Listen etc ausfindig machen zum speichern, CompleteLoad, Validierung, ...
-            // - EF heraus lösen und selbst aufsetzen? Dann noch IsDirty und IsReadOnly ignorieren, dann wieder Generische Methode
+            // - EF selbst aufsetzen? Dann noch IsDirty und IsReadOnly ignorieren, dann wieder Generische Methode.
 
             // Korrekturen
             // - EF:                    Generische Methode wieder zum laufen bringen

@@ -10,6 +10,7 @@ namespace Company.UI.Views.Services
 {
     public class MessageBoxService : IMessageBoxService
     {
+        // TODO : Catel IMessageService?
         public InputResult Ask(string question, string title, InputOption inputOption)
         {
             MessageBoxResult messageBoxResult = MessageBox.Show(question, title, InputOptionConverter(inputOption), MessageBoxImage.Question);

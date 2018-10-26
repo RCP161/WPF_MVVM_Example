@@ -92,7 +92,7 @@ namespace Company.Core.App.Models
             Main.Instance.ActivContent = customerDataService.GetCompleteById(id);
         }
 
-        public void Save()
+        public override void Save()
         {
             customerDataService.SaveOrUpdate(this);
         }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
 using Catel.MVVM;
+using Company.Core.App.Common;
 using Company.Core.App.Models;
 
 namespace Company.Core.ViewModels

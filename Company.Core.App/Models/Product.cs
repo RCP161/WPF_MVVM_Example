@@ -70,7 +70,7 @@ namespace Company.Core.App.Models
             Main.Instance.ActivContent = (Customer)customerDataService.GetCompleteById(id);
         }
 
-        public void Save()
+        public override void Save()
         {
             productDataService.SaveOrUpdate(this);
         }

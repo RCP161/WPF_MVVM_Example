@@ -80,9 +80,6 @@ namespace Company.Core.App.Data.DataBase
 
         public void Complete()
         {
-            // TODO : [Prio2] [Ef] Commit-Verhalten
-            // Das SaveChanges wird automatisch eine Transaction gekapselt
-            // Eine explizite Transaction müsste durchgreicht und noch eingerichtet werden
             SaveChanges();
         }
     }

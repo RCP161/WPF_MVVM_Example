@@ -21,5 +21,7 @@ namespace Company.Core.App.Models
         {
             State = StateEnum.Deleted;
         }
+
+        public abstract void Save();
     }
 }

@@ -50,17 +50,6 @@ namespace Company.Core.App.Services.Data
             }
         }
 
-        public void SaveOrUpdate(Customer model)
-        {
-            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
-            {
-                model = unitOfWork.CustomerRepository.SaveOrUpdate(model);
-                unitOfWork.Complete();
-            }
-
-            model.AfterLoad();
-        }
-
         public IEnumerable<Customer> GetAllHierarchical()
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
@@ -76,6 +65,21 @@ namespace Company.Core.App.Services.Data
 
                 return customers;
             }
+        }
+
+        public void SaveOrUpdate(Customer model)
+        {
+            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
+            {
+                model = unitOfWork.CustomerRepository.SaveOrUpdate(model);
+
+                for(int i = 0; i < model.Products?.Count; i++)
+                    model.Products[i] = unitOfWork.ProductRepository.SaveOrUpdate(model.Products[i]);
+
+                unitOfWork.Complete();
+            }
+
+            model.AfterLoad();
         }
     }
 }

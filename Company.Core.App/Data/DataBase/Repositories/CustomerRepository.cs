@@ -17,7 +17,7 @@ namespace Company.Core.App.Data.DataBase.Repositories
 
         public override Customer GetCompleteById(int id)
         {
-            return DataAccess.Query<Customer>().Include("Products").Where(c => c.Products.Any(t => t.Id == id)).FirstOrDefault();
+            return DataAccess.Query<Customer>().Include("Products").Where(c => c.Id == id).FirstOrDefault();
         }
 
         public Customer GetByProductId(int id)

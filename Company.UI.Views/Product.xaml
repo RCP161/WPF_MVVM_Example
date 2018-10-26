@@ -48,6 +48,11 @@
             <Button Width="80"
                     Margin="2"
                     HorizontalAlignment="Right"
+                    Command="{Binding HomeCommand}"
+                    Content="Home" />
+            <Button Width="80"
+                    Margin="2"
+                    HorizontalAlignment="Right"
                     Command="{Binding CancelEditCommand}"
                     Content="Cancel" />
             <Button Width="80"

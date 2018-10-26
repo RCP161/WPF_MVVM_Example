@@ -16,6 +16,7 @@ namespace Company.Core.ViewModels
         public MainVm()
         {
             Model = Main.Instance;
+            RefreshCommand = new Command(Refresh, CanRefresh);
         }
 
         [Model]
@@ -55,6 +56,19 @@ namespace Company.Core.ViewModels
             set { SetValue(CustomersProperty, value); }
         }
         public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
-        
+
+
+        public Command RefreshCommand { get; private set; }
+
+
+        private bool CanRefresh()
+        {
+            return true;
+        }
+
+        private void Refresh()
+        {
+            Model.LoadData();
+        }
     }
 }

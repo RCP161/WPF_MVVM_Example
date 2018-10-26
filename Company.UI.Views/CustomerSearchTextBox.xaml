@@ -22,6 +22,6 @@
                 Content="..." />
         <Button Grid.Column="2"
                 Command="{Binding OpenCustomerCommand}"
-                Content="%" />
+                Content="-&gt;" />
     </Grid>
 </catel:UserControl>

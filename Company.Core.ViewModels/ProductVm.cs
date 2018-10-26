@@ -15,9 +15,10 @@ namespace Company.Core.ViewModels
         public ProductVm(Product product)
         {
             Model = product;
-            OpenCustomerCommand = new Command(OpenCustomer, CanOpenProduct);
+            OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
             CancelEditCommand = new Command(CancelEdit, CanCancelEdit);
             SaveEditCommand = new Command(SaveEdit, CanSaveEdit);
+            HomeCommand = new Command(OpenHome, CanOpenHome);
         }
 
         #region Properties
@@ -54,11 +55,12 @@ namespace Company.Core.ViewModels
         public Command OpenCustomerCommand { get; private set; }
         public Command CancelEditCommand { get; private set; }
         public Command SaveEditCommand { get; private set; }
+        public Command HomeCommand { get; private set; }
 
         #endregion
 
         #region Methods
-        private bool CanOpenProduct()
+        private bool CanOpenCustomer()
         {
             return Owner != null;
         }
@@ -70,7 +72,7 @@ namespace Company.Core.ViewModels
 
         private bool CanSaveEdit()
         {
-            return Model.State.HasFlag(Enums.StateEnum.Modified) || Model.State.HasFlag(Enums.StateEnum.Created);
+            return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
         }
 
         private void SaveEdit()
@@ -82,12 +84,22 @@ namespace Company.Core.ViewModels
 
         private bool CanCancelEdit()
         {
-            return Model.State.HasFlag(Enums.StateEnum.Modified) || Model.State.HasFlag(Enums.StateEnum.Created);
+            return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
         }
 
         private void CancelEdit()
         {
             CancelViewModelAsync();
+        }
+
+        private bool CanOpenHome()
+        {
+            return true;
+        }
+
+        private void OpenHome()
+        {
+            Model.OpenHome();
         }
 
         #endregion

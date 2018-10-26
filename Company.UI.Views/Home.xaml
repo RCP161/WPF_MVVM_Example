@@ -36,6 +36,11 @@
             <Button Width="80"
                     Margin="4"
                     HorizontalAlignment="Right"
+                    Command="{Binding DeleteCustomerCommand}"
+                    Content="Delete" />
+            <Button Width="80"
+                    Margin="4"
+                    HorizontalAlignment="Right"
                     Command="{Binding AddCustomerCommand}"
                     Content="Add" />
             <Button Width="80"
@@ -59,6 +64,11 @@
         <StackPanel Grid.Row="6"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
+            <Button Width="80"
+                    Margin="4"
+                    HorizontalAlignment="Right"
+                    Command="{Binding DeleteProductCommand}"
+                    Content="Delete" />
             <Button Width="80"
                     Margin="4"
                     HorizontalAlignment="Right"

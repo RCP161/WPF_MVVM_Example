@@ -16,5 +16,10 @@ namespace Company.Core.App.Models
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public abstract int Id { get; set; }
+
+        public void MarkAsDeleted()
+        {
+            State = StateEnum.Deleted;
+        }
     }
 }

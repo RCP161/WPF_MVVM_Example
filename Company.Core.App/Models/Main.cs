@@ -20,7 +20,7 @@ namespace Company.Core.App.Models
             ActivContent = new Home();
             customerDataService = ServiceLocator.Default.ResolveType<ICustomerDataService>();
 
-            Customers = new ObservableCollection<Customer>(customerDataService.GetAllHierarchical());
+            LoadData();
         }
 
         public static Main Instance
@@ -49,5 +49,11 @@ namespace Company.Core.App.Models
             set { SetValue(CustomersProperty, value); }
         }
         public static readonly PropertyData CustomersProperty = RegisterProperty(nameof(Customers), typeof(ObservableCollection<Customer>));
+
+
+        public void LoadData()
+        {
+            Customers = new ObservableCollection<Customer>(customerDataService.GetAllHierarchical());
+        }
     }
 }

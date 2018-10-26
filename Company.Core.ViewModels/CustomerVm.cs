@@ -19,8 +19,10 @@ namespace Company.Core.ViewModels
             Model = customer;
             AddProductCommand = new Command(AddProduct, CanAddProduct);
             OpenProductCommand = new Command(OpenProduct, CanOpenProduct);
+            DeleteProductCommand = new Command(DeleteProduct, CanDeleteProduct);
             CancelEditCommand = new Command(CancelEdit, CanCancelEdit);
             SaveEditCommand = new Command(SaveEdit, CanSaveEdit);
+            HomeCommand = new Command(OpenHome, CanOpenHome);
         }
 
         #region Properties
@@ -82,8 +84,10 @@ namespace Company.Core.ViewModels
 
         public Command OpenProductCommand { get; private set; }
         public Command AddProductCommand { get; private set; }
+        public Command DeleteProductCommand { get; private set; }
         public Command CancelEditCommand { get; private set; }
         public Command SaveEditCommand { get; private set; }
+        public Command HomeCommand { get; private set; }
 
         #endregion
 
@@ -108,9 +112,19 @@ namespace Company.Core.ViewModels
             Model.CreateProduct();
         }
 
+        private void DeleteProduct()
+        {
+            Model.DeleteProduct(SelectedProduct);
+        }
+
+        private bool CanDeleteProduct()
+        {
+            return SelectedProduct != null;
+        }
+
         private bool CanSaveEdit()
         {
-            return Model.State.HasFlag(Enums.StateEnum.Modified) || Model.State.HasFlag(Enums.StateEnum.Created);
+            return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
         }
 
         private void SaveEdit()
@@ -122,12 +136,22 @@ namespace Company.Core.ViewModels
 
         private bool CanCancelEdit()
         {
-            return Model.State.HasFlag(Enums.StateEnum.Modified) || Model.State.HasFlag(Enums.StateEnum.Created);
+            return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
         }
 
         private void CancelEdit()
         {
             CancelViewModelAsync();
+        }
+
+        private bool CanOpenHome()
+        {
+            return true;
+        }
+
+        private void OpenHome()
+        {
+            Model.OpenHome();
         }
 
         #endregion

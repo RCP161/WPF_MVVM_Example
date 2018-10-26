@@ -62,6 +62,11 @@
                 <Button Width="80"
                         Margin="2"
                         HorizontalAlignment="Right"
+                        Command="{Binding DeleteProductCommand}"
+                        Content="Delete" />
+                <Button Width="80"
+                        Margin="2"
+                        HorizontalAlignment="Right"
                         Command="{Binding AddProductCommand}"
                         Content="Add" />
                 <Button Width="80"
@@ -77,6 +82,11 @@
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
             <TextBlock Margin="2" Text="{Binding DisplayText}" />
+            <Button Width="80"
+                    Margin="2"
+                    HorizontalAlignment="Right"
+                    Command="{Binding HomeCommand}"
+                    Content="Home" />
             <Button Width="80"
                     Margin="2"
                     HorizontalAlignment="Right"

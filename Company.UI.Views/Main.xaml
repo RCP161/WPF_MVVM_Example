@@ -6,6 +6,8 @@
                    xmlns:local="clr-namespace:Company.UI.Views"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:selectors="clr-namespace:Company.UI.Views.Selectors"
+                   d:DesignHeight="200"
+                   d:DesignWidth="500"
                    mc:Ignorable="d">
     <catel:UserControl.Resources>
         <DataTemplate x:Key="HomeView">
@@ -28,20 +30,23 @@
             <ColumnDefinition Width="*" MaxWidth="500" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Column="0"
-                  Margin="0,0,10,0"
-                  ItemsSource="{Binding Customers}">
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Products}">
-                    <local:CustomerItem DataContext="{Binding}" />
-                    <HierarchicalDataTemplate.ItemTemplate>
-                        <HierarchicalDataTemplate>
-                            <local:ProductItem DataContext="{Binding}" />
-                        </HierarchicalDataTemplate>
-                    </HierarchicalDataTemplate.ItemTemplate>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
+        <DockPanel Grid.Column="0" Margin="0,0,10,0">
+            <ToolBar DockPanel.Dock="Top">
+                <Button Command="{Binding RefreshCommand}" Content="Refresh" />
+            </ToolBar>
+            <TreeView ItemsSource="{Binding Customers}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Products}">
+                        <local:CustomerItem DataContext="{Binding}" />
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <HierarchicalDataTemplate>
+                                <local:ProductItem DataContext="{Binding}" />
+                            </HierarchicalDataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </DockPanel>
         <ContentPresenter Grid.Column="1"
                           Content="{Binding ActivContent}"
                           ContentTemplateSelector="{StaticResource MainTemplateSelector}" />

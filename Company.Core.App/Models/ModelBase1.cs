@@ -14,12 +14,12 @@ namespace Company.Core.App.Models
         // Brauche ich hier schon wegen dem State. Kann ja ber default unchanged sein
         [NotMapped]
         [IgnoreOnStateAttribute]
-        public Enums.StateEnum State
+        public StateEnum State
         {
-            get { return GetValue<Enums.StateEnum>(StateProperty); }
+            get { return GetValue<StateEnum>(StateProperty); }
             protected set { SetValue(StateProperty, value); }
         }
-        public static readonly PropertyData StateProperty = RegisterProperty(nameof(State), typeof(Enums.StateEnum));
+        public static readonly PropertyData StateProperty = RegisterProperty(nameof(State), typeof(StateEnum));
 
 
         [NotMapped]
@@ -37,7 +37,7 @@ namespace Company.Core.App.Models
         {
             string dpText = GetDisplayText();
 
-            if(State.HasFlag(Enums.StateEnum.Modified) || State.HasFlag(Enums.StateEnum.Created))
+            if(State.HasFlag(StateEnum.Modified) || State.HasFlag(StateEnum.Created))
                 dpText += "*";
 
             return dpText;
@@ -59,7 +59,7 @@ namespace Company.Core.App.Models
         internal void AfterLoad()
         {
             IsDirty = false;
-            State = Enums.StateEnum.Unchanged;
+            State = StateEnum.Unchanged;
         }
 
         protected override void OnPropertyChanged(AdvancedPropertyChangedEventArgs e)
@@ -86,8 +86,8 @@ namespace Company.Core.App.Models
             if(ShouldPropertyChangeUpdateIsDirty(propertyName))
             {
                 IsDirty = true;
-                if(State != Enums.StateEnum.Created)
-                    State = Enums.StateEnum.Modified;
+                if(State == StateEnum.Unchanged)
+                    State = StateEnum.Modified;
 
                 // Deleted weiß ich jetzt nicht
             }

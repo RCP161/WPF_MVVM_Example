@@ -27,7 +27,7 @@ namespace Company.Core.App.Models
             productDataService = ServiceLocator.Default.ResolveType<IProductDataService>();
 
             if(isNew)
-                State = Common.Enums.StateEnum.Created;
+                State = Common.StateEnum.Created;
         }
 
 
@@ -73,6 +73,11 @@ namespace Company.Core.App.Models
         public void Save()
         {
             productDataService.SaveOrUpdate(this);
+        }
+
+        public void OpenHome()
+        {
+            Main.Instance.ActivContent = new Home();
         }
     }
 }

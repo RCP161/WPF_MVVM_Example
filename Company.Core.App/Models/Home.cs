@@ -1,6 +1,7 @@
 ﻿using Catel.Data;
 using Catel.IoC;
 using Catel.MVVM;
+using Company.Core.App.Common;
 using Company.Core.App.Services.Data;
 using Company.Core.App.Services.Data.Interfaces;
 using System;
@@ -58,6 +59,28 @@ namespace Company.Core.App.Models
         public void AddProduct()
         {
             Main.Instance.ActivContent = new Product(true);
+        }
+
+        public void DeleteCustomer(Customer customer)
+        {
+            IMessageBoxService messageBoxService = ServiceLocator.Default.ResolveType<IMessageBoxService>();
+            if(InputResult.Yes != messageBoxService.Ask("Wirklich löschen?", "Benutzerbestätigung", InputOption.YesNo))
+                return;
+
+            Customers.Remove(customer);
+            customer.MarkAsDeleted();
+            customerDataService.SaveOrUpdate(customer);
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            IMessageBoxService messageBoxService = ServiceLocator.Default.ResolveType<IMessageBoxService>();
+            if(InputResult.Yes != messageBoxService.Ask("Wirklich löschen?", "Benutzerbestätigung", InputOption.YesNo))
+                return;
+
+            Products.Remove(product);
+            product.MarkAsDeleted();
+            productDataService.SaveOrUpdate(product);
         }
     }
 }

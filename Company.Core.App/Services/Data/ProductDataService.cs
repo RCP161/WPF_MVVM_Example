@@ -27,8 +27,11 @@ namespace Company.Core.App.Services.Data
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                Product product = unitOfWork.ProductRepository.GetById(id);
+                Product product = unitOfWork.ProductRepository.GetCompleteById(id);
                 product.AfterLoad();
+
+                product.Owner.AfterLoad();
+
                 return product;
             }
         }
@@ -58,6 +61,8 @@ namespace Company.Core.App.Services.Data
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
                 model = unitOfWork.ProductRepository.SaveOrUpdate(model);
+                model.Owner = unitOfWork.CustomerRepository.SaveOrUpdate(model.Owner);
+
                 unitOfWork.Complete();
             }
 

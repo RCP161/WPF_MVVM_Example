@@ -28,7 +28,7 @@ namespace Company.Core.App.Models
             productDataService = ServiceLocator.Default.ResolveType<IProductDataService>();
 
             if(isNew)
-                State = Common.Enums.StateEnum.Created;
+                State = Common.StateEnum.Created;
         }
 
         #region Properties
@@ -89,12 +89,23 @@ namespace Company.Core.App.Models
 
         public void OpenCustomer(int id)
         {
-            Main.Instance.ActivContent = customerDataService.GetById(id);
+            Main.Instance.ActivContent = customerDataService.GetCompleteById(id);
         }
 
         public void Save()
         {
             customerDataService.SaveOrUpdate(this);
+        }
+
+        public void OpenHome()
+        {
+            Main.Instance.ActivContent = new Home();
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            Products.Remove(product);
+            product.MarkAsDeleted();
         }
 
         #endregion

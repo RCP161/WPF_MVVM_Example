@@ -17,8 +17,10 @@ namespace Company.Core.ViewModels
              Model = home;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
             AddCustomerCommand = new Command(AddCustomer, CanAddCustomer);
+            DeleteCustomerCommand = new Command(DeleteCustomer, CanDeleteCustomer);
             OpenProductCommand = new Command(OpenProduct, CanOpenProduct);
             AddProductCommand = new Command(AddProduct, CanAddProduct);
+            DeleteProductCommand = new Command(DeleteProduct, CanDeleteProduct);
         }
 
         #region Properties
@@ -68,8 +70,10 @@ namespace Company.Core.ViewModels
 
         public Command OpenCustomerCommand { get; private set; }
         public Command AddCustomerCommand { get; private set; }
+        public Command DeleteCustomerCommand { get; private set; }
         public Command OpenProductCommand { get; private set; }
         public Command AddProductCommand { get; private set; }
+        public Command DeleteProductCommand { get; private set; }
 
         #endregion
 
@@ -94,6 +98,16 @@ namespace Company.Core.ViewModels
             Model.AddCustomer();
         }
 
+        private bool CanDeleteCustomer()
+        {
+            return SelectedCustomer != null;
+        }
+
+        private void DeleteCustomer()
+        {
+            Model.DeleteCustomer(SelectedCustomer);
+        }
+
         private bool CanOpenProduct()
         {
             return SelectedProduct != null;
@@ -111,6 +125,16 @@ namespace Company.Core.ViewModels
         private void AddProduct()
         {
             Model.AddProduct();
+        }
+
+        private bool CanDeleteProduct()
+        {
+            return SelectedProduct != null;
+        }
+
+        private void DeleteProduct()
+        {
+            Model.DeleteProduct(SelectedProduct);
         }
 
         #endregion

@@ -44,12 +44,16 @@ namespace Company.Core.App.Data.DataBase
 
         public T Add<T>(T entity) where T : ModelBase2
         {
-            return Set<T>().Add(entity);
+            entity = Set<T>().Attach(entity);
+            Entry(entity).State = EntityState.Added;
+            return entity;
         }
 
         public T Delete<T>(T entity) where T : ModelBase2
         {
-            return Set<T>().Remove(entity);
+            entity = Set<T>().Attach(entity);
+            Entry(entity).State = EntityState.Deleted;
+            return entity;
         }
 
         public T Update<T>(T entity) where T : ModelBase2

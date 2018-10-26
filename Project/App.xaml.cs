@@ -22,6 +22,8 @@ namespace Project
             ServiceLocator.Default.RegisterType<Company.Core.App.Data.Interfaces.IUnitOfWork, Company.Core.App.Data.DataBase.UnitOfWork>(RegistrationType.Transient);
             ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.ICustomerDataService, Company.Core.App.Services.Data.CustomerDataService>(RegistrationType.Singleton);
             ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.IProductDataService, Company.Core.App.Services.Data.ProductDataService>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.Core.App.Common.IMessageBoxService, Company.UI.Views.Services.MessageBoxService>(RegistrationType.Transient);
+            
 
 
             IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
@@ -38,8 +40,9 @@ namespace Project
             // TODO :           === Themen Besprechung ===
 
             // Weitere Schritte
-            // - Delete
-            // - Zürck
+            // - Delete löscht gerade auch Kinder
+            // - Klassen halten eine ClassInfo, die die Relection Informationen enthält. Somit könnte man alle Listen etc ausfindig machen zum speichern, CompleteLoad, Validierung, ...
+            // - EF heraus lösen und selbst aufsetzen? Dann noch IsDirty und IsReadOnly ignorieren, dann wieder Generische Methode
 
             // Korrekturen
             // - EF:                    Generische Methode wieder zum laufen bringen

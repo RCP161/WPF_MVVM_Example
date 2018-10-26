@@ -48,15 +48,15 @@ namespace Company.Core.App.Data.DataBase.Repositories
         {
             switch(entity.State)
             {
-                case Common.Enums.StateEnum.Unchanged:
+                case Common.StateEnum.Unchanged:
                     break;
-                case Common.Enums.StateEnum.Created:
+                case Common.StateEnum.Created:
                     DataAccess.Add(entity);
                     break;
-                case Common.Enums.StateEnum.Modified:
+                case Common.StateEnum.Modified:
                     DataAccess.Update(entity);
                     break;
-                case Common.Enums.StateEnum.Deleted:
+                case Common.StateEnum.Deleted:
                     DataAccess.Delete(entity);
                     break;
                 default:

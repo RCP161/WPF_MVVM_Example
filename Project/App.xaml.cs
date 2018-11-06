@@ -39,20 +39,16 @@ namespace Project
 
             // TODO : List
 
-            // Weitere Schritte
-
-            // - Speichern muss auch die Nested UserControls speichern
-            // - Delete löscht gerade auch Kinder. Delete Cascade ausstellen
-            // - Klassen halten eine ClassInfo, die die Relection Informationen enthält. Somit könnte man alle Listen etc ausfindig machen zum speichern, CompleteLoad, Validierung, ...
-            // - EF selbst aufsetzen? Dann noch IsDirty und IsReadOnly ignorieren, dann wieder Generische Methode.
-
             // Korrekturen
             // - EF:                    Generische Methode wieder zum laufen bringen
 
-            // Fragen
+            // Weitere Themen
             // nameof oder Reflection bei den Include Querries an den Repros verwenden? Probleme beim Auteilen von klassen 
             // Benötigt Qerry noch sowas wie "Expression<Func<TEntity, bool>> predicate" an den Interfaces?
-            // Zweifach Revert / Save
+            // Zweifach Revert / Save (Catel Fork?)
+            // EF selbst aufsetzen? Dann noch IsDirty und IsReadOnly ignorieren, dann wieder Generische Methode. (Mit Catel Fork nicht nötig)
+            // DeleteCascade ist im EF immer an. Austellen ist derzeit nicht möglich. Sollte man aber noch mit größerer Modelanzahl testen
+            // Klassen halten eine ClassInfo, die die Relection Informationen enthält. Somit könnte man alle Listen etc ausfindig machen zum speichern, CompleteLoad, Validierung, ...
 
             // Optimierungen
             // - Ef:                    Concurrency? (könnte fehlerhafte programmierung/refreshing aufdecken)
@@ -61,6 +57,7 @@ namespace Project
             // - ViewModelBase:         Ableiten und Save in ModelBase2 voraussetzen? Dann könnte man auch das SaveAsync, DisplayText direkt mit einbinden
             // - ReadOnlyVms:           ReadOnly Properties an VMs prüfen
             // - Namesnkonvention:      Locator (service, ViewModel, ...) über Namesnkonvention regeln
+            // - UserControl:           UnloadBehavior="CloseViewModel" als Standard
 
             // Mögliche Erweiterungen
             // - Instanz refresher:     2 Instanzen des selben Datensatzes refreshen 

@@ -37,5 +37,11 @@ namespace Company.Core.ViewModels
         public static readonly PropertyData DisplayTextProperty = RegisterProperty(nameof(DisplayText), typeof(string));
 
         #endregion
+
+        protected override Task<bool> SaveAsync()
+        {
+            Model.Save();
+            return base.SaveAsync();
+        }
     }
 }

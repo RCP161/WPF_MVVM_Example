@@ -68,6 +68,12 @@ namespace Company.Core.ViewModels
             throw new NotImplementedException("Hier würde der SearchDialog kommen.");
         }
 
+        protected override Task<bool> SaveAsync()
+        {
+            Model.Save();
+            return base.SaveAsync();
+        }
+
         #endregion
     }
 }

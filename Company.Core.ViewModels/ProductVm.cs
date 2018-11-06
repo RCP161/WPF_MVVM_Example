@@ -16,8 +16,8 @@ namespace Company.Core.ViewModels
         {
             Model = product;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
-            CancelEditCommand = new Command(CancelEdit, CanCancelEdit);
-            SaveEditCommand = new Command(SaveEdit, CanSaveEdit);
+            CancelEditCommand = new TaskCommand(CancelViewModelAsync, CanCancelEdit);
+            SaveEditCommand = new TaskCommand(SaveViewModelAsync, CanSaveEdit);
             HomeCommand = new Command(OpenHome, CanOpenHome);
         }
 
@@ -53,8 +53,8 @@ namespace Company.Core.ViewModels
 
 
         public Command OpenCustomerCommand { get; private set; }
-        public Command CancelEditCommand { get; private set; }
-        public Command SaveEditCommand { get; private set; }
+        public TaskCommand CancelEditCommand { get; private set; }
+        public TaskCommand SaveEditCommand { get; private set; }
         public Command HomeCommand { get; private set; }
 
         #endregion
@@ -75,23 +75,11 @@ namespace Company.Core.ViewModels
             return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
         }
 
-        private void SaveEdit()
-        {
-            // Danach hängt sich ja da VM ab ...
-            // SaveViewModelAsync();
-            Model.Save();
-        }
-
         private bool CanCancelEdit()
         {
             return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
         }
-
-        private void CancelEdit()
-        {
-            CancelViewModelAsync();
-        }
-
+        
         private bool CanOpenHome()
         {
             return true;
@@ -100,6 +88,12 @@ namespace Company.Core.ViewModels
         private void OpenHome()
         {
             Model.OpenHome();
+        }
+
+        protected override Task<bool> SaveAsync()
+        {
+            Model.Save();
+            return base.SaveAsync();
         }
 
         #endregion

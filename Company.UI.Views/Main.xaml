@@ -8,6 +8,7 @@
                    xmlns:selectors="clr-namespace:Company.UI.Views.Selectors"
                    d:DesignHeight="200"
                    d:DesignWidth="500"
+                   UnloadBehavior="CloseViewModel"
                    mc:Ignorable="d">
     <catel:UserControl.Resources>
         <DataTemplate x:Key="HomeView">

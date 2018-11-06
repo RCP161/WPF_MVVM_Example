@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Catel.Data;
 using Catel.MVVM;
@@ -20,8 +21,8 @@ namespace Company.Core.ViewModels
             AddProductCommand = new Command(AddProduct, CanAddProduct);
             OpenProductCommand = new Command(OpenProduct, CanOpenProduct);
             DeleteProductCommand = new Command(DeleteProduct, CanDeleteProduct);
-            CancelEditCommand = new Command(CancelEdit, CanCancelEdit);
-            SaveEditCommand = new Command(SaveEdit, CanSaveEdit);
+            CancelEditCommand = new TaskCommand(CancelViewModelAsync, CanCancelEdit);
+            SaveEditCommand = new TaskCommand(SaveViewModelAsync, CanSaveEdit);
             HomeCommand = new Command(OpenHome, CanOpenHome);
         }
 
@@ -85,13 +86,14 @@ namespace Company.Core.ViewModels
         public Command OpenProductCommand { get; private set; }
         public Command AddProductCommand { get; private set; }
         public Command DeleteProductCommand { get; private set; }
-        public Command CancelEditCommand { get; private set; }
-        public Command SaveEditCommand { get; private set; }
+        public TaskCommand CancelEditCommand { get; private set; }
+        public TaskCommand SaveEditCommand { get; private set; }
         public Command HomeCommand { get; private set; }
 
         #endregion
 
         #region Methods
+
         private bool CanOpenProduct()
         {
             return SelectedProduct != null;
@@ -127,21 +129,9 @@ namespace Company.Core.ViewModels
             return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
         }
 
-        private void SaveEdit()
-        {
-            // Danach hängt sich ja da VM ab ...
-            // SaveViewModelAsync();
-            Model.Save();
-        }
-
         private bool CanCancelEdit()
         {
             return Model.State.HasFlag(StateEnum.Modified) || Model.State.HasFlag(StateEnum.Created);
-        }
-
-        private void CancelEdit()
-        {
-            CancelViewModelAsync();
         }
 
         private bool CanOpenHome()
@@ -152,6 +142,12 @@ namespace Company.Core.ViewModels
         private void OpenHome()
         {
             Model.OpenHome();
+        }
+
+        protected override Task<bool> SaveAsync()
+        {
+            Model.Save();
+            return base.SaveAsync();
         }
 
         #endregion

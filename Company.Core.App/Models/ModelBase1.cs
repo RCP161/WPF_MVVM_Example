@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 using Catel.Data;
 using Catel.Reflection;
 using Company.Core.App.Common;
@@ -10,10 +12,12 @@ namespace Company.Core.App.Models
     public abstract class ModelBase1 : ModelBase
     {
         // Model für alle Darstellungssachen
-        
+
         // Brauche ich hier schon wegen dem State. Kann ja ber default unchanged sein
+        [Browsable(false)]
+        [XmlIgnore]
         [NotMapped]
-        [IgnoreOnStateAttribute]
+        [IgnoreOnState]
         public StateEnum State
         {
             get { return GetValue<StateEnum>(StateProperty); }
@@ -21,9 +25,24 @@ namespace Company.Core.App.Models
         }
         public static readonly PropertyData StateProperty = RegisterProperty(nameof(State), typeof(StateEnum));
 
+        [Browsable(false)]
+        [XmlIgnore]
+        [NotMapped]
+        [IgnoreOnState]
+        private new bool IsDirty { get; set; }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        [NotMapped]
+        [IgnoreOnState]
+        public new bool IsReadOnly
+        {
+            get { return base.IsReadOnly; }
+            protected set { base.IsReadOnly = value; }
+        }
 
         [NotMapped]
-        [IgnoreOnStateAttribute]
+        [IgnoreOnState]
         public string DisplayText
         {
             get { return GetValue<string>(DisplayTextProperty); }

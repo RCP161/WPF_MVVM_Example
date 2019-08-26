@@ -39,8 +39,7 @@ namespace Project
 
             // TODO : List
 
-            // Korrekturen
-            // - EF:                    Generische Methode wieder zum laufen bringen
+            // Speichern eines Eltern elements, dessen Kind gelöscht wurde (bzw, als gelöscht markiert)
 
             // Weitere Themen
             // nameof oder Reflection bei den Include Querries an den Repros verwenden? Probleme beim Auteilen von klassen 

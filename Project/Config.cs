@@ -12,7 +12,7 @@ namespace Project
     {
         public string ConnectionString
         {
-            get { return @"Server=(LocalDB)\MSSQLLocalDB;Initial Catalog=Standard3DevDb;Integrated Security=True;"; }
+            get { return @"Server=(LocalDB)\MSSQLLocalDB;Initial Catalog=CompanyDB;Integrated Security=True;"; }
         }
     }
 }

@@ -21,19 +21,12 @@ namespace Company.Core.App.Data.DataBase
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //var entityMethod1 = typeof(DbModelBuilder).GetMethod("Entity");
+            System.Reflection.MethodInfo entityMethod1 = typeof(DbModelBuilder).GetMethod("Entity");
 
-            //List<Type> modelCollection = (from t in typeof(EfContext).Assembly.GetTypes() where Attribute.IsDefined(t, typeof(TableAttribute)) select t).ToList();
+            List<Type> modelCollection = (from t in typeof(EfContext).Assembly.GetTypes() where Attribute.IsDefined(t, typeof(TableAttribute)) select t).ToList();
 
-            // modelBuilder.Entity<Family>().IgnoreCatelProperties()
-
-            //foreach(var item in modelCollection)
-            //    entityMethod1.MakeGenericMethod(item).Invoke(modelBuilder, new object[] { });
-
-            modelBuilder.Entity<Models.Customer>().IgnoreCatelProperties();
-            modelBuilder.Entity<Models.Product>().IgnoreCatelProperties();
-
-            // IgnoreCatelProperties = IsDirty + IsReadonly
+            foreach(Type item in modelCollection)
+                entityMethod1.MakeGenericMethod(item).Invoke(modelBuilder, new object[] { });
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using Catel.Data;
+using Catel.IoC;
 using Catel.MVVM;
-using Company.Core.App.Common;
+using Catel.Services;
 using Company.Core.App.Models;
 
 namespace Company.Core.ViewModels
@@ -15,7 +11,7 @@ namespace Company.Core.ViewModels
     {
         public HomeVm(Home home)
         {
-             Model = home;
+            Model = home;
             OpenCustomerCommand = new Command(OpenCustomer, CanOpenCustomer);
             AddCustomerCommand = new Command(AddCustomer, CanAddCustomer);
             DeleteCustomerCommand = new Command(DeleteCustomer, CanDeleteCustomer);
@@ -34,7 +30,7 @@ namespace Company.Core.ViewModels
         }
         public static readonly PropertyData ModelProperty = RegisterProperty(nameof(Model), typeof(Home));
 
-        
+
         [ViewModelToModel]
         public ObservableCollection<Customer> Customers
         {
@@ -106,6 +102,10 @@ namespace Company.Core.ViewModels
 
         private void DeleteCustomer()
         {
+            IMessageService messageBoxService = ServiceLocator.Default.ResolveType<IMessageService>();
+            if(MessageResult.Yes != messageBoxService.ShowAsync("Wirklich löschen?", "Benutzerbestätigung", MessageButton.YesNo, MessageImage.Question).Result)
+                return;
+
             Model.DeleteCustomer(SelectedCustomer);
         }
 
@@ -135,6 +135,10 @@ namespace Company.Core.ViewModels
 
         private void DeleteProduct()
         {
+            IMessageService messageBoxService = ServiceLocator.Default.ResolveType<IMessageService>();
+            if(MessageResult.Yes != messageBoxService.ShowAsync("Wirklich löschen?", "Benutzerbestätigung", MessageButton.YesNo, MessageImage.Question).Result)
+                return;
+
             Model.DeleteProduct(SelectedProduct);
         }
 

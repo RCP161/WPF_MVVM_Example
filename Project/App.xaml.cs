@@ -22,7 +22,6 @@ namespace Project
             ServiceLocator.Default.RegisterType<Company.Core.App.Data.Interfaces.IUnitOfWork, Company.Core.App.Data.DataBase.UnitOfWork>(RegistrationType.Transient);
             ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.ICustomerDataService, Company.Core.App.Services.Data.CustomerDataService>(RegistrationType.Singleton);
             ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.IProductDataService, Company.Core.App.Services.Data.ProductDataService>(RegistrationType.Singleton);
-            ServiceLocator.Default.RegisterType<Company.Core.App.Common.IMessageBoxService, Company.UI.Views.Services.MessageBoxService>(RegistrationType.Transient);
             
 
 
@@ -44,8 +43,6 @@ namespace Project
             // Weitere Themen
             // nameof oder Reflection bei den Include Querries an den Repros verwenden? Probleme beim Auteilen von klassen 
             // Benötigt Qerry noch sowas wie "Expression<Func<TEntity, bool>> predicate" an den Interfaces?
-            // Zweifach Revert / Save (Catel Fork?)
-            // EF selbst aufsetzen? Dann noch IsDirty und IsReadOnly ignorieren, dann wieder Generische Methode. (Mit Catel Fork nicht nötig)
             // DeleteCascade ist im EF immer an. Austellen ist derzeit nicht möglich. Sollte man aber noch mit größerer Modelanzahl testen
             // Klassen halten eine ClassInfo, die die Relection Informationen enthält. Somit könnte man alle Listen etc ausfindig machen zum speichern, CompleteLoad, Validierung, ...
 

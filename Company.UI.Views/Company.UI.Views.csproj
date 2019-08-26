@@ -101,7 +101,6 @@
       <DependentUpon>CustomerItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Selectors\MainTemplateSelector.cs" />
-    <Compile Include="Services\MessageBoxService.cs" />
     <Page Include="CustomerSearchTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

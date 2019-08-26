@@ -1,15 +1,7 @@
-﻿using Catel.Data;
+﻿using System.Collections.ObjectModel;
+using Catel.Data;
 using Catel.IoC;
-using Catel.MVVM;
-using Company.Core.App.Common;
-using Company.Core.App.Services.Data;
 using Company.Core.App.Services.Data.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Company.Core.App.Models
 {
@@ -63,10 +55,6 @@ namespace Company.Core.App.Models
 
         public void DeleteCustomer(Customer customer)
         {
-            IMessageBoxService messageBoxService = ServiceLocator.Default.ResolveType<IMessageBoxService>();
-            if(InputResult.Yes != messageBoxService.Ask("Wirklich löschen?", "Benutzerbestätigung", InputOption.YesNo))
-                return;
-
             Customers.Remove(customer);
             customer.MarkAsDeleted();
             customerDataService.SaveOrUpdate(customer);
@@ -74,10 +62,6 @@ namespace Company.Core.App.Models
 
         public void DeleteProduct(Product product)
         {
-            IMessageBoxService messageBoxService = ServiceLocator.Default.ResolveType<IMessageBoxService>();
-            if(InputResult.Yes != messageBoxService.Ask("Wirklich löschen?", "Benutzerbestätigung", InputOption.YesNo))
-                return;
-
             Products.Remove(product);
             product.MarkAsDeleted();
             productDataService.SaveOrUpdate(product);

@@ -97,7 +97,6 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Common\Enums.cs" />
-    <Compile Include="Common\IMessageBoxService.cs" />
     <Compile Include="Data\DataBase\EfContext.cs" />
     <Compile Include="Data\DataBase\Interfaces\IDataAccess.cs" />
     <Compile Include="Data\DataBase\Interfaces\IDbConfigruation.cs" />

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Company.Core.App;
-using Company.Core.App.Data.DataBase.Interfaces;
+using Company.App.DataSourceDefinition.Common;
 
-namespace Project
+namespace Company.Project
 {
     public class Config : IDbConfigruation
     {

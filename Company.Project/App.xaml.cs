@@ -15,11 +15,6 @@ namespace Company.Project
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            MainWindow = new Company.App.UI.MainWindow();
-        }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             //#if DEBUG
@@ -43,6 +38,10 @@ namespace Company.Project
             //viewModelLocator.Register(typeof(Company.UI.Views.CustomerSearchTextBox), typeof(Company.Core.ViewModels.CustomerSearchTextBoxVm));
             //viewModelLocator.Register(typeof(Company.UI.Views.Product), typeof(Company.Core.ViewModels.ProductVm));
             //viewModelLocator.Register(typeof(Company.UI.Views.ProductItem), typeof(Company.Core.ViewModels.ProductItemVm));
+
+
+            Current.MainWindow = new Company.App.UI.MainWindow();
+            Current.MainWindow.Show();
 
             base.OnStartup(e);
 

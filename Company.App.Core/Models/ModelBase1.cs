@@ -55,9 +55,6 @@ namespace Company.App.Core.Models
 
         #region Methods
 
-        protected abstract string GetDisplayText();
-
-
         private string GetDisplyTextWithState()
         {
             string dpText = GetDisplayText();
@@ -66,6 +63,11 @@ namespace Company.App.Core.Models
                 dpText += "*";
 
             return dpText;
+        }
+
+        protected virtual string GetDisplayText()
+        {
+            return ToString();
         }
 
         public void AfterLoad()

@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Catel.IoC;
+using Catel.MVVM;
 
 namespace Company.Project
 {
@@ -33,8 +35,8 @@ namespace Company.Project
 
 
 
-            //IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
-            //viewModelLocator.Register(typeof(Company.UI.Views.Main), typeof(Company.Core.ViewModels.MainVm));
+            IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
+            viewModelLocator.Register(typeof(Company.App.UI.MainWindow), typeof(Company.App.Presentation.MainWindowVm));
             //viewModelLocator.Register(typeof(Company.UI.Views.Home), typeof(Company.Core.ViewModels.HomeVm));
             //viewModelLocator.Register(typeof(Company.UI.Views.Customer), typeof(Company.Core.ViewModels.CustomerVm));
             //viewModelLocator.Register(typeof(Company.UI.Views.CustomerItem), typeof(Company.Core.ViewModels.CustomerItemVm));

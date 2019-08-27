@@ -1,16 +1,52 @@
 ﻿<catel:DataWindow x:Class="Company.App.UI.MainWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:catel="http://schemas.catelproject.com">
+                  xmlns:catel="http://schemas.catelproject.com"
+                  WindowState="Maximized"
+                  >
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <TextBlock Grid.Row="0" Text="Asd" />
-        <TextBlock Grid.Row="1" Text="Here goes your real content" />
+
+        <ToolBar Grid.Row="0">
+            <Button Content="MM" Width="30" Height="30" />
+            <Button Content="SM" Width="30" Height="30" />
+            <Button Content="BM" Width="30" Height="30" />
+        </ToolBar>
+
+        <WrapPanel Grid.Row="1">
+            <Border BorderBrush="LightSkyBlue" Background="Blue" Width="150" Height="150" Margin="20" >
+                <TextBlock Text="Auswertung A" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+
+            <Border BorderBrush="LightSkyBlue" Background="LimeGreen" Width="370" Height="150" Margin="20" >
+                <TextBlock Text="Auswertung B" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+
+            <Border BorderBrush="LightSkyBlue" Background="Blue" Width="150" Height="150" Margin="20" >
+                <TextBlock Text="Auswertung C" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+
+            <Border BorderBrush="LightSkyBlue" Background="Blue" Width="150" Height="150" Margin="20" >
+                <TextBlock Text="Auswertung D" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+
+            <Border BorderBrush="LightSkyBlue" Background="Red" Width="150" Height="150" Margin="20" >
+                <TextBlock Text="Auswertung E" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+
+            <Border BorderBrush="LightSkyBlue" Background="Blue" Width="150" Height="150" Margin="20" >
+                <TextBlock Text="33" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+
+            <Border BorderBrush="LightSkyBlue" Background="Blue" Width="150" Height="150" Margin="20" >
+                <TextBlock Text="Auswertung A" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </WrapPanel>
+
     </Grid>
-    
+
 </catel:DataWindow>

@@ -9,4 +9,11 @@
     <PackageReference Include="Catel.MVVM" Version="5.11.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Company.App.Core\Company.App.Core.csproj" />
+    <ProjectReference Include="..\Company.App.Presentation\Company.App.Presentation.csproj" />
+    <ProjectReference Include="..\Company.Basic.UI\Company.Basic.UI.csproj" />
+    <ProjectReference Include="..\Company.Security.UI\Company.Security.UI.csproj" />
+  </ItemGroup>
+
 </Project>

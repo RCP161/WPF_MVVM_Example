@@ -10,6 +10,9 @@ namespace Company.App.Presentation
         public MainWindowVm()
         {
             Model = Main.Instance;
+            OpenMainModulCommand = new Command(() => ActivContent = new Company.App.Core.Models.App.Home());
+            OpenBasicModulCommand = new Command(() => ActivContent = new Company.App.Core.Models.Basic.Home());
+            OpenSecurityModulCommand = new Command(() => ActivContent = new Company.App.Core.Models.Security.Home());
         }
 
 
@@ -52,7 +55,8 @@ namespace Company.App.Presentation
         public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase));
 
         public Command OpenMainModulCommand { get; private set; }
-        public Command OpeBasicModulCommand { get; private set; }
+        public Command OpenBasicModulCommand { get; private set; }
         public Command OpenSecurityModulCommand { get; private set; }
+
     }
 }

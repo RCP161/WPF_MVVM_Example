@@ -22,7 +22,10 @@ namespace Company.Project
             //#endif
 
 
-            //ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDbConfigruation, Config>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.App.Core.BusinessLogic.App.IMainWindowService, Company.App.Logic.MainWindowService>(RegistrationType.Singleton);
+
+
             //ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDataAccess, Company.Core.App.Data.DataBase.EfContext>(RegistrationType.Transient);
             //ServiceLocator.Default.RegisterType<Company.Core.App.Data.Interfaces.IUnitOfWork, Company.Core.App.Data.DataBase.UnitOfWork>(RegistrationType.Transient);
             //ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.ICustomerDataService, Company.Core.App.Services.Data.CustomerDataService>(RegistrationType.Singleton);

@@ -25,6 +25,8 @@ namespace Company.App.Core.Models.App
             }
         }
 
+        #region Properties
+
         public string Title
         {
             get { return GetValue<string>(TitleProperty); }
@@ -41,5 +43,7 @@ namespace Company.App.Core.Models.App
         }
 
         public static readonly PropertyData ActivContentProperty = RegisterProperty(nameof(ActivContent), typeof(ModelBase1));
+
+        #endregion
     }
 }

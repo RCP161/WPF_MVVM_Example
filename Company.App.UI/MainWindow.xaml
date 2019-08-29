@@ -58,6 +58,7 @@
 
         <ContentPresenter
             Grid.Row="1"
+            Margin="3"
             Content="{Binding ActivContent}"
             ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
 

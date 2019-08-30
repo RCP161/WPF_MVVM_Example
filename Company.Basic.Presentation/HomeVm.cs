@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Catel.Data;
 using Catel.MVVM;
-using Company.App.Core.Models.Basic;
+using Company.Project.Core.Models.Basic;
 
 namespace Company.Basic.Presentation
 {

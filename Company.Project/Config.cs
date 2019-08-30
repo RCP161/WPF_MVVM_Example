@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Company.App.DataSourceDefinition.Common;
+using Company.Project.DataSourceDefinition.Common;
 
 namespace Company.Project
 {

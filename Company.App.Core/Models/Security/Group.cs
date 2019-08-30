@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
-using Company.App.Core.Models;
+using Company.Project.Core.Models;
 
-namespace Company.App.Core.Models.Security
+namespace Company.Project.Core.Models.Security
 {
     [Table("Group")]
     public class Group : ModelBase2

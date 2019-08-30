@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Company.App.UI
+namespace Company.Project.UI
 {
     /// <summary>
     /// Interaktionslogik für Home.xaml

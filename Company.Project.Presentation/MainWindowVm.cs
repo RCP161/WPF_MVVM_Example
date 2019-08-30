@@ -1,18 +1,18 @@
 ﻿using System;
 using Catel.Data;
 using Catel.MVVM;
-using Company.App.Core.Models.App;
+using Company.Project.Core.Models.Project;
 
-namespace Company.App.Presentation
+namespace Company.Project.Presentation
 {
     public class MainWindowVm : ViewModelBase
     {
         public MainWindowVm()
         {
             Model = Main.Instance;
-            OpenMainModulCommand = new Command(() => ActivContent = new Company.App.Core.Models.App.Home());
-            OpenBasicModulCommand = new Command(() => ActivContent = new Company.App.Core.Models.Basic.Home());
-            OpenSecurityModulCommand = new Command(() => ActivContent = new Company.App.Core.Models.Security.Home());
+            OpenMainModulCommand = new Command(() => ActivContent = new Company.Project.Core.Models.Project.Home());
+            OpenBasicModulCommand = new Command(() => ActivContent = new Company.Project.Core.Models.Basic.Home());
+            OpenSecurityModulCommand = new Command(() => ActivContent = new Company.Project.Core.Models.Security.Home());
         }
 
 
@@ -40,12 +40,12 @@ namespace Company.App.Presentation
             get
             {
                 ModelBase modelBase = GetValue<ModelBase>(ActivContentProperty);
-                if(modelBase is Company.App.Core.Models.App.Home)
-                    return modelBase as Company.App.Core.Models.App.Home;
-                if(modelBase is Company.App.Core.Models.Basic.Home)
-                    return modelBase as Company.App.Core.Models.Basic.Home;
-                if(modelBase is Company.App.Core.Models.Security.Home)
-                    return modelBase as Company.App.Core.Models.Security.Home;
+                if(modelBase is Company.Project.Core.Models.Project.Home)
+                    return modelBase as Company.Project.Core.Models.Project.Home;
+                if(modelBase is Company.Project.Core.Models.Basic.Home)
+                    return modelBase as Company.Project.Core.Models.Basic.Home;
+                if(modelBase is Company.Project.Core.Models.Security.Home)
+                    return modelBase as Company.Project.Core.Models.Security.Home;
 
                 return null;
             }

@@ -1,9 +1,9 @@
 ﻿using System;
 using Catel.Data;
 using Catel.MVVM;
-using Company.App.Core.Models.App;
+using Company.Project.Core.Models.Project;
 
-namespace Company.App.Presentation
+namespace Company.Project.Presentation
 {
     public class HomeVm : ViewModelBase
     {

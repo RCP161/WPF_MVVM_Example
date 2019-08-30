@@ -11,9 +11,20 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Company.App.Core\Company.App.Core.csproj" />
-    <ProjectReference Include="..\Company.App.Presentation\Company.App.Presentation.csproj" />
     <ProjectReference Include="..\Company.Basic.UI\Company.Basic.UI.csproj" />
     <ProjectReference Include="..\Company.Security.UI\Company.Security.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

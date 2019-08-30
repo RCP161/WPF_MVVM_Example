@@ -5,14 +5,13 @@ using System.Text;
 using Catel.Data;
 using Catel.IoC;
 
-namespace Company.App.Core.Models.Basic
+namespace Company.Project.Core.Models.Basic
 {
     public class Home : ModelBase1
     {
         public Home()
         {
-            // TODO : Hier gehts weiter
-            // IPersonRepository Liste füllen
+            ServiceLocator.Default.ResolveType<Logic.Basic.IPersonService>().LoadPersons();
         }
 
         #region Properties
@@ -31,7 +30,7 @@ namespace Company.App.Core.Models.Basic
         public void OpenPerson(Person selectedPerson)
         {
             // Rechte, etc.
-            ServiceLocator.Default.ResolveType<BusinessLogic.App.IMainWindowService>().SetMainContent(selectedPerson);
+            ServiceLocator.Default.ResolveType<Logic.Project.IMainWindowService>().SetMainContent(selectedPerson);
         }
 
         #endregion

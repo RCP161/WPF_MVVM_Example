@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
-using Company.App.Core.Models;
+using Company.Project.Core.Models;
 
-namespace Company.App.Core.Models.Basic
+namespace Company.Project.Core.Models.Basic
 {
     [Table("Person")]
     public class Person : ModelBase2

@@ -1,4 +1,4 @@
-﻿namespace Company.App.UI
+﻿namespace Company.Project.UI
 {
     public partial class MainWindow
     {

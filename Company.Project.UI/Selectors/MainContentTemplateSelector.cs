@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Company.App.UI.Selectors
+namespace Company.Project.UI.Selectors
 {
     public class MainContentTemplateSelector : DataTemplateSelector
     {
@@ -16,11 +16,11 @@ namespace Company.App.UI.Selectors
         {
             if(item != null)
             {
-                if(item is Company.App.Core.Models.App.Home)
+                if(item is Company.Project.Core.Models.Project.Home)
                     return AppHomeDataTemplate;
-                if(item is Company.App.Core.Models.App.Home)
+                if(item is Company.Project.Core.Models.Project.Home)
                     return BasicHomeDataTemplate;
-                if(item is Company.App.Core.Models.App.Home)
+                if(item is Company.Project.Core.Models.Project.Home)
                     return SecurityHomeDataTemplate;
             }
 

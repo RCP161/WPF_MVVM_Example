@@ -22,31 +22,43 @@ namespace Company.Project
             //#endif
 
 
-            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
-            ServiceLocator.Default.RegisterType<Company.App.Core.BusinessLogic.App.IMainWindowService, Company.App.Logic.MainWindowService>(RegistrationType.Singleton);
+            // =========================
+            //        Services  
+            // =========================
+            ServiceLocator.Default.RegisterType<Company.Project.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.Project.DataSourceDefinition.Common.IDataAccess, Company.Project.DataSource.Common.EfContext>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.Project.DataSourceDefinition.Repositories.IUnitOfWork, Company.Project.DataSource.Repositories.UnitOfWork>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.Project.Core.Logic.Project.IMainWindowService, Company.Project.Logic.MainWindowService>(RegistrationType.Singleton);
 
+            // Project
 
-            //ServiceLocator.Default.RegisterType<Company.Core.App.Data.DataBase.Interfaces.IDataAccess, Company.Core.App.Data.DataBase.EfContext>(RegistrationType.Transient);
-            //ServiceLocator.Default.RegisterType<Company.Core.App.Data.Interfaces.IUnitOfWork, Company.Core.App.Data.DataBase.UnitOfWork>(RegistrationType.Transient);
+            // Basic
+            ServiceLocator.Default.RegisterType<Company.Project.Core.Logic.Basic.IPersonService, Company.Basic.Logic.PersonService>(RegistrationType.Transient);
+
+            // Security
+
             //ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.ICustomerDataService, Company.Core.App.Services.Data.CustomerDataService>(RegistrationType.Singleton);
             //ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.IProductDataService, Company.Core.App.Services.Data.ProductDataService>(RegistrationType.Singleton);
 
 
 
+            // =========================
+            //          UI  
+            // =========================
             IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
 
+            // Project
+            viewModelLocator.Register(typeof(Company.Project.UI.MainWindow), typeof(Company.Project.Presentation.MainWindowVm));
+            viewModelLocator.Register(typeof(Company.Project.UI.Home), typeof(Company.Project.Presentation.HomeVm));
 
-            viewModelLocator.Register(typeof(Company.App.UI.MainWindow), typeof(Company.App.Presentation.MainWindowVm));
-            viewModelLocator.Register(typeof(Company.App.UI.Home), typeof(Company.App.Presentation.HomeVm));
-
-
+            // Basic
             viewModelLocator.Register(typeof(Company.Basic.UI.Home), typeof(Company.Basic.Presentation.HomeVm));
 
-
+            // Security
             viewModelLocator.Register(typeof(Company.Security.UI.Home), typeof(Company.Security.Presentation.HomeVm));
 
 
-            Current.MainWindow = new Company.App.UI.MainWindow();
+            Current.MainWindow = new Company.Project.UI.MainWindow();
             Current.MainWindow.Show();
 
             base.OnStartup(e);

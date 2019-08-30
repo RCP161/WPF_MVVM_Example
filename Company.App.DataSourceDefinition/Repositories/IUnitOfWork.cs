@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Company.App.DataSourceDefinition.Repositories
+namespace Company.Project.DataSourceDefinition.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        Security.IPersonRepository PersonRepository { get; }
+        Basic.IPersonRepository PersonRepository { get; }
 
         void Complete();
     }

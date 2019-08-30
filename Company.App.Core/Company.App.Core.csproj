@@ -10,8 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLogic\Basic\" />
-    <Folder Include="BusinessLogic\Security\" />
+    <Folder Include="Logic\Security\" />
   </ItemGroup>
 
 </Project>

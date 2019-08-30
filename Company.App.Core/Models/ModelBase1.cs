@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 using Catel.Data;
 using Catel.Reflection;
-using Company.App.Core.Common;
+using Company.Project.Core.Common;
 
-namespace Company.App.Core.Models
+namespace Company.Project.Core.Models
 {
     public abstract class ModelBase1 : ModelBase
     {
@@ -68,11 +68,6 @@ namespace Company.App.Core.Models
         protected virtual string GetDisplayText()
         {
             return ToString();
-        }
-
-        public void AfterLoad()
-        {
-            State = StateEnum.Unchanged;
         }
 
         protected override void OnPropertyChanged(AdvancedPropertyChangedEventArgs e)

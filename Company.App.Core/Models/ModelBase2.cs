@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using Company.App.Core.Common;
+using Company.Project.Core.Common;
 
-namespace Company.App.Core.Models
+namespace Company.Project.Core.Models
 {
     public abstract class ModelBase2 : ModelBase1
     {
@@ -23,6 +23,17 @@ namespace Company.App.Core.Models
         public void MarkAsDeleted()
         {
             State = StateEnum.Deleted;
+        }
+
+        public void AfterLoad()
+        {
+            State = StateEnum.Unchanged;
+        }
+
+        // TODO : Prüfen. Eig ein Interface ... Ieditable
+        public void Save()
+        {
+            throw new NotImplementedException();
         }
     }
 }

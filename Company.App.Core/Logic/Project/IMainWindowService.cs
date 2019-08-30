@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Company.App.Core.BusinessLogic.App
+namespace Company.Project.Core.Logic.Project
 {
     public interface IMainWindowService
     {

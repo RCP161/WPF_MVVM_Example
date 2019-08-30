@@ -11,6 +11,9 @@ namespace Company.Project.Core.Models.Security
     [Table("Group")]
     public class Group : ModelBase2
     {
+        public Group() : base(true)
+        { }
+
         public Group(bool isNew) : base(isNew)
         { }
 

@@ -12,6 +12,9 @@ namespace Company.Project.Core.Models.Basic
     [Table("Person")]
     public class Person : ModelBase2
     {
+        public Person() : base(true)
+        { }
+
         public Person(bool isNew) : base(isNew)
         { }
 

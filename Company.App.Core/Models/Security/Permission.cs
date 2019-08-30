@@ -11,6 +11,9 @@ namespace Company.Project.Core.Models.Security
     [Table("Permission")]
     public class Permission : ModelBase2
     {
+        public Permission() : base(true)
+        { }
+
         public Permission(bool isNew) : base(isNew)
         { }
 

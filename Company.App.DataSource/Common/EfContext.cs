@@ -22,7 +22,7 @@ namespace Company.Project.DataSource.Common
         {
             System.Reflection.MethodInfo entityMethod1 = typeof(DbModelBuilder).GetMethod("Entity");
 
-            List<Type> modelCollection = (from t in typeof(EfContext).Assembly.GetTypes() where Attribute.IsDefined(t, typeof(TableAttribute)) select t).ToList();
+            List<Type> modelCollection = (from t in typeof(ModelBase2).Assembly.GetTypes() where Attribute.IsDefined(t, typeof(TableAttribute)) select t).ToList();
 
             foreach(Type item in modelCollection)
                 entityMethod1.MakeGenericMethod(item).Invoke(modelBuilder, new object[] { });

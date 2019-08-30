@@ -10,6 +10,9 @@ namespace Company.Project.Core.Models.Security
     [Table("User")]
     public class User : ModelBase2
     {
+        public User() : base(true)
+        { }
+
         public User(bool isNew) : base(isNew)
         { }
 

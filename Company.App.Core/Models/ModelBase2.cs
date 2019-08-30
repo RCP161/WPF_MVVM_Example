@@ -11,6 +11,10 @@ namespace Company.Project.Core.Models
     {
         // Model für alle speicherbaren Objekte
 
+        public ModelBase2() : this(true)
+        {
+        }
+
         public ModelBase2(bool isNew)
         {
             if(isNew)

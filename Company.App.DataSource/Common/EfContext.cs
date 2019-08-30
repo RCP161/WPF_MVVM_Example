@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using Catel.Data;
-using Company.Project.Core.Models;
-using Company.Project.DataSourceDefinition.Common;
+using Company.App.Core.Models;
+using Company.App.DataSourceDefinition.Common;
 
-namespace Company.Project.DataSource.Common
+namespace Company.App.DataSource.Common
 {
     public class EfContext : DbContext, IDataAccess
     {

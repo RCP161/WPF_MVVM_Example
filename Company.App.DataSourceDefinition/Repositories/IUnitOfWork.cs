@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Company.Project.DataSourceDefinition.Repositories
+namespace Company.App.DataSourceDefinition.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {

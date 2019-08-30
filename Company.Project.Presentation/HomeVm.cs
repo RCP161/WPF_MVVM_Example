@@ -1,7 +1,7 @@
 ﻿using System;
 using Catel.Data;
 using Catel.MVVM;
-using Company.Project.Core.Models.Project;
+using Company.App.Core.Models.Project;
 
 namespace Company.Project.Presentation
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Company.Project.DataSourceDefinition.Common
+namespace Company.App.DataSourceDefinition.Common
 {
     public interface IDbConfigruation
     {

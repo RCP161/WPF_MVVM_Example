@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Catel.Data;
-using Company.Project.Core.Common;
-using Company.Project.Core.Models;
-using Company.Project.DataSourceDefinition.Common;
-using Company.Project.DataSourceDefinition.Repositories;
+using Company.App.Core.Common;
+using Company.App.Core.Models;
+using Company.App.DataSourceDefinition.Common;
+using Company.App.DataSourceDefinition.Repositories;
 
-namespace Company.Project.DataSource.Repositories
+namespace Company.App.DataSource.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : ModelBase2
     {

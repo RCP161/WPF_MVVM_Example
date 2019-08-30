@@ -5,7 +5,7 @@ using System.Text;
 using Catel.Data;
 using Catel.IoC;
 
-namespace Company.Project.Core.Models.Basic
+namespace Company.App.Core.Models.Basic
 {
     public class Home : ModelBase1
     {
@@ -30,7 +30,7 @@ namespace Company.Project.Core.Models.Basic
         public void OpenPerson(Person selectedPerson)
         {
             // Rechte, etc.
-            ServiceLocator.Default.ResolveType<Logic.Project.IMainWindowService>().SetMainContent(selectedPerson);
+            ServiceLocator.Default.ResolveType<Logic.Project.IMainUiService>().SetMainContent(selectedPerson);
         }
 
         #endregion

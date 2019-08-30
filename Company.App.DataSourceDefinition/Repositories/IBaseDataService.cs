@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Company.Project.Core.Models;
+using Company.App.Core.Models;
 
-namespace Company.Project.DataSourceDefinition.Repositories
+namespace Company.App.DataSourceDefinition.Repositories
 {
     public interface IBaseRepository<T> where T : ModelBase2
     {

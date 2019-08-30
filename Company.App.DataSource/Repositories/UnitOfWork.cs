@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Company.Project.DataSource.Repositories.Basic;
-using Company.Project.DataSourceDefinition.Common;
-using Company.Project.DataSourceDefinition.Repositories;
-using Company.Project.DataSourceDefinition.Repositories.Basic;
+using Company.App.DataSource.Repositories.Basic;
+using Company.App.DataSourceDefinition.Common;
+using Company.App.DataSourceDefinition.Repositories;
+using Company.App.DataSourceDefinition.Repositories.Basic;
 
-namespace Company.Project.DataSource.Repositories
+namespace Company.App.DataSource.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

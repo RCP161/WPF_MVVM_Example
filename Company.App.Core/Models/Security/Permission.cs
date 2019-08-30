@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
-using Company.Project.Core.Models;
+using Company.App.Core.Models;
 
-namespace Company.Project.Core.Models.Security
+namespace Company.App.Core.Models.Security
 {
     [Table("Permission")]
     public class Permission : ModelBase2

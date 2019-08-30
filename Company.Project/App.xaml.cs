@@ -25,15 +25,15 @@ namespace Company.Project
             // =========================
             //        Services  
             // =========================
-            ServiceLocator.Default.RegisterType<Company.Project.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
-            ServiceLocator.Default.RegisterType<Company.Project.DataSourceDefinition.Common.IDataAccess, Company.Project.DataSource.Common.EfContext>(RegistrationType.Transient);
-            ServiceLocator.Default.RegisterType<Company.Project.DataSourceDefinition.Repositories.IUnitOfWork, Company.Project.DataSource.Repositories.UnitOfWork>(RegistrationType.Transient);
-            ServiceLocator.Default.RegisterType<Company.Project.Core.Logic.Project.IMainWindowService, Company.Project.Logic.MainWindowService>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDataAccess, Company.App.DataSource.Common.EfContext>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Repositories.IUnitOfWork, Company.App.DataSource.Repositories.UnitOfWork>(RegistrationType.Transient);
 
             // Project
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Project.IMainUiService, Company.Project.Logic.MainUiService>(RegistrationType.Singleton);
 
             // Basic
-            ServiceLocator.Default.RegisterType<Company.Project.Core.Logic.Basic.IPersonService, Company.Basic.Logic.PersonService>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Basic.IPersonService, Company.Basic.Logic.PersonService>(RegistrationType.Transient);
 
             // Security
 

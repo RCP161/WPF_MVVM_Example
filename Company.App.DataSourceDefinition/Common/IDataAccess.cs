@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Company.Project.Core.Models;
+using Company.App.Core.Models;
 
-namespace Company.Project.DataSourceDefinition.Common
+namespace Company.App.DataSourceDefinition.Common
 {
     public interface IDataAccess : IDisposable
     {

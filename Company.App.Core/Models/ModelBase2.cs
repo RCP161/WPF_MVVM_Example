@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using Company.Project.Core.Common;
+using Company.App.Core.Common;
 
-namespace Company.Project.Core.Models
+namespace Company.App.Core.Models
 {
     public abstract class ModelBase2 : ModelBase1
     {

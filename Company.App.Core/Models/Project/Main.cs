@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Catel.Data;
 
-namespace Company.Project.Core.Models.Project
+namespace Company.App.Core.Models.Project
 {
     public class Main : ModelBase1
     {

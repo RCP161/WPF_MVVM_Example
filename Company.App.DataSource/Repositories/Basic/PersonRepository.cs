@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Company.Project.Core.Models.Basic;
-using Company.Project.DataSourceDefinition.Common;
-using Company.Project.DataSourceDefinition.Repositories.Basic;
+using Company.App.Core.Models.Basic;
+using Company.App.DataSourceDefinition.Common;
+using Company.App.DataSourceDefinition.Repositories.Basic;
 
-namespace Company.Project.DataSource.Repositories.Basic
+namespace Company.App.DataSource.Repositories.Basic
 {
     public class PersonRepository : BaseRepository<Person>, IPersonRepository
     {

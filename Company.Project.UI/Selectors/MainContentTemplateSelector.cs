@@ -8,7 +8,7 @@ namespace Company.Project.UI.Selectors
 {
     public class MainContentTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate AppHomeDataTemplate { get; set; }
+        public DataTemplate ProjectHomeDataTemplate { get; set; }
         public DataTemplate BasicHomeDataTemplate { get; set; }
         public DataTemplate SecurityHomeDataTemplate { get; set; }
 
@@ -16,11 +16,11 @@ namespace Company.Project.UI.Selectors
         {
             if(item != null)
             {
-                if(item is Company.Project.Core.Models.Project.Home)
-                    return AppHomeDataTemplate;
-                if(item is Company.Project.Core.Models.Project.Home)
+                if(item is Company.App.Core.Models.Project.Home)
+                    return ProjectHomeDataTemplate;
+                if(item is Company.App.Core.Models.Basic.Home)
                     return BasicHomeDataTemplate;
-                if(item is Company.Project.Core.Models.Project.Home)
+                if(item is Company.App.Core.Models.Security.Home)
                     return SecurityHomeDataTemplate;
             }
 

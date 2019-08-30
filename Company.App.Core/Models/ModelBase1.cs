@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 using Catel.Data;
 using Catel.Reflection;
-using Company.Project.Core.Common;
+using Company.App.Core.Common;
 
-namespace Company.Project.Core.Models
+namespace Company.App.Core.Models
 {
     public abstract class ModelBase1 : ModelBase
     {

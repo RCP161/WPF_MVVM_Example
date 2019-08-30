@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
 
-namespace Company.Project.Core.Models.Security
+namespace Company.App.Core.Models.Security
 {
     [Table("User")]
     public class User : ModelBase2

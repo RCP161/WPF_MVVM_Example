@@ -66,6 +66,11 @@ namespace Company.App.DataSource.Common
             return Set<T>();
         }
 
+        public int Count<T>() where T : ModelBase2
+        {
+            return Set<T>().Count();
+        }
+
         public void Complete()
         {
             SaveChanges();

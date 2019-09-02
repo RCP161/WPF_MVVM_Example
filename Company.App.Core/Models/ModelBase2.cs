@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Catel.IoC;
 using Company.App.Core.Common;
 
 namespace Company.App.Core.Models
 {
-    public abstract class ModelBase2 : ModelBase1
+    // Model für alle speicherbaren Objekte
+
+    public abstract class ModelBase2 : ModelBase1, IEditable
     {
-        // Model für alle speicherbaren Objekte
-
-        public ModelBase2() : this(true)
-        {
-        }
-
         public ModelBase2(bool isNew)
         {
             if(isNew)
@@ -22,7 +19,8 @@ namespace Company.App.Core.Models
         }
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public abstract int Id { get; set; }
+        public abstract int Id { get; protected set; }
+
 
         public void MarkAsDeleted()
         {
@@ -34,10 +32,14 @@ namespace Company.App.Core.Models
             State = StateEnum.Unchanged;
         }
 
-        // TODO : Prüfen. Eig ein Interface ... Ieditable
-        public void Save()
+        public void SaveModel()
         {
-            throw new NotImplementedException();
+            // TODO : Hier gehts weiter
+            // 1. Brauche Hier den Typ. DBSet<ModelBase2> kennt er nicht
+            // 2. UnitOfWork von Catel?
+
+            Logic.App.ISaveableService service = ServiceLocator.Default.ResolveType<Logic.App.ISaveableService>();
+            service.Save(this);
         }
     }
 }

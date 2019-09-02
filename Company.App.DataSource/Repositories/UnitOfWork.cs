@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Company.App.DataSource.Repositories.Basic;
+using Catel.IoC;
 using Company.App.DataSourceDefinition.Common;
 using Company.App.DataSourceDefinition.Repositories;
+using Company.App.DataSourceDefinition.Repositories.App;
 using Company.App.DataSourceDefinition.Repositories.Basic;
 
 namespace Company.App.DataSource.Repositories
@@ -26,17 +23,14 @@ namespace Company.App.DataSource.Repositories
         private IDataAccess DataAccess { get; set; }
 
 
-        private IPersonRepository personRepository;
+        public IModelBase2Repository ModelBase2Repository
+        {
+            get { return ServiceLocator.Default.ResolveType<IModelBase2Repository>(); }
+        }
+
         public IPersonRepository PersonRepository
         {
-            get
-            {
-
-                if (personRepository == null)
-                    personRepository = new PersonRepository(DataAccess);
-
-                return personRepository;
-            }
+            get { return ServiceLocator.Default.ResolveType<IPersonRepository>(); }
         }
 
         #endregion

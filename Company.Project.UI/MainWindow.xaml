@@ -1,4 +1,4 @@
-﻿<catel:DataWindow
+﻿<catel:Window
     x:Class="Company.Project.UI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -65,4 +65,4 @@
 
     </Grid>
 
-</catel:DataWindow>
+</catel:Window>

@@ -23,11 +23,29 @@ namespace Company.Project
 
 
             // =========================
-            //        Services  
+            //      Repositories  
             // =========================
             ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
-            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDataAccess, Company.App.DataSource.Common.EfContext>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDataAccess, Company.App.DataSource.Common.EfContext>(RegistrationType.Singleton);
             ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Repositories.IUnitOfWork, Company.App.DataSource.Repositories.UnitOfWork>(RegistrationType.Transient);
+
+            // App
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Repositories.App.IModelBase2Repository, Company.App.DataSource.Repositories.App.ModelBase2Repository>(RegistrationType.Singleton);
+
+            // Project
+
+            // Basic
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Repositories.Basic.IPersonRepository, Company.App.DataSource.Repositories.Basic.PersonRepository>(RegistrationType.Singleton);
+
+            // Security
+
+
+            // =========================
+            //        Services  
+            // =========================
+
+            // App
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.App.ISaveableService, Company.App.Logic.SaveableService>(RegistrationType.Singleton);
 
             // Project
             ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Project.IMainUiService, Company.Project.Logic.MainUiService>(RegistrationType.Singleton);
@@ -62,6 +80,10 @@ namespace Company.Project
             Current.MainWindow.Show();
 
             base.OnStartup(e);
+
+#if DEBUG
+            new TestData();
+#endif
 
             // TODO : List
 

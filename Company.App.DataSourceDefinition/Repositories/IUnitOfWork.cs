@@ -8,6 +8,8 @@ namespace Company.App.DataSourceDefinition.Repositories
     {
         Basic.IPersonRepository PersonRepository { get; }
 
+        App.IModelBase2Repository ModelBase2Repository { get; }
+
         void Complete();
     }
 }

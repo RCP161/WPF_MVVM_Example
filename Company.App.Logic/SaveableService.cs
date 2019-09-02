@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Catel.IoC;
-using Company.App.Core.Logic.Basic;
+using Company.App.Core.Logic;
+using Company.App.Core.Logic.App;
 using Company.App.Core.Models;
-using Company.App.Core.Models.Basic;
 using Company.App.DataSourceDefinition.Repositories;
 
-namespace Company.Basic.Logic
+namespace Company.App.Logic
 {
-    public class PersonService : IPersonService
+    public class SaveableService : ISaveableService
     {
-        public IEnumerable<Person> LoadPersons()
+        public void Save(ModelBase2 model)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return unitOfWork.PersonRepository.GetAll();
+                unitOfWork.ModelBase2Repository.SaveOrUpdate(model);
             }
         }
     }

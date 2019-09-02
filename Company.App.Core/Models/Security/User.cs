@@ -22,7 +22,7 @@ namespace Company.App.Core.Models.Security
         public override int Id
         {
             get { return GetValue<int>(IdProperty); }
-            set { SetValue(IdProperty, value); }
+            protected set { SetValue(IdProperty, value); }
         }
         public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int));
 

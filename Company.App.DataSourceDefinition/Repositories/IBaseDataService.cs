@@ -29,11 +29,6 @@ namespace Company.App.DataSourceDefinition.Repositories
         /// <returns>Auflistung von Objekten des Datentyps</returns>
         IEnumerable<T> GetAll();
 
-        /// <summary>
-        /// Speichert das Objekt in dem angegeben Zustand
-        /// </summary>
-        /// <param name="model">Objekt das gespeichert oder geupdated werden soll</param>
-        /// <returns>Upgedates oder gespeichertes Objekt. Bei gelöschtem Objekt null</returns>
-        T SaveOrUpdate(T model);
+        int GetCount();
     }
 }

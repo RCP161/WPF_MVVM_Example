@@ -32,7 +32,10 @@ namespace Company.App.Core.Models
         [XmlIgnore]
         [NotMapped]
         [IgnoreOnState]
-        private new bool IsDirty { get; set; }
+        public new bool IsDirty
+        {
+            get { return State == StateEnum.Unchanged; }
+        }
 
         [Browsable(false)]
         [XmlIgnore]

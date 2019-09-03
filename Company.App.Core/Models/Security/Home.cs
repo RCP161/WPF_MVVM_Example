@@ -11,7 +11,8 @@ namespace Company.App.Core.Models.Security
     {
         public Home()
         {
-            //Users = new ObservableCollection<User>(ServiceLocator.Default.ResolveType<Logic.Basic.IUserService>().LoadUsers());
+            Users = new ObservableCollection<User>(ServiceLocator.Default.ResolveType<Logic.Security.IUserService>().GetAll());
+            Groups = new ObservableCollection<Group>(ServiceLocator.Default.ResolveType<Logic.Security.IGroupService>().GetAll());
         }
 
         #region Properties

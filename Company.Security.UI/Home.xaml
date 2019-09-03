@@ -33,8 +33,18 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock Grid.Row="2" Text="Häufigsten" />
-        <ListView Grid.Row="3" Margin="0,3" />
+        <TextBlock Grid.Row="2" Text="User (eig. Häufigsten)" />
+        <ListView
+            Grid.Row="3"
+            Margin="0,3"
+            ItemsSource="{Binding Users}"
+            SelectedItem="{Binding SelectedUser}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayText}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <TextBlock Grid.Row="4" Text="Favoriten" />
         <ListView Grid.Row="5" Margin="0,3" />

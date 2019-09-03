@@ -8,4 +8,9 @@
     <PackageReference Include="Catel.MVVM" Version="5.11.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Company.App.Core\Company.App.Core.csproj" />
+    <ProjectReference Include="..\Company.App.Logic\Company.App.Logic.csproj" />
+  </ItemGroup>
+
 </Project>

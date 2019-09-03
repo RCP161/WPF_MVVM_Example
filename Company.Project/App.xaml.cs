@@ -44,9 +44,9 @@ namespace Company.Project
             ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Basic.IPersonService, Company.Basic.Logic.PersonService>(RegistrationType.Transient);
 
             // Security
-
-            //ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.ICustomerDataService, Company.Core.App.Services.Data.CustomerDataService>(RegistrationType.Singleton);
-            //ServiceLocator.Default.RegisterType<Company.Core.App.Services.Data.Interfaces.IProductDataService, Company.Core.App.Services.Data.ProductDataService>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Security.IUserService, Company.Security.Logic.UserService>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Security.IGroupService, Company.Security.Logic.GroupService>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Security.IPermissionService, Company.Security.Logic.PermissionService>(RegistrationType.Transient);
 
 
 

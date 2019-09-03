@@ -5,7 +5,7 @@ using Company.App.Core.Models.Basic;
 
 namespace Company.App.DataSourceDefinition.Repositories.Basic
 {
-    public interface IPersonRepository : IBaseRepository<Person>
+    public interface IPersonRepository
     {
         
     }

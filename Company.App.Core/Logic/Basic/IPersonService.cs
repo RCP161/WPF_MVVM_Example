@@ -5,8 +5,7 @@ using Company.App.Core.Models.Basic;
 
 namespace Company.App.Core.Logic.Basic
 {
-    public interface IPersonService
+    public interface IPersonService : IModelBase2Service<Person>
     {
-        IEnumerable<Person> LoadPersons();
     }
 }

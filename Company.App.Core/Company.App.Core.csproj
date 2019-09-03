@@ -9,8 +9,4 @@
     <PackageReference Include="EntityFramework" Version="6.3.0-preview8-19405-04" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logic\Security\" />
-  </ItemGroup>
-
 </Project>

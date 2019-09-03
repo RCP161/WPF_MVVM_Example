@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Company.App.Core\Company.App.Core.csproj" />
     <ProjectReference Include="..\Company.App.DataSourceDefinition\Company.App.DataSourceDefinition.csproj" />
+    <ProjectReference Include="..\Company.App.Logic\Company.App.Logic.csproj" />
   </ItemGroup>
 
 </Project>

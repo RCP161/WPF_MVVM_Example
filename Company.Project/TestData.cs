@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Catel.IoC;
 using Company.App.Core.Common;
+using Company.App.Core.Logic.Basic;
 using Company.App.Core.Models;
 using Company.App.DataSourceDefinition.Common;
 using Company.App.DataSourceDefinition.Repositories;
@@ -18,13 +19,12 @@ namespace Company.Project
 
         private void TestOrCreatePersons()
         {
-            using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
-            {
-                int c = unitOfWork.PersonRepository.GetCount();
+            IPersonService service = ServiceLocator.Default.ResolveType<IPersonService>();
+            int c = service.GetCount();
 
-                if(c > 5)
-                    return;
-            }
+            if(c > 5)
+                return;
+
 
             Company.App.Core.Models.Basic.Person p;
             for(int i = 0; i < 5; i++)

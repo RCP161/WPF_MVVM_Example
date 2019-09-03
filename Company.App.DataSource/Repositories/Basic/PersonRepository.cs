@@ -7,14 +7,13 @@ using Company.App.DataSourceDefinition.Repositories.Basic;
 
 namespace Company.App.DataSource.Repositories.Basic
 {
-    public class PersonRepository : BaseRepository<Person>, IPersonRepository
+    public class PersonRepository : IPersonRepository
     {
-        internal PersonRepository(IDataAccess dataAccess) : base(dataAccess)
-        { }
-
-        public override Person GetCompleteById(int id)
+        internal PersonRepository(IDataAccess dataAccess)
         {
-            throw new NotImplementedException();
+            DataAccess = dataAccess;
         }
+
+        protected IDataAccess DataAccess { get; private set; }
     }
 }

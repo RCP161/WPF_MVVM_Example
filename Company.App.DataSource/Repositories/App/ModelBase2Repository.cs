@@ -18,6 +18,39 @@ namespace Company.App.DataSource.Repositories.App
 
         protected IDataAccess DataAccess { get; private set; }
 
+        /// <summary>
+        /// Liefert das Objekt anhand der Id in dem Repository
+        /// </summary>
+        /// <param name="id">Id des Objekts</param>
+        /// <returns>Objekt mit der angegebenen Id, sonst null</returns>
+        public T GetById<T>(int id) where T : ModelBase2
+        {
+            T t = DataAccess.GetById<T>(id);
+            t.AfterLoad();
+            return t;
+        }
+
+        /// <summary>
+        /// Liefert alle Objekte des Typs in dem Repository
+        /// </summary>
+        /// <returns>Auflistung von Objekten des Datentyps</returns>
+        public IEnumerable<T> GetAll<T>() where T : ModelBase2
+        {
+            IEnumerable<T> ts = DataAccess.GetAll<T>().ToList();
+
+            foreach(T t in ts)
+                t.AfterLoad();
+
+            return ts;
+        }
+
+
+        public int GetCount<T>() where T : ModelBase2
+        {
+            return DataAccess.Count<T>();
+        }
+
+
 
         public void SaveOrUpdate<T>(T entity) where T : ModelBase2
         {

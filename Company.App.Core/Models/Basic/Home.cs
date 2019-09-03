@@ -11,7 +11,7 @@ namespace Company.App.Core.Models.Basic
     {
         public Home()
         {
-            Persons  = new ObservableCollection<Person>(ServiceLocator.Default.ResolveType<Logic.Basic.IPersonService>().LoadPersons());
+            Persons  = new ObservableCollection<Person>(ServiceLocator.Default.ResolveType<Logic.Basic.IPersonService>().GetAll());
         }
 
         #region Properties

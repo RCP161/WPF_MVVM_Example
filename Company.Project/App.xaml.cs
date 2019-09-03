@@ -23,21 +23,11 @@ namespace Company.Project
 
 
             // =========================
-            //      Repositories  
+            //      App  
             // =========================
             ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
-            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDataAccess, Company.App.DataSource.Common.EfContext>(RegistrationType.Singleton);
-            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Repositories.IUnitOfWork, Company.App.DataSource.Repositories.UnitOfWork>(RegistrationType.Transient);
-
-            // App
-            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Repositories.App.IModelBase2Repository, Company.App.DataSource.Repositories.App.ModelBase2Repository>(RegistrationType.Singleton);
-
-            // Project
-
-            // Basic
-            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Repositories.Basic.IPersonRepository, Company.App.DataSource.Repositories.Basic.PersonRepository>(RegistrationType.Singleton);
-
-            // Security
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDataAccess, Company.App.DataSource.Common.EfContext>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IUnitOfWork, Company.App.DataSource.Common.UnitOfWork>(RegistrationType.Transient);
 
 
             // =========================
@@ -45,10 +35,10 @@ namespace Company.Project
             // =========================
 
             // App
-            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.App.ISaveableService, Company.App.Logic.SaveableService>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.App.ISaveableService, Company.App.Logic.SaveableService>(RegistrationType.Transient);
 
             // Project
-            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Project.IMainUiService, Company.Project.Logic.MainUiService>(RegistrationType.Singleton);
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Project.IMainUiService, Company.Project.Logic.MainUiService>(RegistrationType.Transient);
 
             // Basic
             ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Basic.IPersonService, Company.Basic.Logic.PersonService>(RegistrationType.Transient);
@@ -76,14 +66,14 @@ namespace Company.Project
             viewModelLocator.Register(typeof(Company.Security.UI.Home), typeof(Company.Security.Presentation.HomeVm));
 
 
+#if DEBUG
+            new TestData();
+#endif
+
             Current.MainWindow = new Company.Project.UI.MainWindow();
             Current.MainWindow.Show();
 
             base.OnStartup(e);
-
-#if DEBUG
-            new TestData();
-#endif
 
             // TODO : List
 

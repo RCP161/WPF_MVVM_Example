@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Catel.IoC;
-using Company.App.Core.Logic;
+﻿using Catel.IoC;
 using Company.App.Core.Logic.App;
 using Company.App.Core.Models;
-using Company.App.DataSourceDefinition.Repositories;
+using Company.App.DataSourceDefinition.Common;
 
 namespace Company.App.Logic
 {
@@ -15,7 +11,7 @@ namespace Company.App.Logic
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                unitOfWork.ModelBase2Repository.SaveOrUpdate<T>(model);
+                unitOfWork.ModelBase2Repository.SaveOrUpdate(model);
                 unitOfWork.Complete();
             }
         }

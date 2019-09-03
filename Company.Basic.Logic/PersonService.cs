@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Catel.IoC;
 using Company.App.Core.Logic.Basic;
-using Company.App.Core.Models;
 using Company.App.Core.Models.Basic;
-using Company.App.DataSourceDefinition.Repositories;
+using Company.App.DataSourceDefinition.Common;
 
 namespace Company.Basic.Logic
 {

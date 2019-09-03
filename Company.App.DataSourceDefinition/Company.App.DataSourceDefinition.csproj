@@ -9,11 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Security\" />
+    <PackageReference Include="Catel.MVVM" Version="5.11.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catel.MVVM" Version="5.11.2" />
+    <Folder Include="Repositories\Security\" />
   </ItemGroup>
 
 </Project>

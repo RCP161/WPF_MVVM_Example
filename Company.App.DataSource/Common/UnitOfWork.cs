@@ -5,7 +5,7 @@ using Company.App.DataSourceDefinition.Repositories;
 using Company.App.DataSourceDefinition.Repositories.App;
 using Company.App.DataSourceDefinition.Repositories.Basic;
 
-namespace Company.App.DataSource.Repositories
+namespace Company.App.DataSource.Common
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -23,15 +23,33 @@ namespace Company.App.DataSource.Repositories
         private IDataAccess DataAccess { get; set; }
 
 
+
+        private IModelBase2Repository modelBase2Repository;
         public IModelBase2Repository ModelBase2Repository
         {
-            get { return ServiceLocator.Default.ResolveType<IModelBase2Repository>(); }
+            get
+            {
+                if(modelBase2Repository == null)
+                    modelBase2Repository = new Repositories.App.ModelBase2Repository(DataAccess);
+
+                return modelBase2Repository;
+            }
         }
 
+
+        private IPersonRepository personRepository;
         public IPersonRepository PersonRepository
         {
-            get { return ServiceLocator.Default.ResolveType<IPersonRepository>(); }
+            get
+            {
+                if(personRepository == null)
+                    personRepository = new Repositories.Basic.PersonRepository(DataAccess);
+
+                return personRepository;
+            }
         }
+
+
 
         #endregion
 

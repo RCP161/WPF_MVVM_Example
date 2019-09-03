@@ -32,14 +32,12 @@ namespace Company.App.Core.Models
             State = StateEnum.Unchanged;
         }
 
-        public void SaveModel()
-        {
-            // TODO : Hier gehts weiter
-            // 1. Brauche Hier den Typ. DBSet<ModelBase2> kennt er nicht
-            // 2. UnitOfWork von Catel?
+        public abstract void SaveModel();
 
+        protected void SaveModel<T>() where T : ModelBase2
+        {
             Logic.App.ISaveableService service = ServiceLocator.Default.ResolveType<Logic.App.ISaveableService>();
-            service.Save(this);
+            service.Save((T)this);
         }
     }
 }

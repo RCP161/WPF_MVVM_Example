@@ -55,10 +55,15 @@ namespace Company.App.Core.Models.Basic
         }
 
         public static readonly PropertyData GroupsProperty = RegisterProperty(nameof(Groups), typeof(ObservableCollection<Security.Group>));
-               
+
         #endregion
 
         #region Methods
+
+        public override void SaveModel()
+        {
+            SaveModel<Person>();
+        }
 
         protected override string GetDisplayText()
         {

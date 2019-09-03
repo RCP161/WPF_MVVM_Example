@@ -11,11 +11,12 @@ namespace Company.App.Logic
 {
     public class SaveableService : ISaveableService
     {
-        public void Save(ModelBase2 model)
+        public void Save<T>(T model) where T : ModelBase2
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                unitOfWork.ModelBase2Repository.SaveOrUpdate(model);
+                unitOfWork.ModelBase2Repository.SaveOrUpdate<T>(model);
+                unitOfWork.Complete();
             }
         }
     }

@@ -19,7 +19,7 @@ namespace Company.App.DataSource.Repositories.App
         protected IDataAccess DataAccess { get; private set; }
 
 
-        public void SaveOrUpdate(ModelBase2 entity)
+        public void SaveOrUpdate<T>(T entity) where T : ModelBase2
         {
             switch(entity.State)
             {

@@ -7,6 +7,6 @@ namespace Company.App.Core.Logic.App
 {
     public interface ISaveableService
     {
-        public void Save(ModelBase2 model);
+        public void Save<T>(T model) where T : ModelBase2;
     }
 }

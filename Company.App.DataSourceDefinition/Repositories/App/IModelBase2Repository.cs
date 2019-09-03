@@ -11,6 +11,6 @@ namespace Company.App.DataSourceDefinition.Repositories.App
         /// Speichert das Objekt in dem angegeben Zustand
         /// </summary>
         /// <param name="model">Objekt das gespeichert oder geupdated werden soll</param>
-        void SaveOrUpdate(ModelBase2 model);
+        void SaveOrUpdate<T>(T model) where T : ModelBase2;
     }
 }

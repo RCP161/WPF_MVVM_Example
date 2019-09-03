@@ -23,7 +23,7 @@
         <ListView
             Grid.Row="1"
             Margin="0,3"
-            ItemsSource="{Binding Perons}"
+            ItemsSource="{Binding Persons}"
             SelectedItem="{Binding SelectedPerson}">
             <ListView.ItemTemplate>
                 <DataTemplate>

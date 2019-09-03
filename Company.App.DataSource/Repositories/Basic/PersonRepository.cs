@@ -9,7 +9,7 @@ namespace Company.App.DataSource.Repositories.Basic
 {
     public class PersonRepository : BaseRepository<Person>, IPersonRepository
     {
-        public PersonRepository(IDataAccess dataAccess) : base(dataAccess)
+        internal PersonRepository(IDataAccess dataAccess) : base(dataAccess)
         { }
 
         public override Person GetCompleteById(int id)

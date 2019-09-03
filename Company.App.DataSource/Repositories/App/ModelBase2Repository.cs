@@ -11,7 +11,7 @@ namespace Company.App.DataSource.Repositories.App
 {
     public class ModelBase2Repository : IModelBase2Repository
     {
-        public ModelBase2Repository(IDataAccess dataAccess)
+        internal ModelBase2Repository(IDataAccess dataAccess)
         {
             DataAccess = dataAccess;
         }

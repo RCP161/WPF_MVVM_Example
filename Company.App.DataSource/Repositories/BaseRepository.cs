@@ -13,7 +13,7 @@ namespace Company.App.DataSource.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : ModelBase2
     {
-        public BaseRepository(IDataAccess dataAccess)
+        internal BaseRepository(IDataAccess dataAccess)
         {
             DataAccess = dataAccess;
         }

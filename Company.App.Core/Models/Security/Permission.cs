@@ -37,25 +37,13 @@ namespace Company.App.Core.Models.Security
         public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
 
 
-        [Required]
-        public bool Read
+        public string Comment
         {
-            get { return GetValue<bool>(ReadProperty); }
-            set { SetValue(ReadProperty, value); }
+            get { return GetValue<string>(CommentProperty); }
+            set { SetValue(CommentProperty, value); }
         }
-        public static readonly PropertyData ReadProperty = RegisterProperty(nameof(Read), typeof(bool));
 
-
-        [Required]
-        public bool Write
-        {
-            get { return GetValue<bool>(WriteProperty); }
-            set { SetValue(WriteProperty, value); }
-        }
-        public static readonly PropertyData WriteProperty = RegisterProperty(nameof(Write), typeof(bool));
-
-
-        public virtual ICollection<Group> Groups { get; set; }
+        public static readonly PropertyData CommentProperty = RegisterProperty(nameof(Comment), typeof(string));
 
         #endregion
 

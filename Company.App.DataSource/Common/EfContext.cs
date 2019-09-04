@@ -30,6 +30,21 @@ namespace Company.App.DataSource.Common
             base.OnModelCreating(modelBuilder);
         }
 
+        public T GetById<T>(int id) where T : ModelBase2
+        {
+            return Set<T>().FirstOrDefault(x => x.Id == id);
+        }
+
+        public IEnumerable<T> GetAll<T>() where T : ModelBase2
+        {
+            return Set<T>().ToList();
+        }
+
+        public IQueryable<T> Query<T>() where T : ModelBase2
+        {
+            return Set<T>();
+        }
+
         public T Add<T>(T entity) where T : ModelBase2
         {
             entity = Set<T>().Attach(entity);
@@ -49,26 +64,6 @@ namespace Company.App.DataSource.Common
             entity = Set<T>().Attach(entity);
             Entry(entity).State = EntityState.Modified;
             return entity;
-        }
-
-        public IEnumerable<T> GetAll<T>() where T : ModelBase2
-        {
-            return Set<T>().ToList();
-        }
-
-        public T GetById<T>(int id) where T : ModelBase2
-        {
-            return Set<T>().FirstOrDefault(x => x.Id == id);
-        }
-
-        public IQueryable<T> Query<T>() where T : ModelBase2
-        {
-            return Set<T>();
-        }
-
-        public int Count<T>() where T : ModelBase2
-        {
-            return Set<T>().Count();
         }
 
         public void Complete()

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
+using Catel.IoC;
 using Company.App.Core.Models;
 
 namespace Company.App.Core.Models.Security
@@ -27,6 +29,7 @@ namespace Company.App.Core.Models.Security
         }
         public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int));
 
+
         [Required, MaxLength(255)]
         public string Name
         {
@@ -36,8 +39,39 @@ namespace Company.App.Core.Models.Security
         public static readonly PropertyData NameProperty = RegisterProperty(nameof(Name), typeof(string));
 
 
-        public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public ObservableCollection<GroupPermission> GroupPermissions
+        {
+            get
+            {
+                ObservableCollection<GroupPermission> list = GetValue<ObservableCollection<GroupPermission>>(GroupPermissionsProperty);
+
+                if(list == null)
+                    list = new ObservableCollection<GroupPermission>(ServiceLocator.Default.ResolveType<Logic.Security.IGroupPermissionService>().GetByGroupId(Id));
+
+                return list;
+            }
+            set { SetValue(GroupPermissionsProperty, value); }
+        }
+
+        public static readonly PropertyData GroupPermissionsProperty = RegisterProperty(nameof(GroupPermissions), typeof(ObservableCollection<GroupPermission>));
+
+
+
+        public ObservableCollection<User> Users
+        {
+            get
+            {
+                ObservableCollection<User> list = GetValue<ObservableCollection<User>>(GroupPermissionsProperty);
+
+                if(list == null)
+                    list = new ObservableCollection<User>(ServiceLocator.Default.ResolveType<Logic.Security.IUserService>().GetByGroupId(Id));
+
+                return list;
+            }
+            set { SetValue(UsersProperty, value); }
+        }
+
+        public static readonly PropertyData UsersProperty = RegisterProperty(nameof(Users), typeof(ObservableCollection<User>));
 
         #endregion
 

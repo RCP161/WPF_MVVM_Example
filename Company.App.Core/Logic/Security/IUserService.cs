@@ -8,5 +8,6 @@ namespace Company.App.Core.Logic.Security
 {
     public interface IUserService : IModelBase2Service<User>
     {
+        IEnumerable<User> GetByGroupId(int id);
     }
 }

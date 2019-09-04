@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
+using Catel.IoC;
+using Company.App.Core.Models.Basic;
 
 namespace Company.App.Core.Models.Security
 {
@@ -26,6 +29,7 @@ namespace Company.App.Core.Models.Security
         }
         public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int));
 
+
         [Required, MaxLength(255)]
         public string LogIn
         {
@@ -33,6 +37,7 @@ namespace Company.App.Core.Models.Security
             set { SetValue(LogInProperty, value); }
         }
         public static readonly PropertyData LogInProperty = RegisterProperty(nameof(LogIn), typeof(string));
+
 
         [Required, MaxLength(255)]
         public string Password
@@ -43,7 +48,28 @@ namespace Company.App.Core.Models.Security
         public static readonly PropertyData PasswordProperty = RegisterProperty(nameof(Password), typeof(string));
 
 
-        public virtual ICollection<Group> Groups { get; set; }
+        public Person Person
+        {
+            get { return GetValue<Person>(PersonProperty); }
+            set { SetValue(PersonProperty, value); }
+        }
+        public static readonly PropertyData PersonProperty = RegisterProperty(nameof(Person), typeof(Person), null);
+
+
+        public ObservableCollection<Group> Groups
+        {
+            get
+            {
+                ObservableCollection<Group> list = GetValue<ObservableCollection<Group>>(GroupsProperty);
+
+                if(list == null)
+                    list = new ObservableCollection<Group>(ServiceLocator.Default.ResolveType<Logic.Security.IGroupService>().GetByUserId(Id));
+
+                return list;
+            }
+            set { SetValue(GroupsProperty, value); }
+        }
+        public static readonly PropertyData GroupsProperty = RegisterProperty(nameof(Groups), typeof(ObservableCollection<Group>));
 
         #endregion
 

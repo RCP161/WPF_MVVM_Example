@@ -47,6 +47,7 @@ namespace Company.Project
             ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Security.IUserService, Company.Security.Logic.UserService>(RegistrationType.Transient);
             ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Security.IGroupService, Company.Security.Logic.GroupService>(RegistrationType.Transient);
             ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Security.IPermissionService, Company.Security.Logic.PermissionService>(RegistrationType.Transient);
+            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Security.IGroupPermissionService, Company.Security.Logic.GroupPermissionService>(RegistrationType.Transient);
 
 
 

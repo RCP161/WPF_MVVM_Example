@@ -1,9 +1,9 @@
 ﻿using System;
 using Catel.IoC;
 using Company.App.DataSourceDefinition.Common;
-using Company.App.DataSourceDefinition.Repositories;
 using Company.App.DataSourceDefinition.Repositories.App;
 using Company.App.DataSourceDefinition.Repositories.Basic;
+using Company.App.DataSourceDefinition.Repositories.Security;
 
 namespace Company.App.DataSource.Common
 {
@@ -48,6 +48,33 @@ namespace Company.App.DataSource.Common
                 return personRepository;
             }
         }
+
+
+        private IGroupRepository groupRepository;
+        public IGroupRepository GroupRepository
+        {
+            get
+            {
+                if(groupRepository == null)
+                    groupRepository = new Repositories.Security.GroupRepository(DataAccess);
+
+                return groupRepository;
+            }
+        }
+
+
+        private IGroupPermissionRepository groupPermissionRepository;
+        public IGroupPermissionRepository GroupPermissionRepository
+        {
+            get
+            {
+                if(groupPermissionRepository == null)
+                    groupPermissionRepository = new Repositories.Security.GroupPermissionRepository(DataAccess);
+
+                return groupPermissionRepository;
+            }
+        }
+
 
 
 

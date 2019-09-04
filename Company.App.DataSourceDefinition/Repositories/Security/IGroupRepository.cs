@@ -4,10 +4,10 @@ using System.Text;
 using Company.App.Core.Models.Basic;
 using Company.App.Core.Models.Security;
 
-namespace Company.App.DataSourceDefinition.Repositories.Basic
+namespace Company.App.DataSourceDefinition.Repositories.Security
 {
-    public interface IPersonRepository
+    public interface IGroupRepository
     {
-        IEnumerable<User> GetByGroupId(int id);
+        IEnumerable<Group> GetByUserId(int id);
     }
 }

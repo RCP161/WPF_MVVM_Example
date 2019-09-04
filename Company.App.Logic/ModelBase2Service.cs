@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Catel.IoC;
 using Company.App.Core.Logic;
 using Company.App.Core.Logic.App;

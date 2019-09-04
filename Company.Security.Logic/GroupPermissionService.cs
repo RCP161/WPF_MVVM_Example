@@ -9,13 +9,13 @@ using Company.App.Logic;
 
 namespace Company.Security.Logic
 {
-    public class GroupService : ModelBase2Service<Group>, IGroupService
+    public class GroupPermissionService : ModelBase2Service<GroupPermission>, IGroupPermissionService
     {
-        public IEnumerable<Group> GetByUserId(int id)
+        public IEnumerable<GroupPermission> GetByGroupId(int id)
         {
             using(IUnitOfWork unitOfWork = ServiceLocator.Default.ResolveType<IUnitOfWork>())
             {
-                return unitOfWork.GroupRepository.GetByUserId(id);
+                return unitOfWork.GroupPermissionRepository.GetByGroupId(id);
             }
         }
     }

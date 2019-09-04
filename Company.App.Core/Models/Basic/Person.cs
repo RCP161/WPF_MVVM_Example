@@ -47,15 +47,6 @@ namespace Company.App.Core.Models.Basic
         }
         public static readonly PropertyData SurenameProperty = RegisterProperty(nameof(Surename), typeof(string));
 
-
-        public ObservableCollection<Security.Group> Groups
-        {
-            get { return GetValue<ObservableCollection<Security.Group>>(GroupsProperty); }
-            set { SetValue(GroupsProperty, value); }
-        }
-
-        public static readonly PropertyData GroupsProperty = RegisterProperty(nameof(Groups), typeof(ObservableCollection<Security.Group>));
-
         #endregion
 
         #region Methods

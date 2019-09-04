@@ -47,9 +47,8 @@ namespace Company.App.DataSource.Repositories.App
 
         public int GetCount<T>() where T : ModelBase2
         {
-            return DataAccess.Count<T>();
+            return DataAccess.Query<T>().Count();
         }
-
 
 
         public void SaveOrUpdate<T>(T entity) where T : ModelBase2

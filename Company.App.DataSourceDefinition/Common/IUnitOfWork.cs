@@ -9,6 +9,9 @@ namespace Company.App.DataSourceDefinition.Common
 
         Repositories.App.IModelBase2Repository ModelBase2Repository { get; }
         Repositories.Basic.IPersonRepository PersonRepository { get; }
+        Repositories.Security.IGroupRepository GroupRepository { get; }
+        Repositories.Security.IGroupPermissionRepository GroupPermissionRepository { get; }
+        
 
         void Complete();
     }

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Catel.MVVM" Version="5.11.2" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
   </ItemGroup>
 
   <ItemGroup>

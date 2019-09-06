@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Company.Security.UI
 {
     /// <summary>
-    /// Interaktionslogik für Home.xaml
+    /// Interaktionslogik für HomeView.xaml
     /// </summary>
-    public partial class Home
+    public partial class HomeView
     {
-        public Home()
+        public HomeView()
         {
             InitializeComponent();
         }

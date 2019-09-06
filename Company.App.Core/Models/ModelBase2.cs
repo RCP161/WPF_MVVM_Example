@@ -38,6 +38,9 @@ namespace Company.App.Core.Models
         {
             Logic.App.ISaveableService service = ServiceLocator.Default.ResolveType<Logic.App.ISaveableService>();
             service.Save((T)this);
+
+            if(State == StateEnum.Modified || State == StateEnum.Created)
+                State = StateEnum.Unchanged;
         }
     }
 }

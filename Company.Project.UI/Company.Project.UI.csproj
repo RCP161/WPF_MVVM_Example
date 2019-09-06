@@ -17,13 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Home.xaml.cs">
+    <Compile Update="HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Home.xaml">
+    <Page Update="HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -5,9 +5,9 @@ using Company.App.Core.Models.Project;
 
 namespace Company.Project.Presentation
 {
-    public class MainWindowVm : ViewModelBase
+    public class MainVm : ViewModelBase
     {
-        public MainWindowVm()
+        public MainVm()
         {
             Model = Main.Instance;
             OpenMainModulCommand = new Command(() => ActivContent = new Company.App.Core.Models.Project.Home());

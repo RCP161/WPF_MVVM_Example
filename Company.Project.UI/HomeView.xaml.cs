@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Company.Basic.UI
+namespace Company.Project.UI
 {
     /// <summary>
-    /// Interaktionslogik für Home.xaml
+    /// Interaktionslogik für HomeView.xaml
     /// </summary>
-    public partial class Home
+    public partial class HomeView
     {
-        public Home()
+        public HomeView()
         {
             InitializeComponent();
         }

@@ -4,8 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:bm="clr-namespace:Company.Basic.UI;assembly=Company.Basic.UI"
     xmlns:catel="http://schemas.catelproject.com"
+    xmlns:conv="clr-namespace:Company.Project.UI.Converters"
     xmlns:local="clr-namespace:Company.Project.UI"
-    xmlns:selectors="clr-namespace:Company.Project.UI.Selectors"
+    xmlns:slc="clr-namespace:Company.Project.UI.Selectors"
     xmlns:sm="clr-namespace:Company.Security.UI;assembly=Company.Security.UI"
     Title="{Binding Title}"
     ResizeMode="CanResize"
@@ -15,16 +16,16 @@
     WindowState="Maximized">
     <catel:DataWindow.Resources>
         <DataTemplate x:Key="ProjectHome">
-            <local:Home />
+            <local:HomeView />
         </DataTemplate>
         <DataTemplate x:Key="BasicHome">
-            <bm:Home />
+            <bm:HomeView />
         </DataTemplate>
         <DataTemplate x:Key="SecurityHome">
-            <sm:Home />
+            <sm:HomeView />
         </DataTemplate>
 
-        <selectors:MainContentTemplateSelector
+        <slc:MainContentTemplateSelector
             x:Key="MainContentTemplateSelector"
             BasicHomeDataTemplate="{StaticResource BasicHome}"
             ProjectHomeDataTemplate="{StaticResource ProjectHome}"
@@ -35,6 +36,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <ToolBar Grid.Row="0">
@@ -62,6 +64,16 @@
             Content="{Binding ActivContent}"
             ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
 
+        <StackPanel Grid.Row="1" Visibility="{Binding ActivContent, Converter={x:Static conv:SaveableVisibilityConverter.Instance}}">
+            <Button
+                Margin="3"
+                Command=""
+                Content="Save" />
+            <Button
+                Margin="3"
+                Command=""
+                Content="Cancel" />
+        </StackPanel>
 
     </Grid>
 

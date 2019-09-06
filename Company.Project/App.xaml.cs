@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Catel.IoC;
 using Catel.MVVM;
+using Catel.Services;
 
 namespace Company.Project
 {
@@ -17,9 +18,9 @@ namespace Company.Project
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //#if DEBUG
-            //            LogManager.AddDebugListener();
-            //#endif
+//#if DEBUG
+//            Catel.Logging.LogManager.AddDebugListener();
+//#endif
 
 
             // =========================
@@ -57,46 +58,52 @@ namespace Company.Project
             IViewModelLocator viewModelLocator = ServiceLocator.Default.ResolveType<IViewModelLocator>();
 
             // Project
-            viewModelLocator.Register(typeof(Company.Project.UI.MainWindow), typeof(Company.Project.Presentation.MainWindowVm));
-            viewModelLocator.Register(typeof(Company.Project.UI.Home), typeof(Company.Project.Presentation.HomeVm));
+            viewModelLocator.Register(typeof(Company.Project.UI.MainWindow), typeof(Company.Project.Presentation.MainVm));
+            viewModelLocator.Register(typeof(Company.Project.UI.HomeView), typeof(Company.Project.Presentation.HomeVm));
 
             // Basic
-            viewModelLocator.Register(typeof(Company.Basic.UI.Home), typeof(Company.Basic.Presentation.HomeVm));
+            viewModelLocator.Register(typeof(Company.Basic.UI.HomeView), typeof(Company.Basic.Presentation.HomeVm));
+            viewModelLocator.Register(typeof(Company.Basic.UI.PersonView), typeof(Company.Basic.Presentation.PersonVm));
 
             // Security
-            viewModelLocator.Register(typeof(Company.Security.UI.Home), typeof(Company.Security.Presentation.HomeVm));
+            viewModelLocator.Register(typeof(Company.Security.UI.HomeView), typeof(Company.Security.Presentation.HomeVm));
+
+
+            // =========================
+            //        Windows  
+            // =========================
+            IUIVisualizerService uIVisualizerService = ServiceLocator.Default.ResolveType<IUIVisualizerService>();
+
+            uIVisualizerService.Register(typeof(Company.Project.Presentation.MainVm), typeof(Company.Project.UI.MainWindow));
 
 
 #if DEBUG
             new TestData();
 #endif
 
-            Current.MainWindow = new Company.Project.UI.MainWindow();
-            Current.MainWindow.Show();
 
             base.OnStartup(e);
 
+            uIVisualizerService.ShowAsync<Company.Project.Presentation.MainVm>();
+
             // TODO : List
 
-            // Speichern eines Eltern elements, dessen Kind gelöscht wurde (bzw, als gelöscht markiert)
-
             // Weitere Themen
-            // nameof oder Reflection bei den Include Querries an den Repros verwenden? Probleme beim Auteilen von klassen 
+            // Company.Project.UI.Selectors.MainContentTemplateSelector muss verschwinden
             // Benötigt Qerry noch sowas wie "Expression<Func<TEntity, bool>> predicate" an den Interfaces?
             // DeleteCascade ist im EF immer an. Austellen ist derzeit nicht möglich. Sollte man aber noch mit größerer Modelanzahl testen
-            // Klassen halten eine ClassInfo, die die Relection Informationen enthält. Somit könnte man alle Listen etc ausfindig machen zum speichern, CompleteLoad, Validierung, ...
+            // Klassen halten eine ClassInfo, die die Relection Informationen enthält, für Validierung, ...
+            // Auf Close Methode von Model/Vm hören und Dirty(State) überprüfen
 
             // Optimierungen
             // - Ef:                    Concurrency? (könnte fehlerhafte programmierung/refreshing aufdecken)
             // - DataServices:          AfterLoad sollte alle KindObjekte auch Clearen
             // - Model:                 Ableiten von SavableModelBase für Serialisation?
-            // - ViewModelBase:         Ableiten und Save in ModelBase2 voraussetzen? Dann könnte man auch das SaveAsync, DisplayText direkt mit einbinden
             // - ReadOnlyVms:           ReadOnly Properties an VMs prüfen
             // - Namesnkonvention:      Locator (service, ViewModel, ...) über Namesnkonvention regeln
-            // - UserControl:           UnloadBehavior="CloseViewModel" als Standard
 
             // Mögliche Erweiterungen
-            // - Instanz refresher:     2 Instanzen des selben Datensatzes refreshen 
+            // - Instanz refresher:     2 Instanzen des selben Datensatzes refreshen, nach Speichern
             // - Validation
             // - Serialisation
             // - Mehrsprachenfähigkeit

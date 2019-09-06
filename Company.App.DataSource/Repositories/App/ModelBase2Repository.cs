@@ -70,41 +70,5 @@ namespace Company.App.DataSource.Repositories.App
                     break;
             }
         }
-
-
-        // Brauche ich das???
-        private void SaveRecursively(ModelBase2 entity)
-        {
-            if(entity == null)
-                return;
-
-            List<string> dependents = new List<string>();
-
-            IEnumerable<System.Reflection.PropertyInfo> properties = entity.GetType()
-                .GetProperties()
-                .Where(p => typeof(IEnumerable<ModelBase2>).IsAssignableFrom(p.PropertyType) || typeof(ModelBase2).IsAssignableFrom(p.PropertyType));
-
-            foreach(System.Reflection.PropertyInfo property in properties)
-            {
-                object value = property.GetValue(entity);
-                if(value is IEnumerable<ModelBase2>)
-                {
-                    IEnumerable<ModelBase2> childs = value as IEnumerable<ModelBase2>;
-                    if(childs == null)
-                        continue;
-
-                    foreach(ModelBase2 child in childs)
-                        child.SaveModel();
-                }
-                else if(value is ModelBase2)
-                {
-                    ModelBase2 child = value as ModelBase2;
-                    if(child == null)
-                        continue;
-
-                    child.SaveModel();
-                }
-            }
-        }
     }
 }

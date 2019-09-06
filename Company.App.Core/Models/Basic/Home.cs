@@ -27,10 +27,11 @@ namespace Company.App.Core.Models.Basic
 
         #region Methods
 
-        public void OpenPerson(Person selectedPerson)
+        public void OpenPerson(int id)
         {
             // Rechte, etc.
-            ServiceLocator.Default.ResolveType<Logic.Project.IMainUiService>().SetMainContent(selectedPerson);
+            Person person = ServiceLocator.Default.ResolveType<Logic.Basic.IPersonService>().GetByIdForEdit(id);
+            ServiceLocator.Default.ResolveType<Logic.Project.IMainUiService>().SetMainContent(person);
         }
 
         #endregion

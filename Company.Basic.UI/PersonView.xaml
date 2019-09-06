@@ -9,9 +9,38 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Content="{Binding Title}" />
-        <Label Grid.Row="1" Content="Here goes your real content" />
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="Name" />
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="{Binding Name}" />
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="Surname" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding Surname}" />
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="LogIn" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding User.DisplayText}" />
     </Grid>
 
 </catel:UserControl>

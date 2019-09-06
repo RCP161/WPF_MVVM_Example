@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using Company.App.Core.Models.Basic;
@@ -21,6 +22,11 @@ namespace Company.App.DataSource.Repositories.Basic
         public IEnumerable<User> GetByGroupId(int id)
         {
             return DataAccess.Query<User>().Where(x => x.Groups.Any(y => y.Id == id)).ToList();
+        }
+
+        public Person GetByIdForEdit(int id)
+        {
+            return DataAccess.Query<Person>().Where(x => x.Id == id).Include(x => x.User).FirstOrDefault();
         }
     }
 }

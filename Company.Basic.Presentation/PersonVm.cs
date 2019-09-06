@@ -4,6 +4,7 @@ using System.Text;
 using Catel.Data;
 using Catel.MVVM;
 using Company.App.Core.Models.Basic;
+using Company.App.Core.Models.Security;
 
 namespace Company.Basic.Presentation
 {
@@ -41,6 +42,13 @@ namespace Company.Basic.Presentation
         }
         public static readonly PropertyData SurenameProperty = RegisterProperty(nameof(Surename), typeof(string));
 
-        
+
+        [ViewModelToModel]
+        public User User
+        {
+            get { return GetValue<User>(UserProperty); }
+            set { SetValue(UserProperty, value); }
+        }
+        public static readonly PropertyData UserProperty = RegisterProperty(nameof(User), typeof(User), null);
     }
 }

@@ -9,5 +9,6 @@ namespace Company.App.DataSourceDefinition.Repositories.Basic
     public interface IPersonRepository
     {
         IEnumerable<User> GetByGroupId(int id);
+        Person GetByIdForEdit(int id);
     }
 }

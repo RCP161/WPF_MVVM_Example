@@ -13,7 +13,7 @@ namespace Company.Basic.Presentation
         public HomeVm(Home home)
         {
             Model = home;
-            OpenPersonCommand = new Command(() => Model.OpenPerson(SelectedPerson));
+            OpenPersonCommand = new Command(() => Model.OpenPerson(SelectedPerson.Id));
         }
 
         #region Properties

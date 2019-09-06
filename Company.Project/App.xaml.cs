@@ -104,6 +104,7 @@ namespace Company.Project
             // Mögliche Erweiterungen
             // - Instanz refresher:     2 Instanzen des selben Datensatzes refreshen, nach Speichern
             // - Validation
+            // - PropertyGrid?
             // - Serialisation
             // - Mehrsprachenfähigkeit
             // - Schreibrechte

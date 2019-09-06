@@ -8,6 +8,7 @@ using Catel.Data;
 using Catel.IoC;
 using Company.App.Core.Logic;
 using Company.App.Core.Models;
+using Company.App.Core.Models.Security;
 
 namespace Company.App.Core.Models.Basic
 {
@@ -46,6 +47,14 @@ namespace Company.App.Core.Models.Basic
             set { SetValue(SurenameProperty, value); }
         }
         public static readonly PropertyData SurenameProperty = RegisterProperty(nameof(Surename), typeof(string));
+
+
+        public virtual User User
+        {
+            get { return GetValue<User>(UserProperty); }
+            set { SetValue(UserProperty, value); }
+        }
+        public static readonly PropertyData UserProperty = RegisterProperty(nameof(User), typeof(User), null);
 
         #endregion
 

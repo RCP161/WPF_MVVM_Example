@@ -91,8 +91,6 @@ namespace Company.Project
             // TODO : List
 
             // Weitere Themen
-            // Company.Project.UI.Selectors.MainContentTemplateSelector muss verschwinden
-            // Benötigt Qerry noch sowas wie "Expression<Func<TEntity, bool>> predicate" an den Interfaces?
             // DeleteCascade ist im EF immer an. Austellen ist derzeit nicht möglich. Sollte man aber noch mit größerer Modelanzahl testen
             // Klassen halten eine ClassInfo, die die Relection Informationen enthält, für Validierung, ...
             // Auf Close Methode von Model/Vm hören und Dirty(State) überprüfen
@@ -111,9 +109,14 @@ namespace Company.Project
             // - Mehrsprachenfähigkeit
             // - Schreibrechte
             // - EF Plus prüfen
-            // - CodeGeneration
             // - Weitere Nugets von Orc http://opensource.wildgums.com/orc.entityframework/
-            // - Catel Fody:            Vereinfacht die schreibweise der Properties. Muss aber auch erst konfiguriert werden
+            // - CodeGeneration
+            //   - EF DB Set (würde die funktion überflüssig machen)
+            //   - Respository
+            //   - Service (Logic)
+            //   - VM
+            //   - View
+            //   - ContentTemplates eintrag
         }
     }
 }

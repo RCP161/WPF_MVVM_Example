@@ -97,7 +97,6 @@ namespace Company.Project
 
             // Optimierungen
             // - Ef:                    Concurrency? (könnte fehlerhafte programmierung/refreshing aufdecken)
-            // - DataServices:          AfterLoad sollte alle KindObjekte auch Clearen
             // - Model:                 Ableiten von SavableModelBase für Serialisation?
             // - ReadOnlyVms:           ReadOnly Properties an VMs prüfen
             // - Namesnkonvention:      Locator (service, ViewModel, ...) über Namesnkonvention regeln

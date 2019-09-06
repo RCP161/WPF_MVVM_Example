@@ -1,0 +1,36 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:bm="clr-namespace:Company.Basic.UI;assembly=Company.Basic.UI"
+    xmlns:bmm="clr-namespace:Company.App.Core.Models.Basic;assembly=Company.App.Core"
+    xmlns:local="namespace:Company.Project"
+    xmlns:pm="clr-namespace:Company.Project.UI;assembly=Company.Project.UI"
+    xmlns:pmm="clr-namespace:Company.App.Core.Models.Project;assembly=Company.App.Core"
+    xmlns:sm="clr-namespace:Company.Security.UI;assembly=Company.Security.UI"
+    xmlns:smm="clr-namespace:Company.App.Core.Models.Security;assembly=Company.App.Core">
+
+
+    <!--  Project  -->
+    <DataTemplate DataType="{x:Type pmm:Home}">
+        <pm:HomeView />
+    </DataTemplate>
+
+    <!--  Basic  -->
+    <DataTemplate DataType="{x:Type bmm:Home}">
+        <bm:HomeView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type bmm:Person}">
+        <bm:PersonView />
+    </DataTemplate>
+
+    <!--  Securirty  -->
+    <DataTemplate DataType="{x:Type smm:Home}">
+        <sm:HomeView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type smm:Group}">
+        <sm:GroupView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type smm:User}">
+        <sm:UserView />
+    </DataTemplate>
+</ResourceDictionary>

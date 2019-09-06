@@ -18,12 +18,20 @@
     <ProjectReference Include="..\Company.Basic.Logic\Company.Basic.Logic.csproj" />
     <ProjectReference Include="..\Company.Basic.Presentation\Company.Basic.Presentation.csproj" />
     <ProjectReference Include="..\Company.Basic.UI\Company.Basic.UI.csproj" />
+    <ProjectReference Include="..\Company.Core.App\Company.Core.App.csproj" />
+    <ProjectReference Include="..\Company.Core.ViewModels\Company.Core.ViewModels.csproj" />
     <ProjectReference Include="..\Company.Project.Logic\Company.Project.Logic.csproj" />
     <ProjectReference Include="..\Company.Project.Presentation\Company.Project.Presentation.csproj" />
     <ProjectReference Include="..\Company.Project.UI\Company.Project.UI.csproj" />
     <ProjectReference Include="..\Company.Security.Logic\Company.Security.Logic.csproj" />
     <ProjectReference Include="..\Company.Security.Presentation\Company.Security.Presentation.csproj" />
     <ProjectReference Include="..\Company.Security.UI\Company.Security.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ContentTemplates.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

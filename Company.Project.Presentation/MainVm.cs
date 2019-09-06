@@ -37,18 +37,7 @@ namespace Company.Project.Presentation
         [ViewModelToModel]
         public ModelBase ActivContent
         {
-            get
-            {
-                ModelBase modelBase = GetValue<ModelBase>(ActivContentProperty);
-                if(modelBase is Company.App.Core.Models.Project.Home)
-                    return modelBase as Company.App.Core.Models.Project.Home;
-                if(modelBase is Company.App.Core.Models.Basic.Home)
-                    return modelBase as Company.App.Core.Models.Basic.Home;
-                if(modelBase is Company.App.Core.Models.Security.Home)
-                    return modelBase as Company.App.Core.Models.Security.Home;
-
-                return null;
-            }
+            get { return GetValue<ModelBase>(ActivContentProperty); }
             set { SetValue(ActivContentProperty, value as ModelBase); }
         }
 

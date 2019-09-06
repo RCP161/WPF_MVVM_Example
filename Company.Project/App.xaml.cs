@@ -67,6 +67,8 @@ namespace Company.Project
 
             // Security
             viewModelLocator.Register(typeof(Company.Security.UI.HomeView), typeof(Company.Security.Presentation.HomeVm));
+            viewModelLocator.Register(typeof(Company.Security.UI.GroupView), typeof(Company.Security.Presentation.GroupVm));
+            viewModelLocator.Register(typeof(Company.Security.UI.UserView), typeof(Company.Security.Presentation.UserVm));
 
 
             // =========================

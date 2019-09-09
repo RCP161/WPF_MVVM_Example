@@ -11,8 +11,8 @@ namespace Company.App.DataSourceDefinition.Common
         Repositories.Basic.IPersonRepository PersonRepository { get; }
         Repositories.Security.IGroupRepository GroupRepository { get; }
         Repositories.Security.IGroupPermissionRepository GroupPermissionRepository { get; }
-        
 
+        void CreateNewDataSource();
         void Complete();
     }
 }

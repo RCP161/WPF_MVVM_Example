@@ -1,37 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 using System.Linq;
 using Catel.Data;
 using Company.App.Core.Models;
 using Company.App.DataSourceDefinition.Common;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Company.App.DataSource.Common
 {
-    public class EfContext : DbContext, IDataAccess
+    public class EfContext : DbContext
     {
-        /// <summary>
-        /// Konstruktor zum erstellen des Kontext
-        /// </summary>
-        /// <param name="ConnectionString">Connection String</param>
-        public EfContext(IDbConfigruation config) : base(config.ConnectionString)
-        { }
+        private IDbConfigruation config;
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public EfContext(IDbConfigruation config)
         {
-            Database.SetInitializer<EfContext>(new DropCreateDatabaseAlways<EfContext>());
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EfContext, EfConfiguration>());
+            this.config = config;
+        }
 
 
-            System.Reflection.MethodInfo entityMethod1 = typeof(DbModelBuilder).GetMethod("Entity");
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            System.Reflection.MethodInfo entityMethod1 = typeof(ModelBuilder).GetMethod("Entity",new Type[0]);
 
             List<Type> modelCollection = (from t in typeof(ModelBase2).Assembly.GetTypes() where Attribute.IsDefined(t, typeof(TableAttribute)) select t).ToList();
 
             foreach(Type item in modelCollection)
                 entityMethod1.MakeGenericMethod(item).Invoke(modelBuilder, new object[] { });
+        }
 
-            base.OnModelCreating(modelBuilder);
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(config.ConnectionString);
         }
 
         public T GetById<T>(int id) where T : ModelBase2
@@ -44,30 +46,29 @@ namespace Company.App.DataSource.Common
             return Set<T>().ToList();
         }
 
-        public IQueryable<T> Query<T>() where T : ModelBase2
+        public new IQueryable<T> Query<T>() where T : ModelBase2
         {
             return Set<T>();
         }
 
-        public T Add<T>(T entity) where T : ModelBase2
+        public new void Add<T>(T entity) where T : ModelBase2
         {
-            entity = Set<T>().Attach(entity);
             Entry(entity).State = EntityState.Added;
-            return entity;
         }
 
-        public T Delete<T>(T entity) where T : ModelBase2
+        public void AddAllRelations<T>(T entity) where T : ModelBase2
         {
-            entity = Set<T>().Attach(entity);
-            Entry(entity).State = EntityState.Deleted;
-            return entity;
+            base.Add(entity);
         }
 
-        public T Update<T>(T entity) where T : ModelBase2
+        public void Delete<T>(T entity) where T : ModelBase2
         {
-            entity = Set<T>().Attach(entity);
-            Entry(entity).State = EntityState.Modified;
-            return entity;
+            base.Remove(entity);
+        }
+
+        public new void Update<T>(T entity) where T : ModelBase2
+        {
+            base.Update(entity);
         }
 
         public void Complete()

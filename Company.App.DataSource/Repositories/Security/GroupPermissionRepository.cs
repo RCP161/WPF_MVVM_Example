@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Company.App.Core.Models.Security;
+using Company.App.DataSource.Common;
 using Company.App.DataSourceDefinition.Common;
 using Company.App.DataSourceDefinition.Repositories.Security;
 
@@ -10,12 +11,12 @@ namespace Company.App.DataSource.Repositories.Security
 {
     public class GroupPermissionRepository : IGroupPermissionRepository
     {
-        internal GroupPermissionRepository(IDataAccess dataAccess)
+        internal GroupPermissionRepository(EfContext dataAccess)
         {
             DataAccess = dataAccess;
         }
 
-        protected IDataAccess DataAccess { get; private set; }
+        protected EfContext DataAccess { get; private set; }
 
         public IEnumerable<GroupPermission> GetByGroupId(int id)
         {

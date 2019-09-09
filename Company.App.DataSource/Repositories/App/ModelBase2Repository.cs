@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Company.App.Core.Common;
 using Company.App.Core.Models;
+using Company.App.DataSource.Common;
 using Company.App.DataSourceDefinition.Common;
 using Company.App.DataSourceDefinition.Repositories.App;
 
@@ -11,12 +12,12 @@ namespace Company.App.DataSource.Repositories.App
 {
     public class ModelBase2Repository : IModelBase2Repository
     {
-        internal ModelBase2Repository(IDataAccess dataAccess)
+        internal ModelBase2Repository(EfContext dataAccess)
         {
             DataAccess = dataAccess;
         }
 
-        protected IDataAccess DataAccess { get; private set; }
+        protected EfContext DataAccess { get; private set; }
 
         /// <summary>
         /// Liefert das Objekt anhand der Id in dem Repository

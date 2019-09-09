@@ -56,6 +56,9 @@ namespace Company.App.Core.Models.Security
         public static readonly PropertyData PersonProperty = RegisterProperty(nameof(Person), typeof(Person), null);
 
 
+        public IList<UserGroups> UserGroups { get; set; }
+
+        [NotMapped]
         public ObservableCollection<Group> Groups
         {
             get

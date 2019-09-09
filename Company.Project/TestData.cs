@@ -23,11 +23,18 @@ namespace Company.Project
 
         private void TestOrCreatePersons()
         {
+            CreateNewDb();
             CreatePersons();
             CreatePermissions();
 
 
 
+        }
+
+        private void CreateNewDb()
+        {
+            IUnitOfWork service = ServiceLocator.Default.ResolveType<IUnitOfWork>();
+            service.CreateNewDataSource();
         }
 
         private void CreatePersons()

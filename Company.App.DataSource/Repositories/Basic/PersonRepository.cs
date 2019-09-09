@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using Company.App.Core.Models.Basic;
 using Company.App.Core.Models.Security;
+using Company.App.DataSource.Common;
 using Company.App.DataSourceDefinition.Common;
 using Company.App.DataSourceDefinition.Repositories.Basic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Company.App.DataSource.Repositories.Basic
 {
     public class PersonRepository : IPersonRepository
     {
-        internal PersonRepository(IDataAccess dataAccess)
+        internal PersonRepository(EfContext dataAccess)
         {
             DataAccess = dataAccess;
         }
 
-        protected IDataAccess DataAccess { get; private set; }
+        protected EfContext DataAccess { get; private set; }
 
         public IEnumerable<User> GetByGroupId(int id)
         {

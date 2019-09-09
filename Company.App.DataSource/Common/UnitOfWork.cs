@@ -11,16 +11,16 @@ namespace Company.App.DataSource.Common
     {
         #region Constructor
 
-        public UnitOfWork(IDataAccess dataAccess)
+        public UnitOfWork()
         {
-            DataAccess = dataAccess;
+            DataAccess = new EfContext(ServiceLocator.Default.ResolveType<IDbConfigruation>());
         }
 
         #endregion
 
         #region Properties
 
-        private IDataAccess DataAccess { get; set; }
+        private EfContext DataAccess { get; set; }
 
 
 
@@ -75,12 +75,15 @@ namespace Company.App.DataSource.Common
             }
         }
 
-
-
-
         #endregion
 
         #region Methods
+
+        public void CreateNewDataSource()
+        {
+            DataAccess.Database.EnsureDeleted();
+            DataAccess.Database.EnsureCreated();
+        }
 
         public void Complete()
         {

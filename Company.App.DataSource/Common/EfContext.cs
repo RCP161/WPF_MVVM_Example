@@ -20,6 +20,10 @@ namespace Company.App.DataSource.Common
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<EfContext>(new DropCreateDatabaseAlways<EfContext>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EfContext, EfConfiguration>());
+
+
             System.Reflection.MethodInfo entityMethod1 = typeof(DbModelBuilder).GetMethod("Entity");
 
             List<Type> modelCollection = (from t in typeof(ModelBase2).Assembly.GetTypes() where Attribute.IsDefined(t, typeof(TableAttribute)) select t).ToList();

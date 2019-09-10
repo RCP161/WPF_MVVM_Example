@@ -50,8 +50,46 @@ namespace Company.App.DataSource.Repositories.App
             return DataAccess.Query<T>().Count();
         }
 
-
         public void SaveOrUpdate<T>(T entity) where T : ModelBase2
+        {
+            throw new NotSupportedException("Soll so nicht funktionieren. Würde die Saves in viele kleine UoWs verteilen ...");
+
+
+            if(entity == null || entity.State == StateEnum.Unchanged)
+                return;
+
+            SaveOrUpdateModel(entity);
+
+            List<string> dependents = new List<string>();
+
+            IEnumerable<System.Reflection.PropertyInfo> properties = entity.GetType()
+                .GetProperties()
+                .Where(p => typeof(IEnumerable<ModelBase2>).IsAssignableFrom(p.PropertyType) || typeof(ModelBase2).IsAssignableFrom(p.PropertyType));
+
+            foreach(System.Reflection.PropertyInfo property in properties)
+            {
+                object value = property.GetValue(entity);
+
+                if(value == null)
+                    continue;
+                
+                if(value is IEnumerable<ModelBase2>)
+                {
+                    IEnumerable<ModelBase2> childs = value as IEnumerable<ModelBase2>;
+
+                    foreach(ModelBase2 child in childs)
+                        child.Save();
+                }
+                else if(value is ModelBase2)
+                {
+                    ModelBase2 child = value as ModelBase2;
+                    SaveOrUpdate(child);
+                }
+            }
+        }
+
+
+        private void SaveOrUpdateModel<T>(T entity) where T : ModelBase2
         {
             switch(entity.State)
             {

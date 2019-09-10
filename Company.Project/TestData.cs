@@ -41,11 +41,11 @@ namespace Company.Project
             Person p;
             for(int i = 0; i <= 5; i++)
             {
-                p = new Person();
+                p = new Person(true);
                 p.Name = "Person";
                 p.Surename = Guid.NewGuid().ToString();
 
-                p.SaveModel();
+                p.Save();
             }
         }
 
@@ -57,73 +57,75 @@ namespace Company.Project
             if(c > 0)
                 return;
 
-            Permission p = new Permission();
+            Permission p = new Permission(true);
             p.Name = "Person";
             p.Comment = "Recht zum sehen und bearbeiten von Personen";
-            p.SaveModel();
+            p.Save();
 
-            Permission g = new Permission();
+            Permission g = new Permission(true);
             g.Name = "Group";
             g.Comment = "Recht zum sehen und bearbeiten von Gruppen";
-            g.SaveModel();
+            g.Save();
 
-            Permission u = new Permission();
+            Permission u = new Permission(true);
             u.Name = "User";
             u.Comment = "Recht zum sehen und bearbeiten von LogIn-Usern";
-            u.SaveModel();
+            u.Save();
 
             // Gruppe 1
-            Group grp = new Group();
+            Group grp = new Group(true);
             grp.Name = "KeyUser";
+            grp.GroupPermissions = new System.Collections.ObjectModel.ObservableCollection<GroupPermission>();
 
-            GroupPermission gp = new GroupPermission();
+            GroupPermission gp = new GroupPermission(true);
             gp.Permission = p;
             gp.Write = true;
             grp.GroupPermissions.Add(gp);
 
-            gp = new GroupPermission();
+            gp = new GroupPermission(true);
             gp.Permission = g;
             gp.Write = true;
             grp.GroupPermissions.Add(gp);
 
-            gp = new GroupPermission();
+            gp = new GroupPermission(true);
             gp.Permission = u;
             gp.Write = true;
             grp.GroupPermissions.Add(gp);
 
-            grp.SaveModel();
+            grp.Save();
 
 
             // Gruppe 2
-            grp = new Group();
+            grp = new Group(true);
             grp.Name = "Verwaltung";
+            grp.GroupPermissions = new System.Collections.ObjectModel.ObservableCollection<GroupPermission>();
 
-            gp = new GroupPermission();
+            gp = new GroupPermission(true);
             gp.Permission = p;
             gp.Write = true;
             grp.GroupPermissions.Add(gp);
 
-            grp.SaveModel();
+            grp.Save();
 
 
             // Gruppe 3
-            grp = new Group();
+            grp = new Group(true);
             grp.Name = "Facharbeiter";
-            grp.SaveModel();
+            grp.Save();
 
 
             IPersonService personService = ServiceLocator.Default.ResolveType<IPersonService>();
 
-            User user = new User();
+            User user = new User(true);
             user.LogIn = "KeyUser";
             user.Password = "Password";
             user.Person = personService.GetAll().First(); // Eig falsch, aber das ist hier für Testdaten egal. Eig eigene Funktion
-            user.SaveModel();
+            user.Save();
 
-            user = new User();
+            user = new User(true);
             user.LogIn = "Sandra";
             user.Password = "Mustermann";
-            user.SaveModel();
+            user.Save();
         }
     }
 }

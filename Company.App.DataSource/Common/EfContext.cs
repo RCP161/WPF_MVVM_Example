@@ -49,25 +49,20 @@ namespace Company.App.DataSource.Common
             return Set<T>();
         }
 
-        public T Add<T>(T entity) where T : ModelBase2
+        public void Add<T>(T entity) where T : ModelBase2
         {
-            entity = Set<T>().Attach(entity);
-            Entry(entity).State = EntityState.Added;
-            return entity;
+            Set<T>().Add(entity);
         }
 
-        public T Delete<T>(T entity) where T : ModelBase2
+        public void Delete<T>(T entity) where T : ModelBase2
         {
-            entity = Set<T>().Attach(entity);
-            Entry(entity).State = EntityState.Deleted;
-            return entity;
+            Set<T>().Remove(entity);
         }
 
-        public T Update<T>(T entity) where T : ModelBase2
+        public void Update<T>(T entity) where T : ModelBase2
         {
             entity = Set<T>().Attach(entity);
             Entry(entity).State = EntityState.Modified;
-            return entity;
         }
 
         public void Complete()

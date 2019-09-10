@@ -11,7 +11,7 @@ namespace Company.App.Core.Models.Security
     [Table("GroupPermissions")]
     public class GroupPermission : ModelBase2
     {
-        public GroupPermission() : base(true)
+        public GroupPermission() : base(false)
         { }
 
         public GroupPermission(bool isNew) : base(isNew)
@@ -74,9 +74,9 @@ namespace Company.App.Core.Models.Security
 
         #region Methods
 
-        public override void SaveModel()
+        public override void Save()
         {
-            SaveModel<GroupPermission>();
+            Save<GroupPermission>();
         }
 
         protected override string GetDisplayText()

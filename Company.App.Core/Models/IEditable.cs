@@ -15,6 +15,6 @@ namespace Company.App.Core.Models
 
         public void AfterLoad();
 
-        public void SaveModel();
+        public void Save();
     }
 }

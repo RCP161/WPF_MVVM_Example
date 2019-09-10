@@ -15,7 +15,7 @@ namespace Company.App.Core.Models.Basic
     [Table("Person")]
     public class Person : ModelBase2
     {
-        public Person() : this(true)
+        public Person() : this(false)
         { }
 
         public Person(bool isNew) : base(isNew)
@@ -49,6 +49,7 @@ namespace Company.App.Core.Models.Basic
         public static readonly PropertyData SurenameProperty = RegisterProperty(nameof(Surename), typeof(string));
 
 
+        [NotMapped]
         public virtual User User
         {
             get { return GetValue<User>(UserProperty); }
@@ -60,9 +61,9 @@ namespace Company.App.Core.Models.Basic
 
         #region Methods
 
-        public override void SaveModel()
+        public override void Save()
         {
-            SaveModel<Person>();
+            Save<Person>();
         }
 
         protected override string GetDisplayText()

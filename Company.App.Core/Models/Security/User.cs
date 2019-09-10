@@ -13,7 +13,7 @@ namespace Company.App.Core.Models.Security
     [Table("User")]
     public class User : ModelBase2
     {
-        public User() : base(true)
+        public User() : base(false)
         { }
 
         public User(bool isNew) : base(isNew)
@@ -58,15 +58,7 @@ namespace Company.App.Core.Models.Security
 
         public ObservableCollection<Group> Groups
         {
-            get
-            {
-                ObservableCollection<Group> list = GetValue<ObservableCollection<Group>>(GroupsProperty);
-
-                if(list == null)
-                    list = new ObservableCollection<Group>(ServiceLocator.Default.ResolveType<Logic.Security.IGroupService>().GetByUserId(Id));
-
-                return list;
-            }
+            get { return GetValue<ObservableCollection<Group>>(GroupsProperty); }
             set { SetValue(GroupsProperty, value); }
         }
         public static readonly PropertyData GroupsProperty = RegisterProperty(nameof(Groups), typeof(ObservableCollection<Group>));
@@ -75,9 +67,9 @@ namespace Company.App.Core.Models.Security
 
         #region Methods
 
-        public override void SaveModel()
+        public override void Save()
         {
-            SaveModel<User>();
+            Save<User>();
         }
 
         protected override string GetDisplayText()

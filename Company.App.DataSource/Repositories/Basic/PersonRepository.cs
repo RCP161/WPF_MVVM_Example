@@ -26,7 +26,9 @@ namespace Company.App.DataSource.Repositories.Basic
 
         public Person GetByIdForEdit(int id)
         {
-            return DataAccess.Query<Person>().Where(x => x.Id == id).Include(x => x.User).FirstOrDefault();
+            Person p = DataAccess.GetById<Person>(id);
+            p.User = DataAccess.Query<User>().Where(x => x.Person.Id == id).FirstOrDefault();
+            return p;
         }
     }
 }

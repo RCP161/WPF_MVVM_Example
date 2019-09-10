@@ -32,9 +32,9 @@ namespace Company.App.Core.Models
             State = StateEnum.Unchanged;
         }
 
-        public abstract void SaveModel();
+        public abstract void Save();
 
-        protected void SaveModel<T>() where T : ModelBase2
+        protected void Save<T>() where T : ModelBase2
         {
             Logic.App.ISaveableService service = ServiceLocator.Default.ResolveType<Logic.App.ISaveableService>();
             service.Save((T)this);

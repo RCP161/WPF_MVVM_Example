@@ -13,7 +13,7 @@ namespace Company.App.Core.Models.Security
     [Table("Group")]
     public class Group : ModelBase2
     {
-        public Group() : base(true)
+        public Group() : base(false)
         { }
 
         public Group(bool isNew) : base(isNew)
@@ -41,15 +41,7 @@ namespace Company.App.Core.Models.Security
 
         public ObservableCollection<GroupPermission> GroupPermissions
         {
-            get
-            {
-                ObservableCollection<GroupPermission> list = GetValue<ObservableCollection<GroupPermission>>(GroupPermissionsProperty);
-
-                if(list == null)
-                    list = new ObservableCollection<GroupPermission>(ServiceLocator.Default.ResolveType<Logic.Security.IGroupPermissionService>().GetByGroupId(Id));
-
-                return list;
-            }
+            get { return GetValue<ObservableCollection<GroupPermission>>(GroupPermissionsProperty); }
             set { SetValue(GroupPermissionsProperty, value); }
         }
 
@@ -59,15 +51,7 @@ namespace Company.App.Core.Models.Security
 
         public ObservableCollection<User> Users
         {
-            get
-            {
-                ObservableCollection<User> list = GetValue<ObservableCollection<User>>(GroupPermissionsProperty);
-
-                if(list == null)
-                    list = new ObservableCollection<User>(ServiceLocator.Default.ResolveType<Logic.Security.IUserService>().GetByGroupId(Id));
-
-                return list;
-            }
+            get { return GetValue<ObservableCollection<User>>(GroupPermissionsProperty); }
             set { SetValue(UsersProperty, value); }
         }
 
@@ -77,9 +61,9 @@ namespace Company.App.Core.Models.Security
 
         #region Methods
 
-        public override void SaveModel()
+        public override void Save()
         {
-            SaveModel<Group>();
+            Save<Group>();
         }
 
         protected override string GetDisplayText()

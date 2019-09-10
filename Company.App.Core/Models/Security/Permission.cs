@@ -11,7 +11,7 @@ namespace Company.App.Core.Models.Security
     [Table("Permission")]
     public class Permission : ModelBase2
     {
-        public Permission() : base(true)
+        public Permission() : base(false)
         { }
 
         public Permission(bool isNew) : base(isNew)
@@ -49,9 +49,9 @@ namespace Company.App.Core.Models.Security
 
         #region Methods
 
-        public override void SaveModel()
+        public override void Save()
         {
-            SaveModel<Permission>();
+            Save<Permission>();
         }
 
         protected override string GetDisplayText()

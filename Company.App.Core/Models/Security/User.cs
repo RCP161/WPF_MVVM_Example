@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
 using Catel.IoC;
+using Company.App.Core.Logic.App;
 using Company.App.Core.Models.Basic;
 
 namespace Company.App.Core.Models.Security
 {
     [Table("User")]
-    public class User : ModelBase2
+    public class User : ModelBase2<User>
     {
         public User() : base(false)
         { }
@@ -63,14 +64,10 @@ namespace Company.App.Core.Models.Security
         }
         public static readonly PropertyData GroupsProperty = RegisterProperty(nameof(Groups), typeof(ObservableCollection<Group>));
 
+
         #endregion
 
         #region Methods
-
-        public override void Save()
-        {
-            Save<User>();
-        }
 
         protected override string GetDisplayText()
         {

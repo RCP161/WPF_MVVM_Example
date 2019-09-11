@@ -6,7 +6,7 @@ using Company.App.Core.Models;
 
 namespace Company.App.Core.Logic
 {
-    public interface IModelBase2Service<T> where T : ModelBase2
+    public interface IModelBase2Service<T> where T : ModelBase2<T>
     {
         T GetById(int id);
 

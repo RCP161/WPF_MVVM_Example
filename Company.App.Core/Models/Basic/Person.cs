@@ -7,13 +7,14 @@ using System.Text;
 using Catel.Data;
 using Catel.IoC;
 using Company.App.Core.Logic;
+using Company.App.Core.Logic.App;
 using Company.App.Core.Models;
 using Company.App.Core.Models.Security;
 
 namespace Company.App.Core.Models.Basic
 {
     [Table("Person")]
-    public class Person : ModelBase2
+    public class Person : ModelBase2<Person>
     {
         public Person() : this(false)
         { }
@@ -30,6 +31,7 @@ namespace Company.App.Core.Models.Basic
             protected set { SetValue(IdProperty, value); }
         }
         public static readonly PropertyData IdProperty = RegisterProperty(nameof(Id), typeof(int));
+
 
         [Required, MaxLength(255)]
         public string Name
@@ -55,16 +57,13 @@ namespace Company.App.Core.Models.Basic
             get { return GetValue<User>(UserProperty); }
             set { SetValue(UserProperty, value); }
         }
+
         public static readonly PropertyData UserProperty = RegisterProperty(nameof(User), typeof(User), null);
+
 
         #endregion
 
         #region Methods
-
-        public override void Save()
-        {
-            Save<Person>();
-        }
 
         protected override string GetDisplayText()
         {

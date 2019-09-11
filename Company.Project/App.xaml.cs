@@ -26,8 +26,8 @@ namespace Company.Project
             // =========================
             //      App  
             // =========================
+            ServiceLocator.Default.RegisterType<Company.App.Core.Common.IDataAccess, Company.App.DataSource.Common.EfContext>(RegistrationType.Transient);
             ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDbConfigruation, Config>(RegistrationType.Singleton);
-            ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IDataAccess, Company.App.DataSource.Common.EfContext>(RegistrationType.Transient);
             ServiceLocator.Default.RegisterType<Company.App.DataSourceDefinition.Common.IUnitOfWork, Company.App.DataSource.Common.UnitOfWork>(RegistrationType.Transient);
 
 
@@ -36,7 +36,6 @@ namespace Company.Project
             // =========================
 
             // App
-            ServiceLocator.Default.RegisterType<Company.App.Core.Logic.App.ISaveableService, Company.App.Logic.SaveableService>(RegistrationType.Transient);
 
             // Project
             ServiceLocator.Default.RegisterType<Company.App.Core.Logic.Project.IMainUiService, Company.Project.Logic.MainUiService>(RegistrationType.Transient);

@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
+using Company.App.Core.Logic.App;
 using Company.App.Core.Models;
 
 namespace Company.App.Core.Models.Security
 {
     [Table("GroupPermissions")]
-    public class GroupPermission : ModelBase2
+    public class GroupPermission : ModelBase2<GroupPermission>
     {
         public GroupPermission() : base(false)
         { }
@@ -73,11 +74,6 @@ namespace Company.App.Core.Models.Security
         #endregion
 
         #region Methods
-
-        public override void Save()
-        {
-            Save<GroupPermission>();
-        }
 
         protected override string GetDisplayText()
         {

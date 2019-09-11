@@ -10,7 +10,7 @@ namespace Company.App.Core.Models
 {
     // Model für alle speicherbaren Objekte
 
-    public abstract class ModelBase2 : ModelBase1, IEditable
+    public abstract class ModelBase2<T> : ModelBase1, IEditable where T : ModelBase2<T>
     {
         public ModelBase2(bool isNew)
         {
@@ -20,7 +20,6 @@ namespace Company.App.Core.Models
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public abstract int Id { get; protected set; }
-
 
         public void MarkAsDeleted()
         {
@@ -32,12 +31,14 @@ namespace Company.App.Core.Models
             State = StateEnum.Unchanged;
         }
 
-        public abstract void Save();
-
-        protected void Save<T>() where T : ModelBase2
+        public void Save()
         {
-            Logic.App.ISaveableService service = ServiceLocator.Default.ResolveType<Logic.App.ISaveableService>();
-            service.Save((T)this);
+            Save(null);
+        }
+
+        public void Save(IDataAccess dataAccess)
+        {
+            SaveableService.Save((T)this, dataAccess);
 
             if(State == StateEnum.Modified || State == StateEnum.Created)
                 State = StateEnum.Unchanged;

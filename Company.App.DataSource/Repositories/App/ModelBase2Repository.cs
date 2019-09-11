@@ -23,7 +23,7 @@ namespace Company.App.DataSource.Repositories.App
         /// </summary>
         /// <param name="id">Id des Objekts</param>
         /// <returns>Objekt mit der angegebenen Id, sonst null</returns>
-        public T GetById<T>(int id) where T : ModelBase2
+        public T GetById<T>(int id) where T : ModelBase2<T>
         {
             T t = DataAccess.GetById<T>(id);
             t.AfterLoad();
@@ -34,7 +34,7 @@ namespace Company.App.DataSource.Repositories.App
         /// Liefert alle Objekte des Typs in dem Repository
         /// </summary>
         /// <returns>Auflistung von Objekten des Datentyps</returns>
-        public IEnumerable<T> GetAll<T>() where T : ModelBase2
+        public IEnumerable<T> GetAll<T>() where T : ModelBase2<T>
         {
             IEnumerable<T> ts = DataAccess.GetAll<T>().ToList();
 
@@ -45,16 +45,13 @@ namespace Company.App.DataSource.Repositories.App
         }
 
 
-        public int GetCount<T>() where T : ModelBase2
+        public int GetCount<T>() where T : ModelBase2<T>
         {
             return DataAccess.Query<T>().Count();
         }
 
-        public void SaveOrUpdate<T>(T entity) where T : ModelBase2
+        public void SaveOrUpdate<T>(T entity) where T : ModelBase2<T>
         {
-            throw new NotSupportedException("Soll so nicht funktionieren. Würde die Saves in viele kleine UoWs verteilen ...");
-
-
             if(entity == null || entity.State == StateEnum.Unchanged)
                 return;
 
@@ -64,7 +61,7 @@ namespace Company.App.DataSource.Repositories.App
 
             IEnumerable<System.Reflection.PropertyInfo> properties = entity.GetType()
                 .GetProperties()
-                .Where(p => typeof(IEnumerable<ModelBase2>).IsAssignableFrom(p.PropertyType) || typeof(ModelBase2).IsAssignableFrom(p.PropertyType));
+                .Where(p => typeof(IEnumerable<ModelBase2<T>>).IsAssignableFrom(p.PropertyType) || typeof(ModelBase2<T>).IsAssignableFrom(p.PropertyType));
 
             foreach(System.Reflection.PropertyInfo property in properties)
             {
@@ -73,23 +70,23 @@ namespace Company.App.DataSource.Repositories.App
                 if(value == null)
                     continue;
                 
-                if(value is IEnumerable<ModelBase2>)
+                if(value is IEnumerable<ModelBase2<T>>)
                 {
-                    IEnumerable<ModelBase2> childs = value as IEnumerable<ModelBase2>;
+                    IEnumerable<ModelBase2<T>> childs = value as IEnumerable<ModelBase2<T>>;
 
-                    foreach(ModelBase2 child in childs)
-                        child.Save();
+                    foreach(ModelBase2<T> child in childs)
+                        child.Save(DataAccess); // Hier muss dann der Richtige Service getriggert werden
                 }
-                else if(value is ModelBase2)
+                else if(value is ModelBase2<T>)
                 {
-                    ModelBase2 child = value as ModelBase2;
-                    SaveOrUpdate(child);
+                    ModelBase2<T> child = value as ModelBase2<T>;
+                    child.Save(DataAccess); // Hier muss dann der Richtige Service getriggert werden
                 }
             }
         }
 
 
-        private void SaveOrUpdateModel<T>(T entity) where T : ModelBase2
+        private void SaveOrUpdateModel<T>(T entity) where T : ModelBase2<T>
         {
             switch(entity.State)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Catel.IoC;
+using Company.App.Core.Common;
 using Company.App.DataSourceDefinition.Common;
 using Company.App.DataSourceDefinition.Repositories.App;
 using Company.App.DataSourceDefinition.Repositories.Basic;

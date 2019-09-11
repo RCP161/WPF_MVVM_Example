@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
+using Company.App.Core.Logic.App;
 using Company.App.Core.Models;
 
 namespace Company.App.Core.Models.Security
 {
     [Table("Permission")]
-    public class Permission : ModelBase2
+    public class Permission : ModelBase2<Permission>
     {
         public Permission() : base(false)
         { }
@@ -45,14 +46,10 @@ namespace Company.App.Core.Models.Security
 
         public static readonly PropertyData CommentProperty = RegisterProperty(nameof(Comment), typeof(string));
 
+
         #endregion
 
         #region Methods
-
-        public override void Save()
-        {
-            Save<Permission>();
-        }
 
         protected override string GetDisplayText()
         {

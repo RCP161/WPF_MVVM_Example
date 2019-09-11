@@ -59,6 +59,9 @@ namespace Company.App.Core.Models.Security
         public static readonly PropertyData UsersProperty = RegisterProperty(nameof(Users), typeof(ObservableCollection<User>));
 
 
+        protected override ISaveableService<Group> SaveableService { get { return ServiceLocator.Default.ResolveType<Logic.Security.IGroupService>(); } }
+
+
         #endregion
 
         #region Methods

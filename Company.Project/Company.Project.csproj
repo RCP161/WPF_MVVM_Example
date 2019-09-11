@@ -14,7 +14,6 @@
     <ProjectReference Include="..\Company.App.Core\Company.App.Core.csproj" />
     <ProjectReference Include="..\Company.App.DataSourceDefinition\Company.App.DataSourceDefinition.csproj" />
     <ProjectReference Include="..\Company.App.DataSource\Company.App.DataSource.csproj" />
-    <ProjectReference Include="..\Company.App.Logic\Company.App.Logic.csproj" />
     <ProjectReference Include="..\Company.Basic.Logic\Company.Basic.Logic.csproj" />
     <ProjectReference Include="..\Company.Basic.Presentation\Company.Basic.Presentation.csproj" />
     <ProjectReference Include="..\Company.Basic.UI\Company.Basic.UI.csproj" />

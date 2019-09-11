@@ -57,8 +57,10 @@ namespace Company.App.Core.Models.Basic
             get { return GetValue<User>(UserProperty); }
             set { SetValue(UserProperty, value); }
         }
-
         public static readonly PropertyData UserProperty = RegisterProperty(nameof(User), typeof(User), null);
+
+
+        protected override ISaveableService<Person> SaveableService { get { return ServiceLocator.Default.ResolveType<Logic.Basic.IPersonService>(); } }
 
 
         #endregion

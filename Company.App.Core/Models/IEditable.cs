@@ -16,5 +16,6 @@ namespace Company.App.Core.Models
         public void AfterLoad();
 
         public void Save();
+        public void Save(IDataAccess dataAccess);
     }
 }

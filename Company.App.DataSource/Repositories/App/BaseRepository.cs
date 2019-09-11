@@ -9,9 +9,9 @@ using Company.App.DataSourceDefinition.Repositories.App;
 
 namespace Company.App.DataSource.Repositories.App
 {
-    public class ModelBase2Repository : IModelBase2Repository
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : ModelBase2<T>
     {
-        internal ModelBase2Repository(IDataAccess dataAccess)
+        internal BaseRepository(IDataAccess dataAccess)
         {
             DataAccess = dataAccess;
         }
@@ -23,7 +23,7 @@ namespace Company.App.DataSource.Repositories.App
         /// </summary>
         /// <param name="id">Id des Objekts</param>
         /// <returns>Objekt mit der angegebenen Id, sonst null</returns>
-        public T GetById<T>(int id) where T : ModelBase2<T>
+        public T GetById(int id)
         {
             T t = DataAccess.GetById<T>(id);
             t.AfterLoad();
@@ -34,7 +34,7 @@ namespace Company.App.DataSource.Repositories.App
         /// Liefert alle Objekte des Typs in dem Repository
         /// </summary>
         /// <returns>Auflistung von Objekten des Datentyps</returns>
-        public IEnumerable<T> GetAll<T>() where T : ModelBase2<T>
+        public IEnumerable<T> GetAll()
         {
             IEnumerable<T> ts = DataAccess.GetAll<T>().ToList();
 
@@ -45,23 +45,24 @@ namespace Company.App.DataSource.Repositories.App
         }
 
 
-        public int GetCount<T>() where T : ModelBase2<T>
+        public int GetCount()
         {
             return DataAccess.Query<T>().Count();
         }
 
-        public void SaveOrUpdate<T>(T entity) where T : ModelBase2<T>
+        public void SaveOrUpdate(T entity)
         {
+            throw new Exception("Kann nicht funktionieren. Springt immer zwischen den Mappin Properties hin und her ...");
+
+
             if(entity == null || entity.State == StateEnum.Unchanged)
                 return;
 
             SaveOrUpdateModel(entity);
 
-            List<string> dependents = new List<string>();
-
             IEnumerable<System.Reflection.PropertyInfo> properties = entity.GetType()
                 .GetProperties()
-                .Where(p => typeof(IEnumerable<ModelBase2<T>>).IsAssignableFrom(p.PropertyType) || typeof(ModelBase2<T>).IsAssignableFrom(p.PropertyType));
+                .Where(p => typeof(IEnumerable<IEditable>).IsAssignableFrom(p.PropertyType) || typeof(IEditable).IsAssignableFrom(p.PropertyType));
 
             foreach(System.Reflection.PropertyInfo property in properties)
             {
@@ -70,23 +71,23 @@ namespace Company.App.DataSource.Repositories.App
                 if(value == null)
                     continue;
                 
-                if(value is IEnumerable<ModelBase2<T>>)
+                if(value is IEnumerable<IEditable>)
                 {
-                    IEnumerable<ModelBase2<T>> childs = value as IEnumerable<ModelBase2<T>>;
+                    IEnumerable<IEditable> childs = value as IEnumerable<IEditable>;
 
-                    foreach(ModelBase2<T> child in childs)
-                        child.Save(DataAccess); // Hier muss dann der Richtige Service getriggert werden
+                    foreach(IEditable child in childs)
+                        child.Save(DataAccess);
                 }
-                else if(value is ModelBase2<T>)
+                else if(value is IEditable)
                 {
-                    ModelBase2<T> child = value as ModelBase2<T>;
-                    child.Save(DataAccess); // Hier muss dann der Richtige Service getriggert werden
+                    IEditable child = value as IEditable;
+                    child.Save(DataAccess);
                 }
             }
         }
 
 
-        private void SaveOrUpdateModel<T>(T entity) where T : ModelBase2<T>
+        private void SaveOrUpdateModel(T entity)
         {
             switch(entity.State)
             {

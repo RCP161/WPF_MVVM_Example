@@ -6,19 +6,16 @@ using System.Text;
 using Company.App.Core.Common;
 using Company.App.Core.Models.Basic;
 using Company.App.Core.Models.Security;
+using Company.App.DataSource.Repositories.App;
 using Company.App.DataSourceDefinition.Common;
 using Company.App.DataSourceDefinition.Repositories.Basic;
 
 namespace Company.App.DataSource.Repositories.Basic
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : BaseRepository<Person>, IPersonRepository
     {
-        internal PersonRepository(IDataAccess dataAccess)
-        {
-            DataAccess = dataAccess;
-        }
-
-        protected IDataAccess DataAccess { get; private set; }
+        public PersonRepository(IDataAccess dataAccess) : base(dataAccess)
+        { }
 
         public IEnumerable<User> GetByGroupId(int id)
         {

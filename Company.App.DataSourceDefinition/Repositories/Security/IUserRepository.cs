@@ -6,8 +6,7 @@ using Company.App.DataSourceDefinition.Repositories.App;
 
 namespace Company.App.DataSourceDefinition.Repositories.Security
 {
-    public interface IGroupPermissionRepository : IBaseRepository<GroupPermission>
+    public interface IUserRepository : IBaseRepository<User>
     {
-        IEnumerable<GroupPermission> GetByGroupId(int id);
     }
 }

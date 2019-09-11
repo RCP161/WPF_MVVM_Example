@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using Catel.Data;
+using Catel.IoC;
 using Company.App.Core.Logic.App;
 using Company.App.Core.Models;
 
@@ -45,6 +46,9 @@ namespace Company.App.Core.Models.Security
         }
 
         public static readonly PropertyData CommentProperty = RegisterProperty(nameof(Comment), typeof(string));
+
+
+        protected override ISaveableService<Permission> SaveableService { get { return ServiceLocator.Default.ResolveType<Logic.Security.IPermissionService>(); } }
 
 
         #endregion

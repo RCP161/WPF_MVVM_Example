@@ -15,27 +15,16 @@ namespace Company.App.DataSource.Common
         public UnitOfWork(IDataAccess dataAccess)
         {
             DataAccess = dataAccess;
+            UsingCounter = 1;
         }
 
         #endregion
 
         #region Properties
 
-        private IDataAccess DataAccess { get; set; }
+        internal IDataAccess DataAccess { get; set; }
 
-
-
-        private IModelBase2Repository modelBase2Repository;
-        public IModelBase2Repository ModelBase2Repository
-        {
-            get
-            {
-                if(modelBase2Repository == null)
-                    modelBase2Repository = new Repositories.App.ModelBase2Repository(DataAccess);
-
-                return modelBase2Repository;
-            }
-        }
+        internal int UsingCounter { get; set; }
 
 
         private IPersonRepository personRepository;
@@ -77,7 +66,31 @@ namespace Company.App.DataSource.Common
         }
 
 
+        private IPermissionRepository permissionRepository;
+        public IPermissionRepository PermissionRepository
+        {
+            get
+            {
+                if(permissionRepository == null)
+                    permissionRepository = new Repositories.Security.PermissionRepository(DataAccess);
 
+                return permissionRepository;
+            }
+        }
+
+
+        private IUserRepository userRepository;
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if(userRepository == null)
+                    userRepository = new Repositories.Security.UserRepository(DataAccess);
+
+                return userRepository;
+            }
+        }
+        
 
         #endregion
 
@@ -97,11 +110,11 @@ namespace Company.App.DataSource.Common
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposed)
+            if(!disposed)
             {
-                if (disposing)
+                if(disposing)
                 {
-                    if (DataAccess is IDisposable disp)
+                    if(DataAccess is IDisposable disp)
                         disp.Dispose();
                 }
             }
@@ -110,6 +123,12 @@ namespace Company.App.DataSource.Common
 
         public void Dispose()
         {
+            if(UsingCounter > 1)
+            {
+                UsingCounter--;
+                return;
+            }
+
             Dispose(true);
             GC.SuppressFinalize(this);
         }

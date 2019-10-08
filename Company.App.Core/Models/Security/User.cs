@@ -75,11 +75,6 @@ namespace Company.App.Core.Models.Security
 
         #region Methods
 
-        public override void SaveModel()
-        {
-            SaveModel<User>();
-        }
-
         protected override string GetDisplayText()
         {
             return LogIn;

@@ -5,11 +5,11 @@ using System.Text;
 using Company.App.Core.Common;
 using Company.App.Core.Models;
 using Company.App.DataSourceDefinition.Common;
-using Company.App.DataSourceDefinition.Repositories.App;
+using Company.App.DataSourceDefinition.Repositories;
 
-namespace Company.App.DataSource.Repositories.App
+namespace Company.App.DataSource.Repositories
 {
-    public class ModelBase2Repository : IModelBase2Repository
+    public abstract class ModelBase2Repository<T> : IModelBase2Repository<T> where T : ModelBase2 
     {
         internal ModelBase2Repository(IDataAccess dataAccess)
         {
@@ -23,10 +23,10 @@ namespace Company.App.DataSource.Repositories.App
         /// </summary>
         /// <param name="id">Id des Objekts</param>
         /// <returns>Objekt mit der angegebenen Id, sonst null</returns>
-        public T GetById<T>(int id) where T : ModelBase2
+        public T GetById(int id)
         {
             T t = DataAccess.GetById<T>(id);
-            t.AfterLoad();
+            t.MarkAsUnchanged();
             return t;
         }
 
@@ -34,24 +34,24 @@ namespace Company.App.DataSource.Repositories.App
         /// Liefert alle Objekte des Typs in dem Repository
         /// </summary>
         /// <returns>Auflistung von Objekten des Datentyps</returns>
-        public IEnumerable<T> GetAll<T>() where T : ModelBase2
+        public IEnumerable<T> GetAll()
         {
             IEnumerable<T> ts = DataAccess.GetAll<T>().ToList();
 
             foreach(T t in ts)
-                t.AfterLoad();
+                t.MarkAsUnchanged();
 
             return ts;
         }
 
 
-        public int GetCount<T>() where T : ModelBase2
+        public int GetCount()
         {
             return DataAccess.Query<T>().Count();
         }
 
 
-        public void SaveOrUpdate<T>(T entity) where T : ModelBase2
+        public void SaveOrUpdate(T entity)
         {
             switch(entity.State)
             {

@@ -6,8 +6,9 @@ using Company.App.Core.Models.Security;
 
 namespace Company.App.DataSourceDefinition.Repositories.Security
 {
-    public interface IGroupRepository : IModelBase2Repository<Group>
+    public interface IUserRepository : IModelBase2Repository<User>
     {
-        IEnumerable<Group> GetByUserId(int id);
+        IEnumerable<User> GetByGroupId(int id);
+        User GetByPersonId(int id);
     }
 }

@@ -5,7 +5,7 @@ using Company.App.Core.Models.Security;
 
 namespace Company.App.Core.Logic.Security
 {
-    public interface IPermissionService : IModelBase2Service<Permission>
+    public interface IPermissionService : ModelBase2Service<Permission>
     {
     }
 }

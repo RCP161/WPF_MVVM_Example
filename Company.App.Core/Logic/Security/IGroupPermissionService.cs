@@ -5,7 +5,7 @@ using Company.App.Core.Models.Security;
 
 namespace Company.App.Core.Logic.Security
 {
-    public interface IGroupPermissionService : IModelBase2Service<GroupPermission>
+    public interface IGroupPermissionService : ModelBase2Service<GroupPermission>
     {
         IEnumerable<GroupPermission> GetByGroupId(int id);
     }

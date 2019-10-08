@@ -5,7 +5,7 @@ using Company.App.Core.Models.Basic;
 
 namespace Company.App.Core.Logic.Basic
 {
-    public interface IPersonService : IModelBase2Service<Person>
+    public interface IPersonService : ModelBase2Service<Person>
     {
         Person GetByIdForEdit(int id);
     }

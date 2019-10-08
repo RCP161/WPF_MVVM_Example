@@ -1,7 +1,6 @@
 ﻿using System;
 using Catel.IoC;
 using Company.App.DataSourceDefinition.Common;
-using Company.App.DataSourceDefinition.Repositories.App;
 using Company.App.DataSourceDefinition.Repositories.Basic;
 using Company.App.DataSourceDefinition.Repositories.Security;
 
@@ -11,8 +10,9 @@ namespace Company.App.DataSource.Common
     {
         #region Constructor
 
-        public UnitOfWork(IDataAccess dataAccess)
+        internal UnitOfWork(IDataAccess dataAccess)
         {
+            Counter = 0;
             DataAccess = dataAccess;
         }
 
@@ -22,19 +22,7 @@ namespace Company.App.DataSource.Common
 
         private IDataAccess DataAccess { get; set; }
 
-
-
-        private IModelBase2Repository modelBase2Repository;
-        public IModelBase2Repository ModelBase2Repository
-        {
-            get
-            {
-                if(modelBase2Repository == null)
-                    modelBase2Repository = new Repositories.App.ModelBase2Repository(DataAccess);
-
-                return modelBase2Repository;
-            }
-        }
+        internal int Counter { get; set; }
 
 
         private IPersonRepository personRepository;
@@ -76,16 +64,51 @@ namespace Company.App.DataSource.Common
         }
 
 
+        private IUserRepository userRepository;     
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if(userRepository == null)
+                    userRepository = new Repositories.Security.UserRepository(DataAccess);
 
+                return userRepository;
+            }
+        }
+
+
+        private IPermissionRepository permissionRepository;
+        public IPermissionRepository PermissionRepository
+        {
+            get
+            {
+                if(permissionRepository == null)
+                    permissionRepository = new Repositories.Security.PermissionRepository(DataAccess);
+
+                return permissionRepository;
+            }
+        }
 
         #endregion
 
         #region Methods
 
-        public void Complete()
+        public bool Complete()
         {
-            // TODO : [Prio2] [UnitOfWork] Eventuelles ErrorHandling an dieser Stelle? 
-            DataAccess.Complete();
+            bool res = true;
+
+            try
+            {
+                // TODO : [Prio2] [UnitOfWork] Eventuelles ErrorHandling an dieser Stelle? 
+                DataAccess.Complete();
+            }
+            catch(Exception)
+            {
+                // Log;
+                res = false;
+            }
+
+            return res;
         }
 
         #endregion
@@ -109,6 +132,12 @@ namespace Company.App.DataSource.Common
 
         public void Dispose()
         {
+            if(Counter > 0)
+            {
+                Counter--;
+                return;
+            }
+
             Dispose(true);
             GC.SuppressFinalize(this);
         }

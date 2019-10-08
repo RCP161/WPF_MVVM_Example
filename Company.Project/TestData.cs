@@ -39,38 +39,52 @@ namespace Company.Project
                 return;
 
             Person p;
+            IEnumerable<string> conflicts = new List<string>();
+
+
             for(int i = 0; i <= 5; i++)
             {
                 p = new Person();
                 p.Name = "Person";
                 p.Surename = Guid.NewGuid().ToString();
 
-                p.SaveModel();
+                if(!service.TrySave(p, conflicts))
+                    throw new Exception();
             }
         }
 
         private void CreatePermissions()
         {
-            IPermissionService service = ServiceLocator.Default.ResolveType<IPermissionService>();
-            int c = service.GetCount();
+            IUserService userService = ServiceLocator.Default.ResolveType<IUserService>();
+            IGroupService groupService = ServiceLocator.Default.ResolveType<IGroupService>();
+            IPermissionService permissionService = ServiceLocator.Default.ResolveType<IPermissionService>();
+            int c = permissionService.GetCount();
 
             if(c > 0)
                 return;
 
+            IEnumerable<string> conflicts = new List<string>();
+
             Permission p = new Permission();
             p.Name = "Person";
             p.Comment = "Recht zum sehen und bearbeiten von Personen";
-            p.SaveModel();
+
+            if(!permissionService.TrySave(p, conflicts))
+                throw new Exception();
 
             Permission g = new Permission();
             g.Name = "Group";
             g.Comment = "Recht zum sehen und bearbeiten von Gruppen";
-            g.SaveModel();
+
+            if(!permissionService.TrySave(p, conflicts))
+                throw new Exception();
 
             Permission u = new Permission();
             u.Name = "User";
             u.Comment = "Recht zum sehen und bearbeiten von LogIn-Usern";
-            u.SaveModel();
+
+            if(!permissionService.TrySave(p, conflicts))
+                throw new Exception();
 
             // Gruppe 1
             Group grp = new Group();
@@ -91,7 +105,8 @@ namespace Company.Project
             gp.Write = true;
             grp.GroupPermissions.Add(gp);
 
-            grp.SaveModel();
+            if(!groupService.TrySave(grp, conflicts))
+                throw new Exception();
 
 
             // Gruppe 2
@@ -103,13 +118,16 @@ namespace Company.Project
             gp.Write = true;
             grp.GroupPermissions.Add(gp);
 
-            grp.SaveModel();
+            if(!groupService.TrySave(grp, conflicts))
+                throw new Exception();
 
 
             // Gruppe 3
             grp = new Group();
             grp.Name = "Facharbeiter";
-            grp.SaveModel();
+
+            if(!groupService.TrySave(grp, conflicts))
+                throw new Exception();
 
 
             IPersonService personService = ServiceLocator.Default.ResolveType<IPersonService>();
@@ -118,12 +136,16 @@ namespace Company.Project
             user.LogIn = "KeyUser";
             user.Password = "Password";
             user.Person = personService.GetAll().First(); // Eig falsch, aber das ist hier für Testdaten egal. Eig eigene Funktion
-            user.SaveModel();
+
+            if(!userService.TrySave(user, conflicts))
+                throw new Exception();
 
             user = new User();
             user.LogIn = "Sandra";
             user.Password = "Mustermann";
-            user.SaveModel();
+
+            if(!userService.TrySave(user, conflicts))
+                throw new Exception();
         }
     }
 }

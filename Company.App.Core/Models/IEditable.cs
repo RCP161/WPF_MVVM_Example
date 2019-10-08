@@ -13,8 +13,6 @@ namespace Company.App.Core.Models
 
         public void MarkAsDeleted();
 
-        public void AfterLoad();
-
-        public void SaveModel();
+        public void MarkAsUnchanged();
     }
 }

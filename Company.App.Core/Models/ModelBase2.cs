@@ -21,26 +21,24 @@ namespace Company.App.Core.Models
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public abstract int Id { get; protected set; }
 
-
         public void MarkAsDeleted()
         {
             State = StateEnum.Deleted;
         }
 
-        public void AfterLoad()
+        public void MarkAsUnchanged()
         {
             State = StateEnum.Unchanged;
         }
 
-        public abstract void SaveModel();
-
-        protected void SaveModel<T>() where T : ModelBase2
+        protected override sealed string GetDisplyTextWithState()
         {
-            Logic.App.ISaveableService service = ServiceLocator.Default.ResolveType<Logic.App.ISaveableService>();
-            service.Save((T)this);
+            string dpText = GetDisplayText();
 
-            if(State == StateEnum.Modified || State == StateEnum.Created)
-                State = StateEnum.Unchanged;
+            if(State.HasFlag(StateEnum.Modified) || State.HasFlag(StateEnum.Created))
+                dpText += "*";
+
+            return dpText;
         }
     }
 }

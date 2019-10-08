@@ -10,23 +10,21 @@ using Company.App.DataSourceDefinition.Repositories.Basic;
 
 namespace Company.App.DataSource.Repositories.Basic
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : ModelBase2Repository<Person>, IPersonRepository
     {
-        internal PersonRepository(IDataAccess dataAccess)
-        {
-            DataAccess = dataAccess;
-        }
-
-        protected IDataAccess DataAccess { get; private set; }
-
-        public IEnumerable<User> GetByGroupId(int id)
-        {
-            return DataAccess.Query<User>().Where(x => x.Groups.Any(y => y.Id == id)).ToList();
-        }
+        internal PersonRepository(IDataAccess dataAccess) : base(dataAccess)
+        { }
 
         public Person GetByIdForEdit(int id)
         {
-            return DataAccess.Query<Person>().Where(x => x.Id == id).Include(x => x.User).FirstOrDefault();
+            Person person = DataAccess.Query<Person>().Where(x => x.Id == id).FirstOrDefault();
+
+            if(person == null)
+                return null;
+
+            person.User = DataAccess.Query<User>().Where(x => x.Person.Id == id).FirstOrDefault();
+
+            return person;
         }
     }
 }

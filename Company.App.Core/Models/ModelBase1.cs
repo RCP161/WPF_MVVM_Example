@@ -58,14 +58,9 @@ namespace Company.App.Core.Models
 
         #region Methods
 
-        private string GetDisplyTextWithState()
+        protected virtual string GetDisplyTextWithState()
         {
-            string dpText = GetDisplayText();
-
-            if(State.HasFlag(StateEnum.Modified) || State.HasFlag(StateEnum.Created))
-                dpText += "*";
-
-            return dpText;
+            return GetDisplayText();
         }
 
         protected virtual string GetDisplayText()

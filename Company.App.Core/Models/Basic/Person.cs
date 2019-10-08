@@ -48,7 +48,7 @@ namespace Company.App.Core.Models.Basic
         }
         public static readonly PropertyData SurenameProperty = RegisterProperty(nameof(Surename), typeof(string));
 
-
+        [NotMapped]
         public virtual User User
         {
             get { return GetValue<User>(UserProperty); }
@@ -59,11 +59,6 @@ namespace Company.App.Core.Models.Basic
         #endregion
 
         #region Methods
-
-        public override void SaveModel()
-        {
-            SaveModel<Person>();
-        }
 
         protected override string GetDisplayText()
         {

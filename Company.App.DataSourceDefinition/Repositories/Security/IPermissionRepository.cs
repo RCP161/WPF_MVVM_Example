@@ -6,8 +6,7 @@ using Company.App.Core.Models.Security;
 
 namespace Company.App.DataSourceDefinition.Repositories.Security
 {
-    public interface IGroupRepository : IModelBase2Repository<Group>
+    public interface IPermissionRepository : IModelBase2Repository<Permission>
     {
-        IEnumerable<Group> GetByUserId(int id);
     }
 }

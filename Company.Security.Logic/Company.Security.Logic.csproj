@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Company.App.Core\Company.App.Core.csproj" />
-    <ProjectReference Include="..\Company.App.Logic\Company.App.Logic.csproj" />
+    <ProjectReference Include="..\Company.App.DataSourceDefinition\Company.App.DataSourceDefinition.csproj" />
   </ItemGroup>
 
 </Project>

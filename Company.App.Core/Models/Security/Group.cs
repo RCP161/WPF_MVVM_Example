@@ -77,11 +77,6 @@ namespace Company.App.Core.Models.Security
 
         #region Methods
 
-        public override void SaveModel()
-        {
-            SaveModel<Group>();
-        }
-
         protected override string GetDisplayText()
         {
             return Name;

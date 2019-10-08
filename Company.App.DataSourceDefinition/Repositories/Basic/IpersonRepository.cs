@@ -6,9 +6,8 @@ using Company.App.Core.Models.Security;
 
 namespace Company.App.DataSourceDefinition.Repositories.Basic
 {
-    public interface IPersonRepository
+    public interface IPersonRepository : IModelBase2Repository<Person>
     {
-        IEnumerable<User> GetByGroupId(int id);
         Person GetByIdForEdit(int id);
     }
 }
